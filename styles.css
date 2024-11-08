@@ -80,13 +80,29 @@
     margin-top: 4%;
   }
   
+  @keyframes fade {
+    from {color: transparent;
+      opacity: 0;}
+    to {color: white;
+      opacity: 1;}
+  }
+
   .left-section h1 {
     font-size: 5.5em;
+    animation-name: fade;
+    animation-duration: 1s;
   }
 
   .left-section h2 {
     font-size: 3em;
     margin-bottom: 5%;
+    animation-name: fade;
+    animation-duration: 1s;
+  }
+
+  #lol {
+    animation-name: fade;
+    animation-duration: 4s;
   }
   
   .left-section p {
@@ -103,12 +119,19 @@
   .left-section a {
     text-decoration-line: underline;
     font-weight:700;
+    animation-name: fade;
+    animation-duration: 3s;
   }
   
   .social-links {
     display: flex;
     align-items: center;
+    animation-name: fade;
+    animation-duration: 4.5s;
+
+  
   }
+
   .social-links a {
     display: flex;
     margin-right: 15px;
