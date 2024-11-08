@@ -8,63 +8,109 @@
   /* Body Styling */
   body {
     font-family: Arial, sans-serif;
-    background-color: #1e1e2e;
-    color: white;
+    background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%);
   }
   
   /* Navigation Bar */
+  nav {
+    /* background-color: rgba(255, 255, 255, 0.05); */
+    background-color: black;
+    height: 5em;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    white-space: nowrap;
+    position:sticky
+  }
+
   nav ul {
     display: flex;
+    align-items: center;
     justify-content: center;
     list-style-type: none;
   }
   
   nav ul li {
-    margin: 0 20px;
+    margin-right: 3%;
+    margin-left: 3%;
+
   }
   
   nav ul li a {
     color: white;
-    text-decoration: none;
+    font-size: 25px;
+    text-decoration-line: none;
+    font-weight: bold;
+  }
+
+  nav ul li a:hover{
+    color: white;
+    text-decoration-line: underline;
   }
   
   /* Container Layout */
   .container {
     display: flex;
     justify-content: space-between;
-    padding: 50px;
+    padding: 30px;
   }
   
   /* Left Section Styling */
   .left-section {
-    max-width: 40%;
+    max-width: 50%;
+    color:white;
+    margin-left: 5%;
+    margin-top: 5%;
   }
   
   .left-section h1 {
+    font-size: 5.5em;
+  }
+
+  .left-section h2 {
     font-size: 3em;
+    margin-bottom: 5%;
   }
   
   .left-section p {
-    margin-bottom: 10px;
+    margin-bottom: 5%;
+    font-size: x-large;
+  }
+
+  .left-section a {
+    text-decoration-line: underline;
+    font-weight:700;
   }
   
+  .social-links {
+    display: flex;
+    align-items: center;
+  }
+  .social-links a {
+    display: flex;
+    margin-right: 15px;
+    align-items: center;
+    font-size: 20px;
+    text-decoration-line: none;
+  }
+
   .social-links a img {
-    width: 30px;
-    margin-right: 10px;
+    width: 70px;
   }
   
   /* Right Section Styling */
-  .right-section {
-    max-width: 50%;
-  }
   
   #threejs-container {
-    width: 400px;
+    width: auto;
     height: auto; /* Adjust height as needed */
   }
   
   /* Caption Styling */
   .right-section p {
     margin-top: 10px;
+    color:white
   }
   
+  a {
+    color:white
+  }
