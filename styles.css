@@ -5,9 +5,13 @@
     box-sizing: border-box;
   }
   
+  html {
+    background-color: black;
+}
   /* Body Styling */
   body {
     font-family: Arial, sans-serif;
+    background-color:black;
   }
   
   footer {
