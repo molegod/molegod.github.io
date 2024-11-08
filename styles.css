@@ -26,6 +26,23 @@
     color: #fff;
   }
 
+  #h1 {
+    animation-name: fade;
+    animation-duration: 0.5s;
+  }
+  #h2 {
+    animation-name: fade;
+    animation-duration: 1s;
+  }
+  #h3 {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  #h4 {
+    animation-name: fade;
+    animation-duration: 2.0s;
+  }
+
   /* Navigation Bar */
   nav {
     /* background-color: rgba(255, 255, 255, 0.05); */
@@ -102,7 +119,7 @@
 
   #lol {
     animation-name: fade;
-    animation-duration: 4s;
+    animation-duration: 3.0s;
   }
   
   .left-section p {
@@ -120,14 +137,14 @@
     text-decoration-line: underline;
     font-weight:700;
     animation-name: fade;
-    animation-duration: 3s;
+    animation-duration: 2.5s;
   }
   
   .social-links {
     display: flex;
     align-items: center;
     animation-name: fade;
-    animation-duration: 4.5s;
+    animation-duration: 3.5s;
 
   
   }
