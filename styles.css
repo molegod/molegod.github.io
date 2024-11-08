@@ -8,9 +8,20 @@
   /* Body Styling */
   body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%);
   }
   
+  footer {
+    display: flex;
+    position: below;
+    justify-content: right;
+    align-items: center;
+    padding-right: 2%;
+    height: 10vh;
+    background-color: black;
+    font-weight: bold;
+    color: #fff;
+  }
+
   /* Navigation Bar */
   nav {
     /* background-color: rgba(255, 255, 255, 0.05); */
@@ -53,6 +64,8 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%);
   }
   
   /* Left Section Styling */
@@ -75,6 +88,12 @@
   .left-section p {
     margin-bottom: 5%;
     font-size: x-large;
+  }
+
+  #scifi {
+    margin-top: 5%;
+    font-size: medium;
+    font-weight: bold;
   }
 
   .left-section a {
