@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peter He - Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Art/3D-Design</a></li>
+      <li><a href="#">Research</a></li>
+    </ul>
+  </nav>
 
-    <main>
-        <section id="home">
-            <div class="content">
-                <h1>Welcome to My Portfolio</h1>
-                <p>I'm a web developer passionate about creating amazing websites.</p>
-            </div>
-            <div id="model-container"></div>
-        </section>
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left-section">
+      <h1>Hi, I'm Peter He!</h1>
+      <p><strong>Cornell ECE + CS '27</strong></p>
+      <p>Published Undergraduate HCI Researcher</p>
+      <p>Sci-Fi Tech Enthusiast</p>
+      <p>Founder of the Cornell XR Club (CUXR)</p>
+      <p>Interested in Wearable Computing, 3D-Graphics, HCI</p>
 
-        <!-- Other sections (About, Projects, Contact) go here -->
+      <!-- Social Links -->
+      <div class="social-links">
+        <a href="#"><img src="email-icon.png" alt="Email"></a>
+        <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+        <a href="#"><img src="github-icon.png" alt="GitHub"></a>
+      </div>
+    </div>
 
-    </main>
+    <!-- Right Section: Three.js Model -->
+    <div class="right-section">
+      <!-- Placeholder for Three.js Canvas -->
+      <div id="threejs-container"></div>
 
-    <footer>
-        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
-    </footer>
+      <!-- Caption -->
+      <p>Gaussian Splat of my closet made with Mr. Nerf's Implementation</p>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Three.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

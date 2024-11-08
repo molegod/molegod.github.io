@@ -1,56 +1,33 @@
-let scene, camera, renderer, model;
+// Basic Three.js Setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
 
-function init() {
-    // Create scene
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf0f0f0);
+// Set renderer size
+renderer.setSize(400, window.innerHeight / window.innerWidth * window.innerHeight);
+document.getElementById('threejs-container').appendChild(renderer.domElement);
 
-    // Create camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
+// Add lighting
+const light = new THREE.AmbientLight(0x404040); // Soft white light
+scene.add(light);
 
-    // Create renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth / 2, 400);
-    document.getElementById('model-container').appendChild(renderer.domElement);
+// Gaussian Splat Example (Replace with actual implementation)
+const geometry = new THREE.SphereGeometry(1,32,32);
+const material = new THREE.MeshBasicMaterial({ color: 'blue', wireframe: true });
+const gaussianSplat = new THREE.Mesh(geometry, material);
+scene.add(gaussianSplat);
 
-    // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    directionalLight.position.set(0, 1, 0);
-    scene.add(directionalLight);
+// Position camera
+camera.position.z = 5;
 
-    // Load 3D model
-    const loader = new THREE.GLTFLoader();
-    loader.load('path/to/your/model.glb', (gltf) => {
-        model = gltf.scene;
-        scene.add(model);
-    }, undefined, (error) => {
-        console.error('An error occurred while loading the model:', error);
-    });
+// Animation loop
+function animate() {
+    requestAnimationFrame(animate);
+    
+    // Rotate the model for some interaction
+    gaussianSplat.rotation.x += 0.01;
+    gaussianSplat.rotation.y += 0.01;
 
-    // Add OrbitControls
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
-    controls.enableZoom = true;
-
-    // Animation loop
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    animate();
+    renderer.render(scene, camera);
 }
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth / 2, 400);
-});
-
-// Initialize the scene
-init();
+animate();
