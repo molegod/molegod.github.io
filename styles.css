@@ -52,7 +52,9 @@
     justify-content: center;
     display: flex;
     white-space: nowrap;
-    position:sticky
+    position: sticky;
+    top: 0;
+    z-index: 500;
   }
 
   nav ul {
@@ -85,7 +87,7 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
-    height: 100vh;
+    height: 95vh;
     background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%);
   }
   
