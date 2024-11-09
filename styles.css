@@ -299,7 +299,15 @@
     animation-name: fade;
     animation-duration: 3.0s;
   }
-  
+
+  @media (max-width: 900px) {
+  .left-section p{
+    margin-bottom: 5%;
+    font-size: 1.65vmax;
+  }
+  }
+
+
   .left-section p {
     margin-bottom: 5%;
     font-size: 1.75vmax;
