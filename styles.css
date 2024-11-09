@@ -260,6 +260,19 @@
     color: rgba(255, 255, 255, 0.451) !important;
   }
 
+  @media (max-width: 900px) {
+    #projectlink{
+      animation-duration: 0s !important;
+      color: white !important;
+      font-size: 2vmax;
+      animation-name: fade;
+      animation-duration: 2s;
+      margin-top: -1% !important;
+      margin-bottom: 2% !important;
+    }
+  
+  }
+
   #paper{
     margin-top: 5%;
   }
