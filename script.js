@@ -2,9 +2,11 @@
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerWidth, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({alpha: true} );
+// const renderer = new THREE.WebGLRenderer( );
+
 
 // Set renderer size
-renderer.setSize(400, window.innerHeight / window.innerWidth * window.innerHeight);
+renderer.setSize(window.innerWidth/2.5, window.innerWidth/2.5);
 document.getElementById('threejs-container').appendChild(renderer.domElement);
 
 // Add lighting
@@ -12,7 +14,7 @@ const light = new THREE.AmbientLight(0x404040); // Soft white light
 scene.add(light);
 
 // Gaussian Splat Example (Replace with actual implementation)
-const geometry = new THREE.BoxGeometry(3.5,3.5,3.5);
+const geometry = new THREE.BoxGeometry(3.5,3.5,3.5, 5, 5, 5);
 const material = new THREE.MeshBasicMaterial({ color: 'white', wireframe: true });
 const gaussianSplat = new THREE.Mesh(geometry, material);
 scene.add(gaussianSplat);

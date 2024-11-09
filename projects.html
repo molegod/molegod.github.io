@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peter He - Projects</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li id="h1"><a href="/">Home</a></li>
+      <li id="h2"><a href="/projects.html">Projects</a></li>
+      <li id="h3"><a href="/artdesign.html">Art/3D-Design</a></li>
+      <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=en">Research</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container2">
+        <section class = "projects-label">
+            <h2>Projects</h2>
+        </section>
+        <section class="projects-section">
+            <!-- Project 1 -->
+            <div class="project">
+                <img src="flexvr.png" alt="flexvr image">
+                <div class="project-info">
+                    <h3 class="project-title">Flex VR Wellness</h3>
+                    <h2 class="project-subtitle">MIT Reality Hack 2024 - Hardware: Creative Inputs/Outputs Winner</h2>
+
+                    <p class="project-description">
+                            ● Collaborated with a talented team of 5 to develop the FlexVR Wellness ecosystem to enable remote electro-stimulation therapy.
+                    </p>
+
+                    <p class ="project-description">
+                            ● Designed a system where the therapist uses an AR headset to enhance their workflow, communicate with patients, get live data, and control the patient’s electro-stimulation therapy while the patient is in a calm stress-reducing VR environment.
+                    </p>
+
+                    <p class ="project-description">
+                            ● Wrote firmware and did fabrication + hardware design of the project during the hackathon.
+                    </p>
+
+                    <p class ="project-description">
+                            ● First developers ever to create a system enabling cross-play between the Qualcomm Snapdragon Spaces AR
+                            system and the Meta Quest Ecosystem.
+                    </p>   
+
+                    <p id = "projectlink"><a href="https://devpost.com/software/flexvr-wellness">Learn More</a></p>
+                </div>
+            </div>
+    
+            <!-- Project 2 -->
+            <div class="project">
+                <img src="rewind.png" alt="rewind">
+                <div class="project-info">
+                    <h3 class="project-title">Rewind (Apple Vision Pro WebXR App)</h3>
+                    <h2 class="project-subtitle">HackMIT 2024 - Intersystems AI Challenge 3rd Place</h2>
+
+                    <p class="project-description">
+                        ● Created Rewind, an memory preservation web app that allows users to store, revisit, and share their memories in various formats such as video, photos, text, and audio.                    </p>
+
+                    <p class ="project-description">
+                        ● Designed a system for users to query memories using natural language search.
+                    </p>
+
+                    <p class ="project-description">
+                        ● Developed pipeline that integrated gaussian splatting to generate 3D scenes from user-uploaded videos for
+                        immersive memory viewing.                    </p>
+
+                        <p class ="project-description">
+                            ● Used Three.js and WebXR to allow an Apple Vision Pro user to query and view their 3D memories.
+                        </p>
+    
+
+                    <p id = "projectlink"><a href="https://ballot.hackmit.org/project/dicbb-jczbc-nylxm-mcqsf">Learn More</a></p>
+                </div>
+            </div>
+
+            
+    
+            <!-- Project 3 -->
+            <div class="project">
+                <img src="pcb.png" alt="pcb">
+                <div class="project-info">
+                    <h3 class="project-title">SeamPose PCB</h3>
+                        <p class="project-description">A printed circuit-board I designed for a research paper. 
+                            Faciliates 8 conductive seams to enable upper-body pose estimation through capacitive sensing. 
+                            The capacitive signals were sent to a nearby laptop. These signals combined with a vision based ground-truth produced a 
+                            machine learning model that could predict upper-body pose estimation.
+                        </p>
+                        <p id="paper"><strong>Co-Second Author on the Paper for contributions (Freshman Year)</strong>
+                        </p>
+                        <p id = "projectlink"><a href="https://dl.acm.org/doi/abs/10.1145/3654777.3676341">Paper (Presented UIST 2024)</a></p>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="project">
+                <img src="localization1.gif" alt="localization">
+                <div class="project-info">
+                    <h3 class="project-title">Realtime Gaussian Splat Localization</h3>
+                    <p class="project-description">
+                        ● Led the design and creation of a python library to facilitate real-time localization into pre-made gaussian splat scenes and
+                        structure from motion (SfM) models based on recent research advancements in feature matching algorithms for 6-DoF visual hierarchical localization.
+                    <p class ="project-description">
+                        ● Optimized a Pytorch pipeline reducing localization time through pre-loading models and optimizing structure for smaller-scale scenes.                    </p>
+
+                    <p class ="project-description">
+                        ● Converted open-source gaussian splatting software into a form usable by Windows, using CUDA and COLMAP documentation.                  </p>
+                    
+                    <p class ="project-description">
+                        ● Developed a Flask backend + Three.js frontend of a WebXR based interface for phone and VR headsets to enable synchronous collaboration on hardware projects with interactions powered by 3D-data gathered from localization of images into gaussian splats.</p>
+                        
+                    <p class ="project-description">
+                        ● Camera localization library created was implemented and used in CHI 2025 research paper submission.                        </p>
+    
+
+                    <p id = "projectlink"><a href="https://arxiv.org/abs/2411.02332">Paper (Submitted CHI 2025)</a></p>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project">
+                <img src="thor1.png" alt="thor hammer">
+                <div class="project-info">
+                    <h3 class="project-title">Electromagnetic Thor Hammer</h3>
+                        <p class="project-description">Senior year highschool project, originally for class, but ended up being more for fun since it took longer than expected to finish.
+                        </p>
+                        <p>● Used two heavy-duty door electromagmets for the electro-magnetism.
+                        </p>
+                        <p>● Controlled by Arduino and fingerprint scanner.
+                        </p>
+                        <p>● Powered by four 12V lead-acid batteries wired in parallel.
+                        </p>
+                        <p>● Donated to my Highschool Digital Logic Design Teacher for his inspiring of me to pursue engineering (his fault that I don't sleep)
+                        </p>
+                        <p id = "projectlink"><a>Credit: Allen Pan on Youtube for Inspiration</a></p>
+                </div>
+            </div>
+    
+        </section>
+  </div>
+
+  <!-- Three.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+
+  <footer>
+    <p>© 2024 Peter He</p>
+  </footer> 
+  
+</body>
+
+
+
+</html>
