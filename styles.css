@@ -303,7 +303,7 @@
   @media (max-width: 900px) {
   .left-section p{
     margin-bottom: 5%;
-    font-size: 1.65vmax;
+    font-size: 1.5vmax !important;
   }
   }
 
