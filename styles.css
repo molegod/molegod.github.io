@@ -214,6 +214,8 @@
 
   @media (max-width: 900px) {
     .project {
+      animation-name: fade;
+      animation-duration: 2s;
       grid-template-columns: 1fr; /* 1 column on mobile */
     }
   }
@@ -281,6 +283,12 @@
     margin-right: 15%;
   }
 
+  @media (max-width: 900px) {
+    .left-section{
+      margin-left: 2% !important;
+    }
+
+  }
   .left-section {
     color:white;
     margin-left: 5%;
