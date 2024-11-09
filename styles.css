@@ -294,6 +294,13 @@
       opacity: 1;}
   }
 
+  @media (max-width: 900px) {
+    .left-section h1 {
+      font-size: 6.0vmax !important;
+      animation-duration: 0s !important;
+    }
+  }
+
   .left-section h1 {
     overflow-inline: true;
     font-size: 6.5vmax;
