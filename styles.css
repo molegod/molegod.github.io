@@ -20,7 +20,7 @@
     justify-content: right;
     align-items: center;
     padding-right: 2%;
-    height: 10vh;
+    height: 4rem;
     background-color: black;
     font-weight: bold;
     color: #fff;
@@ -47,7 +47,7 @@
   nav {
     /* background-color: rgba(255, 255, 255, 0.05); */
     background-color: black;
-    height: 5em;
+    height: 5rem;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -67,12 +67,11 @@
   nav ul li {
     margin-right: 3%;
     margin-left: 3%;
-
   }
-  
+
   nav ul li a {
     color: white;
-    font-size: 25px;
+    font-size: 2vmax;
     text-decoration-line: none;
     font-weight: bold;
   }
@@ -81,24 +80,27 @@
     color: white;
     text-decoration-line: underline;
   }
-  
+
   /* Container Layout */
   .container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 30px;
-    height: 95vh;
+    width: auto;
+    height: auto;
     background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%);
+    padding-bottom: 15%;
   }
-  
+
   /* Left Section Styling */
   .left-section {
-    max-width: 50%;
     color:white;
     margin-left: 5%;
     margin-top: 4%;
+    width: inherit;
   }
-  
+
   @keyframes fade {
     from {color: transparent;
       opacity: 0;}
@@ -107,13 +109,14 @@
   }
 
   .left-section h1 {
-    font-size: 5.5em;
+    overflow-inline: true;
+    font-size: 6.5vmax;
     animation-name: fade;
     animation-duration: 1s;
   }
 
   .left-section h2 {
-    font-size: 3em;
+    font-size: 3vmax;
     margin-bottom: 5%;
     animation-name: fade;
     animation-duration: 1s;
@@ -126,12 +129,12 @@
   
   .left-section p {
     margin-bottom: 5%;
-    font-size: x-large;
+    font-size: 1.75vmax;
   }
 
   #scifi {
     margin-top: 5%;
-    font-size: medium;
+    font-size: 1;
     font-weight: bold;
   }
 
@@ -141,21 +144,19 @@
     animation-name: fade;
     animation-duration: 2.5s;
   }
-  
+
   .social-links {
     display: flex;
     align-items: center;
     animation-name: fade;
     animation-duration: 3.5s;
-
-  
   }
 
   .social-links a {
     display: flex;
     margin-right: 15px;
     align-items: center;
-    font-size: 20px;
+    font-size: 1.5vmax;
     text-decoration-line: none;
   }
 
