@@ -118,6 +118,8 @@
   }
 
   .image-grid {
+    animation-name: fade;
+    animation-duration: 2s;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Creates 4 columns */
     gap: 20px;
@@ -214,8 +216,6 @@
 
   @media (max-width: 900px) {
     .project {
-      animation-name: fade;
-      animation-duration: 2s;
       grid-template-columns: 1fr; /* 1 column on mobile */
     }
   }
