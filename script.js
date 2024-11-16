@@ -15,7 +15,7 @@ scene.add(light);
 
 // Gaussian Splat Example (Replace with actual implementation)
 const geometry = new THREE.BoxGeometry(3.5,3.5,3.5, 5, 5, 5);
-const material = new THREE.MeshBasicMaterial({ color: 'white', wireframe: true });
+const material = new THREE.MeshBasicMaterial({ color: '#241f1c', wireframe: true });
 const gaussianSplat = new THREE.Mesh(geometry, material);
 scene.add(gaussianSplat);
 
@@ -27,8 +27,8 @@ function animate() {
     requestAnimationFrame(animate);
     
     // Rotate the model for some interaction
-    gaussianSplat.rotation.x += 0.005;
-    gaussianSplat.rotation.y += 0.005;
+    gaussianSplat.rotation.x += 0.0025;
+    gaussianSplat.rotation.y += 0.0025;
 
     renderer.render(scene, camera);
 }
