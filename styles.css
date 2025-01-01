@@ -18,16 +18,16 @@ domine-google {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #241f1c !important;
+    color: #161618 !important;
     font-family: Inter, Arial;
   }
   
   html {
-    background-color: black;
+    background-color: #F5F5F7;
 }
   /* Body Styling */
   body {
-    background-color:black;
+    background-color:#F5F5F7;
   }
   
   footer {
@@ -51,7 +51,7 @@ domine-google {
     text-decoration-line: underline;
     } 
 
-  #h1 {
+  /* #h1 {
     animation-name: fade;
     animation-duration: 0.5s;
   }
@@ -66,21 +66,23 @@ domine-google {
   #h4 {
     animation-name: fade;
     animation-duration: 2.0s;
-  }
+  } */
 
   /* Navigation Bar */
   nav {
-    background-color: #241f1c;
+    background-color: #161618;
     /* background-color: #282c34; */
-    height: 5rem;
+    height: 3rem;
     align-items: center;
     justify-content: center;
     display: flex;
     white-space: nowrap;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 500;
+    width: 100%;
     color: #F0EAD6 !important;
+    transition: top 0.3s;
   }
 
   nav ul {
@@ -91,15 +93,15 @@ domine-google {
   }
   
   nav ul li {
-    margin-right: 3%;
-    margin-left: 3%;
+    margin-right: 7%;
+    margin-left: 7%;
   }
 
   nav ul li a {
     color: white !important;
-    font-size: 2vmax;
+    font-size: 0.9vmax;
     text-decoration-line: none;
-    font-weight: bold;
+    font-weight: 200;
   }
 
   nav ul li a:hover{
@@ -109,6 +111,7 @@ domine-google {
 
   /* Container Layout */
   .container {
+    margin-top: 5%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -215,10 +218,11 @@ domine-google {
   }
   
   .projects-label {
+    padding-top: 3vmax;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    color: #1a1714;
+    color: #161618;
     font-size: 2vmax;
     animation-name: fade;
     animation-duration: 1s;
@@ -232,7 +236,7 @@ domine-google {
     .project-info {
       grid-template-columns: 1fr; /* 1 column on mobile */
       margin-left: 0%;
-      margin-top: 2%;
+      margin-top: 1%;
     }
   }
 
@@ -242,7 +246,7 @@ domine-google {
     animation-name: fade;
     animation-duration: 2s;
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 3%;
     width: inherit;
   }
 
@@ -284,14 +288,14 @@ domine-google {
   }
 
   #projectlink a{
-    color: #1a1714 !important;
+    color: #161618 !important;
     font-size: 2vmax;
     animation-name: fade;
     animation-duration: 2s;
   }
 
   #projectlink a:hover{
-    color: #1a1714 !important;
+    color: #161618 !important;
   }
 
   @media (max-width: 900px) {
@@ -343,13 +347,13 @@ domine-google {
 
   .left-section h1 {
     overflow-inline: true;
-    font-size: 6.5vmax;
+    font-size: 6.0vmax;
     animation-name: fade;
     animation-duration: 1s;
   }
 
   .left-section h2 {
-    font-size: 3vmax;
+    font-size: 2.5vmax;
     margin-bottom: 5%;
     animation-name: fade;
     animation-duration: 1s;
@@ -383,14 +387,14 @@ domine-google {
     text-decoration-line: underline;
     font-weight:700;
     animation-name: fade;
-    animation-duration: 2.5s;
+    animation-duration: 2.0s;
   }
 
   .social-links {
     display: flex;
     align-items: center;
     animation-name: fade;
-    animation-duration: 3.5s;
+    animation-duration: 2.5s;
   }
 
   .social-links a {

@@ -11,7 +11,7 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-  <nav>
+  <nav id="navbar">
     <ul>
       <li id="h1" class="active"><a href="/">Home</a></li>
       <li id="h2"><a href="projects.html">Projects</a></li>
@@ -54,6 +54,19 @@
   <!-- Three.js Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-50px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+  </script>
 
   <footer>
     <p>© 2025 Peter He</p>
