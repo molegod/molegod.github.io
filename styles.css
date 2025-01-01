@@ -30,7 +30,7 @@ domine-google {
     align-items: center;
     padding-right: 2%;
     height: 4rem;
-    background-color: #F0EAD6;
+    background-color: #F5F5F7;
     font-weight: bold;
     /* color: white !important; */
   }
@@ -110,7 +110,7 @@ domine-google {
     height: auto;
     /* background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%); */
     /* background: linear-gradient(to bottom, #45484d 0%,#000000 100%); */
-    background:#F0EAD6;
+    background:#F5F5F7;
     padding-bottom: 15%;
   }
 
@@ -124,7 +124,7 @@ domine-google {
     height: auto;
     /* background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%); */
     /* background: linear-gradient(to bottom, #45484d 0%,#000000 100%); */
-    background: #F0EAD6;
+    background: #F5F5F7;
     padding-bottom: 15%;
   }
 
@@ -138,7 +138,7 @@ domine-google {
     height: auto;
     /* background: linear-gradient(to right, rgba(0,13,30,1) 0%,rgba(98,0,125,1) 100%);
     background: linear-gradient(to bottom, #45484d 0%,#000000 100%); */
-    background: #F0EAD6;
+    background: #F5F5F7;
     padding-bottom: 15%;
   }
 
