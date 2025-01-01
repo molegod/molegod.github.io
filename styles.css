@@ -6,13 +6,20 @@ domine-google {
   font-style: normal;
 }
 
+.inter-google {
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
+}
+
 /* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: #241f1c !important;
-    font-family: Domine, Arial;
+    font-family: Inter, Arial;
   }
   
   html {
