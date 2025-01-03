@@ -13,16 +13,15 @@ domine-google {
   font-style: normal;
 }
 
-#particles-js canvas {
+/* #particles-js canvas {
   display: block;
-  /* vertical-align: bottom; */
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
   opacity: 1;
   -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
-  transition: opacity .8s ease, transform 1.4s ease
-}
+  transition: opacity .8s ease, transform 1.4s ease;
+} */
 
 #particles-js {
   opacity: 75%;
@@ -30,7 +29,7 @@ domine-google {
   animation-duration:3s;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   z-index: -100;
   top: 0;
   left: 0;
@@ -71,7 +70,7 @@ domine-google {
     align-items: center;
     padding-right: 2%;
     height: 4rem;
-    background-color: #F5F5F7;
+    /* background-color: #F5F5F7; */
     font-weight: bold;
     /* color: white !important; */
   }
