@@ -325,10 +325,13 @@ domine-google {
     font-size: 2vmax;
     animation-name: fade;
     animation-duration: 2s;
+    text-decoration-line: underline;
   }
 
   #projectlink a:hover{
     color: #161618 !important;
+    
+    
   }
 
   @media (max-width: 900px) {
@@ -423,8 +426,28 @@ domine-google {
     font-weight: bold;
   }
 
-  .left-section a {
+  .left-section a{
     text-decoration-line: underline;
+    font-weight:700;
+    animation-name: fade;
+    animation-duration: 2.0s;
+    border-style: solid transparent;
+  }
+
+  .left-section p a {
+    text-decoration-line: underline;
+    font-weight:700;
+    animation-name: fade;
+    animation-duration: 2.0s;
+    border-style: solid transparent;
+  }
+
+  .left-section p a:hover {
+    text-decoration-line: none;
+    border-style: solid;
+    border-radius: 12px;
+    margin-left: -8px;
+    padding: 5px;
     font-weight:700;
     animation-name: fade;
     animation-duration: 2.0s;
