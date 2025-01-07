@@ -356,6 +356,14 @@ domine-google {
   }
 
   @media (max-width: 900px) {
+    .container2{
+      margin-top: 5%;
+    }
+
+    .container3{
+      margin-top: 5%;
+    }
+
     .left-section{
       margin-left: 2% !important;
     }
