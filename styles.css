@@ -54,6 +54,23 @@ domine-google {
     font-family: Inter, Arial;
   }
   
+  #researchtitle {
+    font-size: 2.5rem !important;
+    margin-left: 7%;
+    margin-top: -10%;
+  }
+
+  #rimage{
+    height: auto;
+    width: 80%;
+  }
+
+  .research-section {
+    margin-left: -10px;
+    margin-right: 10px;
+  }
+
+
   /* html {
     background-color: #F5F5F7;
 } */
@@ -290,7 +307,7 @@ domine-google {
   }
 
   .project-title {
-    font-size: 2.25vmax;
+    font-size: 2.0vmax;
   }
 
   .project-subtitle {
