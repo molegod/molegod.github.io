@@ -172,6 +172,7 @@ domine-google {
     /* background: linear-gradient(to bottom, #45484d 0%,#000000 100%); */
     /* background:#F5F5F7; */
     padding-bottom: 15%;
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
   }
 
   .container2 {
@@ -307,7 +308,7 @@ domine-google {
   }
 
   .project-title {
-    font-size: 2.0vmax;
+    font-size: 1.8vmax;
   }
 
   .project-subtitle {
@@ -386,10 +387,12 @@ domine-google {
     }
 
   }
+
   .left-section {
     color:white;
     margin-left: 5%;
     margin-top: 4%;
+    
   }
 
   @keyframes fade {
@@ -509,12 +512,50 @@ domine-google {
     font-weight: bold;
   }
 
+  .right-section {
+    flex-basis: 45%; /* Example: matches left-section for a balanced layout */
+    /* Or use a specific width: width: 48%; */
+    box-sizing: border-box;
+  
+    /* The following helps to align the image and caption within this section */
+    display: flex;
+    flex-direction: column; /* Stack the image and its caption vertically */
+    align-items: center;    /* Center content (image and caption) horizontally */
+    justify-content: flex-start; /* Align content to the start (top) of the section */
+  }
+
   /* Caption Styling */
   .right-section p {
     margin-top: 10px;
     color:white;
     font-size: 1.25vmax;
 
+  }
+
+
+  .right-section img { /* Targeting the specific image by its ID is more robust */
+    margin-top: 10%;
+    max-width: 100%;  /* KEY CHANGE: Ensures the image scales down to fit the width of .right-section */
+    height: auto;     /* Maintains the image's aspect ratio */
+    display: block;   /* Good practice: removes potential extra space that can appear below inline images */
+  }
+
+  @media (max-width: 900px) {
+    .right-section {
+      flex-basis: 100%; /* Example: matches left-section for a balanced layout */
+      /* Or use a specific width: width: 48%; */
+      box-sizing: border-box;
+    
+      /* The following helps to align the image and caption within this section */
+      display: flex;
+      flex-direction: column; /* Stack the image and its caption vertically */
+      align-items: center;    /* Center content (image and caption) horizontally */
+      justify-content: flex-start; /* Align content to the start (top) of the section */
+    }
+
+    .left-section {
+      flex-basis: 100%; /* Example: matches left-section for a balanced layout */
+    }
   }
   
   a {
