@@ -313,7 +313,7 @@ html {
   background: none;
   border: none;
   font-size: 2rem;
-  color: #fff;
+  color: #fff !important;
   position: absolute;
   right: 1rem;
   top: 0.7rem;
