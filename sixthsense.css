@@ -347,4 +347,17 @@ html {
     margin: 1rem 0;
     text-align: center;
   }
+}
+
+.video-section {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.video-section h2 {
+  font-size: 2.5rem;
+}
+
+.alt-bg {
+  background: #e0e0e0;
 } 
