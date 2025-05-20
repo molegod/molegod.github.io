@@ -176,10 +176,13 @@
   height: auto;
 }
 
+.learn-more-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .learn-more-btn {
-  display: inline-block;
-  margin-top: 5rem;
-  padding: 0.8rem 2rem;
   background: #8B0000;
   color: #fff !important;
   font-size: 1.2rem;
@@ -189,6 +192,11 @@
   text-decoration: none;
   cursor: pointer;
   transition: background 0.2s;
+  display: inline-block;
+  padding: 1rem 0.8rem;
+  margin-top: 5rem;
+  text-align: center;
+  width: auto;
 }
 
 .learn-more-btn:hover {
@@ -235,7 +243,7 @@
 
   #productImage {
     max-width: 90vw;
-    margin: 0 auto 1.5rem auto;
+    margin: 3.5rem auto 1.5rem auto;
     display: block;
   }
 
@@ -253,9 +261,11 @@
   }
 
   .signup-form button {
-    width: 100%;
     font-size: 1.1rem;
-    padding: 1rem 0;
+    padding: 1rem 2.5rem;
+    width: auto;
+    display: block;
+    margin: 1.5rem auto 0 auto;
   }
 
   .learn-more-section {
@@ -272,9 +282,7 @@
   }
   
   .learn-more-btn {
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 1rem 0;
+    margin-top: 1.5rem;
   }
 
   .right-section h1 {
@@ -285,8 +293,58 @@
     font-size: 1.3rem;
     text-align: center;
   }
+
+  .signup-form h3 {
+    text-align: center;
+  }
+
+  .navbar-toggle {
+    color: #fff;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Hamburger styles */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem;
+  z-index: 1100;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  nav ul.navbar-menu {
+    display: none;
+    flex-direction: column;
+    background: #161618;
+    position: absolute;
+    top: 3.5rem;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+  }
+  nav ul.navbar-menu.show {
+    display: flex;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  nav {
+    position: relative;
+  }
+  nav ul li {
+    margin: 1rem 0;
+    text-align: center;
+  }
 } 

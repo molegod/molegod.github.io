@@ -28,7 +28,8 @@
   </div>
   <!-- Navigation Bar -->
   <nav id="navbar">
-    <ul>
+    <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="navbar-menu">
       <li id="h1" class="active"><a href="/">Home</a></li>
       <li id="h2"><a href="/projects">Projects</a></li>
       <li id="h3"><a href="/artdesign">Art/3D-Design</a></li>
@@ -145,6 +146,12 @@
       // Update the previous scroll position
       prevScrollpos = currentScrollPos;
     };
+
+    const toggle = document.querySelector('.navbar-toggle');
+    const menu = document.querySelector('.navbar-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
   </script>
 
   <footer>
