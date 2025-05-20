@@ -52,11 +52,11 @@
 
                     <p class="project-description">
                         ● Collaborated with a team of 5 to create NeuroScent, a system connecting VR brain-computer
-                        interfaces with olfactory displays to promote users’ mental well-being based on biofeedback.
+                        interfaces with olfactory displays to promote users' mental well-being based on biofeedback.
                     </p>
 
                     <p class="project-description">
-                        ● Used OpenBCI’s Galea BCI VR Headset connected to Unity with a dynamic interactive environment
+                        ● Used OpenBCI's Galea BCI VR Headset connected to Unity with a dynamic interactive environment
                         based off of detected alpha brain waves.
                     </p>
 
@@ -90,7 +90,7 @@
 
                     <p class="project-description">
                         ● Designed a system where the therapist uses an AR headset to enhance their workflow,
-                        communicate with patients, get live data, and control the patient’s electro-stimulation therapy
+                        communicate with patients, get live data, and control the patient's electro-stimulation therapy
                         while the patient is in a calm stress-reducing VR environment.
                     </p>
 
@@ -289,6 +289,16 @@
             // Update the previous scroll position
             prevScrollpos = currentScrollPos;
         };
+    </script>
+
+    <script>
+        const toggle = document.querySelector('.navbar-toggle');
+        const menu = document.querySelector('.navbar-menu');
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('show');
+            });
+        }
     </script>
 
     <footer>
