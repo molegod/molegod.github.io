@@ -296,14 +296,7 @@ domine-google {
   }
 
   .projects-label h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: #161618;
+    display: none;
   }
 
   .image-grid {
@@ -836,7 +829,6 @@ domine-google {
   color: #161618;
   margin: 2rem 0 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f0f0f0;
 }
 
 .design-section:last-child {
