@@ -18,11 +18,19 @@
         href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap"
         rel="stylesheet">
     <style>
+        .main-title {
+            text-align: center;
+            margin: 6rem 0 1rem;
+            font-size: 3rem;
+            color: #000000;
+            font-weight: bold;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
+            gap: 1.5rem;
+            padding: 0.5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -82,29 +90,34 @@
 
         .section-title {
             text-align: center;
-            margin: 2rem 0;
+            margin: 2rem 0 0.75rem;
             font-size: 2rem;
             color: #000000;
         }
 
         .section-title:first-of-type {
-            margin-top: 5rem;
+            margin-top: 2rem;
         }
 
         @media (max-width: 768px) {
+            .main-title {
+                margin: 0.5rem 0 1rem;
+                font-size: 2.5rem;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
-                padding: 1rem;
+                padding: 0.25rem;
                 gap: 1rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
-                margin: 1.5rem 0;
+                font-size: 2.2rem;
+                margin: 1.5rem 0 0.75rem;
             }
 
             .section-title:first-of-type {
-                margin-top: 4rem;
+                margin-top: 2rem;
             }
 
             .project-card a span {
@@ -122,7 +135,7 @@
             }
 
             .section-title {
-                font-size: 1.3rem;
+                font-size: 1.8rem;
                 margin: 1rem 0;
             }
 
@@ -154,6 +167,7 @@
       </nav>
     <!-- Main Content -->
     <div class="container2">
+        <h1 class="main-title">Projects</h1>
         <h1 class="section-title">Personal Projects</h1>
         <div class="projects-grid">
             <div class="project-card small">

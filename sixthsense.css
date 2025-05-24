@@ -359,4 +359,32 @@ html {
 
 .alt-bg {
   background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1100;
+        font-size: 2rem;
+        color: #fff !important;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mobile-home-link {
+        display: inline-block;
+        color: #fff !important;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-decoration: none;
+        margin-left: 1rem;
+        margin-right: auto;
+        vertical-align: middle;
+        line-height: 3.5rem;
+    }
 } 

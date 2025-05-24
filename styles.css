@@ -695,19 +695,23 @@ domine-google {
 
   @media (max-width: 900px) {
     .right-section {
-      flex-basis: 100%; /* Example: matches left-section for a balanced layout */
-      /* Or use a specific width: width: 48%; */
-      box-sizing: border-box;
-    
-      /* The following helps to align the image and caption within this section */
-      display: flex;
-      flex-direction: column; /* Stack the image and its caption vertically */
-      align-items: center;    /* Center content (image and caption) horizontally */
-      justify-content: flex-start; /* Align content to the start (top) of the section */
+        flex-basis: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .right-section img {
+        margin-top: 2%;
+        max-width: 100%;
+        height: auto;
+        display: block;
     }
 
     .left-section {
-      flex-basis: 100%; /* Example: matches left-section for a balanced layout */
+        flex-basis: 100%;
     }
   }
   
@@ -850,4 +854,18 @@ domine-google {
   .section-title {
     font-size: 1.5rem;
   }
+}
+
+@media (max-width: 900px) {
+    .container {
+        margin-top: 2%;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 1rem;
+    }
+    .left-section {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
 }
