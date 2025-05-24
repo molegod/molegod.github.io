@@ -28,11 +28,12 @@
   </div>
   <!-- Navigation Bar -->
   <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
     <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
     <ul class="navbar-menu">
       <li id="h1" class="active"><a href="/">Home</a></li>
       <li id="h2"><a href="/projects">Projects</a></li>
-      <li id="h3"><a href="/artdesign">Art/3D-Design</a></li>
+      <li id="h3"><a href="/creative">Creative</a></li>
       <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank"
           rel="noopener noreferrer">Research</a></li>
       <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
@@ -79,6 +80,10 @@
 
 
   </div>
+  <!-- Scroll Down Arrow (Desktop Only) -->
+  <a href="#researchtitle" class="scroll-down-arrow" aria-label="Scroll to Research Section">
+    &#8595;
+  </a>
 
   <div class="research-section">
     <h2 id="researchtitle">Research</strong></h2>
@@ -117,9 +122,144 @@
 
   </div>
 
+  <div class="container2">
+    <h2 id="researchtitle">Featured Projects</h2>
+    <div class="projects-preview">
+      <div class="project-card">
+        <img src="sixth-senseprojects.png" alt="SixthSense">
+        <a href="/sixthsense"><span>SixthSense</span></a>
+      </div>
+      <div class="project-card">
+        <img src="neuroscent.png" alt="NeuroScent">
+        <a href="/neuroscent"><span>NeuroScent</span></a>
+      </div>
+      <div class="project-card">
+        <img src="pcb.png" alt="SeamPose PCB">
+        <a href="/seampose"><span>SeamPose PCB</span></a>
+      </div>
+      <div class="view-all">
+        <a href="/projects" class="view-all-btn">View All Projects</a>
+      </div>
+    </div>
+  </div>
 
+  <style>
+    .projects-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
+    .project-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      aspect-ratio: auto;
+      height: auto;
+    }
 
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .project-card a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      color: #ffffff !important;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover a {
+      opacity: 1;
+    }
+
+    .project-card a span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 1rem;
+      color: #ffffff !important;
+    }
+
+    .view-all {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .view-all-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #000000;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .view-all-btn:hover {
+      background: #333333;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .projects-preview {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .scroll-down-arrow {
+      display: block;
+      margin: -6.0rem auto 0 auto;
+      text-align: center;
+      font-size: 3rem;
+      color: #161618;
+      cursor: pointer;
+      transition: color 0.2s;
+      width: 100%;
+      max-width: 100vw;
+      padding: 0;
+      background: none;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      animation: bounce 1.5s infinite;
+    }
+    .scroll-down-arrow:hover {
+      color: #8B0000;
+    }
+    @media (max-width: 900px) {
+      .scroll-down-arrow {
+        display: none;
+      }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(12px); }
+    }
+  </style>
 
   <!-- Three.js Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -151,6 +291,20 @@
     const menu = document.querySelector('.navbar-menu');
     toggle.addEventListener('click', () => {
       menu.classList.toggle('show');
+    });
+
+    // Smooth scroll for scroll-down arrow
+    document.addEventListener('DOMContentLoaded', function() {
+      var arrow = document.querySelector('.scroll-down-arrow');
+      if (arrow) {
+        arrow.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.getElementById('researchtitle');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
     });
   </script>
 

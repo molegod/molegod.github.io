@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nappy Robot Arm | Peter He</title>
+  <meta name="description" content="4-DOF Robot Arm with Custom Control Library">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev/nappy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nappy Robot Arm | Peter He" />
+  <meta property="og:description" content="4-DOF Robot Arm with Custom Control Library" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="project.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
+    <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="navbar-menu">
+      <li id="h1"><a href="/">Home</a></li>
+      <li id="h2" class="active"><a href="/projects">Projects</a></li>
+      <li id="h3"><a href="/creative">Creative</a></li>
+      <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank" rel="noopener noreferrer">Research</a></li>
+      <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+      <li id="h6"><a href="/sixthsense">Sixth-Sense</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="left-section">
+      <img id="productImage" src="nappy.png" alt="Nappy Robot Arm">
+    </div>
+
+    <div class="right-section">
+      <h1><span class="project-name">Nappy</span></h1>
+      <h2>ECE 3140 Embedded Systems - Final Project</h2>
+      <p>A 4-DOF robot arm with custom control library</p>
+      
+      <div class="project-details">
+        <h3>Key Features</h3>
+        <ul>
+          <li>Custom C library for analog servo control</li>
+          <li>Python Tkinter UI for control interface</li>
+          <li>UART communication protocol</li>
+          <li>Modified open-source 4-DOF arm design</li>
+        </ul>
+      </div>
+
+      <div class="learn-more-btn-wrapper">
+        <a href="https://pages.github.coecis.cornell.edu/ece3140-sp2025/ph475-xz834-yk699/" target="_blank" rel="noopener noreferrer" class="learn-more-btn">View Project Page</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-more-section" id="learn-more">
+    <h2>Project Details</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>Custom Control Library</h3>
+        <p>Developed a custom library in C for controlling analog servos with the FRDM-KL46Z embedded board, based on the standard Arduino servo library.</p>
+      </div>
+      <div class="feature">
+        <h3>User Interface</h3>
+        <p>Created a Tkinter Python UI for intuitive control of the robot arm through UART communication.</p>
+      </div>
+      <div class="feature">
+        <h3>Mechanical Design</h3>
+        <p>Modified an open-source 4-DOF arm design by Omartronics to meet project requirements.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Peter He</p>
+  </footer>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0px";
+      } else {
+        if (currentScrollPos > 0) {
+          navbar.style.top = "-70px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    };
+
+    const toggle = document.querySelector('.navbar-toggle');
+    const menu = document.querySelector('.navbar-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+  </script>
+</body>
+</html> 

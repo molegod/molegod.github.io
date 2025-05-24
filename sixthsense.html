@@ -20,34 +20,30 @@
 
 <body>
 
-  <!-- Navigation Bar -->
   <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
     <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
     <ul class="navbar-menu">
       <li id="h1"><a href="/">Home</a></li>
       <li id="h2"><a href="/projects">Projects</a></li>
-      <li id="h3"><a href="/artdesign">Art/3D-Design</a></li>
+      <li id="h3"><a href="/creative">Creative</a></li>
       <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank" rel="noopener noreferrer">Research</a></li>
       <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
       <li id="h6" class="active"><a href="/sixthsense">Sixth-Sense</a></li>
     </ul>
   </nav>
 
-  <!-- Main Content -->
   <div class="container">
-    <!-- Left Section: Product Image -->
     <div class="left-section">
       <img id="productImage" src="sixthsense.png" alt="SixthSense">
     </div>
 
-    <!-- Right Section: Product Info and Sign Up -->
     <div class="right-section">
       <h1><span class="project-label">Project:</span> <span class="project-name">Sixth-Sense</span></h1>
       <h2>Automatic Obstacle Avoidance using Electrostimulation</h2>
       <p>Version 1.0</p>
       <p><small>*Disclaimer: this is currently a research project, not a product.</small></p> 
       
-      <!-- Email Sign Up Form -->
       <div class="signup-form">
         <h3>Get Project Updates</h3>
         <form name="submit-to-google-sheet">
@@ -61,7 +57,6 @@
     </div>
   </div>
 
-  <!-- Learn More Section -->
   <div class="learn-more-section" id="learn-more">
     <h2>Common Questions</h2>
     <div class="features-grid">
@@ -85,7 +80,6 @@
     </div>
   </div>
 
-  <!-- Video Section -->
   <div class="video-section alt-bg">
     <h2>Video</h2>
     <div style="display: flex; justify-content: center; margin: 2rem 0;">
@@ -98,7 +92,6 @@
   </footer>
 
   <script>
-    // Navbar scroll behavior
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
       var currentScrollPos = window.pageYOffset;

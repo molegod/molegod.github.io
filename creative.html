@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Art/3D Design | Peter He</title>
+  <title>Creative | Peter He</title>
   <meta name="description" content="Undergraduate HCI Researcher | Cornell 🌽 ECE + CS '27">
   <meta name="author" content="Peter He">
   <meta property="og:url" content="https://peterhe.dev" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Home | Peter He" />
+  <meta property="og:title" content="Creative | Peter He" />
   <meta property="og:description" content="Undergraduate HCI Researcher | Cornell 🌽 ECE + CS '27" />
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,11 +26,12 @@
   </div>
   <!-- Navigation Bar -->
   <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
     <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
     <ul class="navbar-menu">
       <li id="h1"><a href="/">Home</a></li>
       <li id="h2"><a href="/projects">Projects</a></li>
-      <li id="h3" class="active"><a href="/artdesign">Art/3D-Design</a></li>
+      <li id="h3" class="active"><a href="/creative">Creative</a></li>
       <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank"
           rel="noopener noreferrer">Research</a></li>
       <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
@@ -44,50 +45,66 @@
       <h2>Art + 3D Design</h2>
     </section>
 
-    <div class="image-grid">
-      <figure class="image-item">
-        <img src="design1.png" alt="Kraken">
-        <figcaption>Kraken Pirate</figcaption>
-      </figure>
+    <!-- 3D Modeling Section -->
+    <section class="design-section">
+      <h3 class="section-title">3D Modeling</h3>
+      <div class="image-grid">
+        <figure class="image-item">
+          <img src="design1.png" alt="Kraken" loading="lazy">
+          <figcaption>Kraken Pirate</figcaption>
+        </figure>
 
-      <figure class="image-item">
-        <img src="design3.png" alt="Robot">
-        <figcaption>FTC Robotics CAD</figcaption>
-        <figcaption id="tiny">Made in Fusion 360</figcaption>
-      </figure>
+        <figure class="image-item">
+          <img src="design3.png" alt="Robot" loading="lazy">
+          <figcaption>FTC Robotics CAD</figcaption>
+          <div class="badge-container">
+            <span class="badge">Fusion 360</span>
+          </div>
+        </figure>
 
-      <figure class="image-item">
-        <img src="design4.gif" alt="Toast Cat">
-        <figcaption>Voxel Toast Cat</figcaption>
-      </figure>
+        <figure class="image-item">
+          <img src="design4.gif" alt="Toast Cat" loading="lazy">
+          <figcaption>Voxel Toast Cat</figcaption>
+        </figure>
 
-      <figure class="image-item">
-        <img src="design6-2.png" alt="Ecohouse">
-        <figcaption>Ecology House T-Shirt</figcaption>
-        <figcaption id="tiny">(Winner of T-Shirt Design Contest)</figcaption>
-      </figure>
+        <figure class="image-item">
+          <img src="design2.png" alt="Medieval Weapon Stand" loading="lazy">
+          <figcaption>Medieval Weapon Stand</figcaption>
+        </figure>
+      </div>
+    </section>
 
-      <figure class="image-item">
-        <img src="design5.png" alt="fuertes">
-        <figcaption>Eclipse Sticker Design</figcaption>
-        <figcaption id="tiny">(Winner of Cornell Sticker Contest)</figcaption>
-      </figure>
+    <!-- Digital Art Section -->
+    <section class="design-section">
+      <h3 class="section-title">Art</h3>
+      <div class="image-grid">
+        <figure class="image-item">
+          <img src="design6-2.png" alt="Ecohouse" loading="lazy">
+          <figcaption>Ecology House T-Shirt</figcaption>
+          <div class="badge-container">
+            <span class="badge">Winner</span>
+            <span class="badge">T-Shirt Design Contest</span>
+          </div>
+        </figure>
 
+        <figure class="image-item">
+          <img src="design5.png" alt="fuertes" loading="lazy">
+          <figcaption>Eclipse Sticker Design</figcaption>
+          <div class="badge-container">
+            <span class="badge">Winner</span>
+            <span class="badge">Cornell Sticker Contest</span>
+          </div>
+        </figure>
 
-
-      <figure class="image-item">
-        <img src="design7.jpg" alt="cornhell">
-        <figcaption>Funny Cornhell Hoodie</figcaption>
-        <figcaption id="tiny">(Not Official Merch)</figcaption>
-
-      </figure>
-
-      <figure class="image-item">
-        <img src="design2.png" alt="Medieval Weapon Stand">
-        <figcaption>Medieval Weapon Stand</figcaption>
-      </figure>
-    </div>
-
+        <figure class="image-item">
+          <img src="design7.jpg" alt="cornhell" loading="lazy">
+          <figcaption>Funny Cornhell Hoodie</figcaption>
+          <div class="badge-container">
+            <span class="badge">Not Unofficial Merch</span>
+          </div>
+        </figure>
+      </div>
+    </section>
   </div>
   <!-- Three.js Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -128,10 +145,6 @@
     <p>© 2025 Peter He</p>
   </footer>
 
-  <!-- YouTube Short Embed -->
-  <div style="display: flex; justify-content: center; margin: 2rem 0;">
-    <iframe width="320" height="568" src="https://www.youtube.com/embed/PdceDlWq3pc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-  </div>
 
 </body>
 
