@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sixth-Sense | Peter He</title>
+  <meta name="description" content="Automatic Obstacle Avoidance using Electrostimulation">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev/sixthsense" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sixth-Sense | Peter He" />
+  <meta property="og:description" content="Automatic Obstacle Avoidance using Electrostimulation" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sixthsense.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
+    <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="navbar-menu">
+      <li id="h1"><a href="/">Home</a></li>
+      <li id="h2"><a href="/projects">Projects</a></li>
+      <li id="h3"><a href="/creative">Creative</a></li>
+      <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank" rel="noopener noreferrer">Research</a></li>
+      <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+      <li id="h6" class="active"><a href="/sixthsense">Sixth-Sense</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="left-section">
+      <img id="productImage" src="sixthsense.png" alt="SixthSense">
+    </div>
+
+    <div class="right-section">
+      <h1><span class="project-label">Project:</span> <span class="project-name">Sixth-Sense</span></h1>
+      <h2>Automatic Obstacle Avoidance using Electrostimulation</h2>
+      <p>Version 1.0</p>
+      <p><small>*Disclaimer: this is currently a research project, not a product.</small></p> 
+      
+      <div class="signup-form">
+        <h3>Get Project Updates</h3>
+        <form name="submit-to-google-sheet">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Sign Up</button>
+        </form>
+        <div class="learn-more-btn-wrapper">
+          <a href="#learn-more" class="learn-more-btn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-more-section" id="learn-more">
+    <h2>Common Questions</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>Is it safe?</h3>
+        <p>Similar devices are commonly used in physical therapy. Also, this is a research project, not a commercial product.</p>
+        <img src="estim.gif" alt="electrostimulation">
+      </div>
+      <div class="feature">
+        <h3>Yes, it moves your body.</h3>
+        <p>Sixth-Sense does this by stimulating your vestibular system, which is responsible for balance and spatial orientation.</p>
+        <img src="gvs.gif" alt="GVS">
+        <p>Shifting your balance causes you to stumble in the shifted direction. This is called <strong>Galvanic Vestibular Stimulation (GVS)</strong>.</p>
+      </div>
+      <div class="feature">
+        <h3>Why???</h3>
+        <p>It's funny. Also this is a very budget version of spidey sense.</p>
+        <p><em>(marvel please don't sue me.)</em></p>
+        <img src="ssdemo.gif" alt="budget spidey sense">
+      </div>
+    </div>
+  </div>
+
+  <div class="video-section alt-bg">
+    <h2>Video</h2>
+    <div style="display: flex; justify-content: center; margin: 2rem 0;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/PdceDlWq3pc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Peter He</p>
+  </footer>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0px";
+      } else {
+        if (currentScrollPos > 0) {
+          navbar.style.top = "-70px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    };
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyzlpNLFMZq1zfFDMHJgLPikyZ9DGgqpLeJQ90CcehYQYancpuzLTBxkJM7x4MfsAzNcg/exec'; // Replace with your Google Apps Script URL
+    const form = document.forms['submit-to-google-sheet'];
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          alert('Thank you for signing up for my project updates!');
+          form.reset();
+        })
+        .catch(error => {
+          alert('There was an error. Please try again.');
+          console.error('Error!', error.message);
+        });
+    });
+
+    const toggle = document.querySelector('.navbar-toggle');
+    const menu = document.querySelector('.navbar-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+  </script>
+</body>
+</html> 

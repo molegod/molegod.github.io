@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative | Peter He</title>
+  <meta name="description" content="Undergraduate HCI Researcher | Cornell 🌽 ECE + CS '27">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Creative | Peter He" />
+  <meta property="og:description" content="Undergraduate HCI Researcher | Cornell 🌽 ECE + CS '27" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="particles-js">
+    <script src=" https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js "></script>
+    <script src="app.js"></script>
+  </div>
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
+    <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="navbar-menu">
+      <li id="h1"><a href="/">Home</a></li>
+      <li id="h2"><a href="/projects">Projects</a></li>
+      <li id="h3" class="active"><a href="/creative">Creative</a></li>
+      <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank"
+          rel="noopener noreferrer">Research</a></li>
+      <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+      <li id="h6"><a href="/sixthsense">Sixth-Sense</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container3">
+    <section class="projects-label">
+      <h2>Creative Work</h2>
+    </section>
+
+    <!-- 3D Modeling Section -->
+    <section class="design-section">
+      <h3 class="section-title">3D Modeling</h3>
+      <div class="image-grid">
+        <figure class="image-item">
+          <img src="design1.png" alt="Kraken" loading="lazy">
+          <figcaption>Kraken Pirate</figcaption>
+        </figure>
+
+        <figure class="image-item">
+          <img src="design3.png" alt="Robot" loading="lazy">
+          <figcaption>FTC Robotics CAD</figcaption>
+          <div class="badge-container">
+            <span class="badge">Fusion 360</span>
+          </div>
+        </figure>
+
+        <figure class="image-item">
+          <img src="design4.gif" alt="Toast Cat" loading="lazy">
+          <figcaption>Voxel Toast Cat</figcaption>
+        </figure>
+
+        <figure class="image-item">
+          <img src="design2.png" alt="Medieval Weapon Stand" loading="lazy">
+          <figcaption>Medieval Weapon Stand</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Digital Art Section -->
+    <section class="design-section">
+      <h3 class="section-title">Art</h3>
+      <div class="image-grid">
+        <figure class="image-item">
+          <img src="design6-2.png" alt="Ecohouse" loading="lazy">
+          <figcaption>Ecology House T-Shirt</figcaption>
+          <div class="badge-container">
+            <span class="badge">Winner</span>
+            <span class="badge">T-Shirt Design Contest</span>
+          </div>
+        </figure>
+
+        <figure class="image-item">
+          <img src="design5.png" alt="fuertes" loading="lazy">
+          <figcaption>Eclipse Sticker Design</figcaption>
+          <div class="badge-container">
+            <span class="badge">Winner</span>
+            <span class="badge">Cornell Sticker Contest</span>
+          </div>
+        </figure>
+
+        <figure class="image-item">
+          <img src="design7.jpg" alt="cornhell" loading="lazy">
+          <figcaption>Funny Cornhell Hoodie</figcaption>
+          <div class="badge-container">
+            <span class="badge">Not Unofficial Merch</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+  </div>
+  <!-- Three.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      // Ensure `top` is reset correctly
+      if (prevScrollpos > currentScrollPos) {
+        // Scrolling up: Make navbar visible
+        navbar.style.top = "0px";
+      } else {
+        // Scrolling down: Hide navbar
+        if (currentScrollPos > 0) { // Prevent hiding when at the top
+          navbar.style.top = "-70px";
+        }
+      }
+
+      // Update the previous scroll position
+      prevScrollpos = currentScrollPos;
+    };
+  </script>
+
+  <script>
+    const toggle = document.querySelector('.navbar-toggle');
+    const menu = document.querySelector('.navbar-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+      });
+    }
+  </script>
+
+  <footer>
+    <p>© 2025 Peter He</p>
+  </footer>
+
+
+</body>
+
+
+
+</html>

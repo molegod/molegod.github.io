@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thor Hammer | Peter He</title>
+  <meta name="description" content="Electromagnetic Thor Hammer with Fingerprint Scanner">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev/thor-hammer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Thor Hammer | Peter He" />
+  <meta property="og:description" content="Electromagnetic Thor Hammer with Fingerprint Scanner" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="project.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav id="navbar">
+    <a href="/" class="mobile-home-link">https://peterhe.dev</a>
+    <button class="navbar-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="navbar-menu">
+      <li id="h1"><a href="/">Home</a></li>
+      <li id="h2" class="active"><a href="/projects">Projects</a></li>
+      <li id="h3"><a href="/creative">Art/3D-Design</a></li>
+      <li id="h3"><a href="/artdesign">Art/3D-Design</a></li>
+      <li id="h4"><a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=enn" target="_blank" rel="noopener noreferrer">Research</a></li>
+      <li id="h5"><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+      <li id="h6"><a href="/sixthsense">Sixth-Sense</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="left-section">
+      <img id="productImage" src="thor1.png" alt="Thor Hammer">
+    </div>
+
+    <div class="right-section">
+      <h1><span class="project-name">Thor Hammer</span></h1>
+      <h2>High School Senior Project</h2>
+      <p>An electromagnetic Thor hammer with fingerprint authentication</p>
+      
+      <div class="project-details">
+        <h3>Key Features</h3>
+        <ul>
+          <li>Dual heavy-duty door electromagnets</li>
+          <li>Arduino-based control system</li>
+          <li>Fingerprint scanner authentication</li>
+          <li>48V power system (4x 12V lead-acid batteries)</li>
+        </ul>
+      </div>
+
+      <div class="learn-more-btn-wrapper">
+        <a href="#" class="learn-more-btn">Credit: Allen Pan on Youtube</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-more-section" id="learn-more">
+    <h2>Project Details</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>Electromagnetic System</h3>
+        <p>Implemented a powerful electromagnetic system using two heavy-duty door electromagnets for secure hammer attachment.</p>
+      </div>
+      <div class="feature">
+        <h3>Authentication System</h3>
+        <p>Integrated a fingerprint scanner with Arduino for secure access control to the hammer.</p>
+      </div>
+      <div class="feature">
+        <h3>Power System</h3>
+        <p>Designed a robust power system using four 12V lead-acid batteries wired in parallel for reliable operation.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Peter He</p>
+  </footer>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0px";
+      } else {
+        if (currentScrollPos > 0) {
+          navbar.style.top = "-70px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    };
+
+    const toggle = document.querySelector('.navbar-toggle');
+    const menu = document.querySelector('.navbar-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+  </script>
+</body>
+</html> 
