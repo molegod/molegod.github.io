@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,131 @@
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 0.4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            aspect-ratio: auto;
+            height: auto;
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.2), 0 4px 8px -2px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 12px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project-card a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff !important;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover a {
+            opacity: 1;
+        }
+
+        .project-card a span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+            color: #ffffff !important;
+        }
+
+        .project-title {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 0.75rem;
+            padding: 0 0.5rem;
+        }
+
+        .project-subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6b7280;
+            margin-top: 0.25rem;
+            padding: 0 0.5rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 0.25rem;
+                gap: 1rem;
+            }
+
+
+            .project-card a span {
+                font-size: 1.2rem;
+            }
+
+            .project-title {
+                font-size: 1.1rem;
+            }
+
+            .project-subtitle {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                padding: 0.5rem;
+            }
+
+
+            .project-card a span {
+                font-size: 1rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-subtitle {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
+
 <body class="bg-white text-gray-900 font-sans">
     <!-- Navigation -->
     <nav class="border-b border-gray-200 py-4">
@@ -29,50 +153,79 @@
         <section class="mb-12">
             <div class="flex flex-col lg:flex-row items-start lg:items-center space-y-6 lg:space-y-0 lg:space-x-16">
                 <div class="flex-1 lg:max-w-3xl">
-                    <h1 class="text-5xl font-bold text-black mb-2">Hi, I'm <span style="font-family: 'Playfair Display', serif; font-style: italic;">Peter He</span></h1>
-                    <h2 class="text-3xl font-medium text-amber-600 mb-4">Cornell 🌽 ECE + CS '27</h2>
-                    
+                    <h1 class="text-5xl font-bold text-black mb-2">Hi, I'm <span
+                            style="font-family: 'Playfair Display', serif; font-style: italic;">Peter He</span></h1>
+                    <h2 class="text-3xl font-medium text-orange-600 mb-4">Cornell 🌽 ECE + CS '27</h2>
+
                     <!-- Mobile Video - appears under Cornell text on mobile, hidden on desktop -->
                     <div class="w-full lg:hidden mb-6">
-                        <video src="doomed.mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" class="w-full h-auto rounded-lg object-cover" style="aspect-ratio: 4/3;">
+                        <video src="doomed.mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+                            class="w-full h-auto rounded-lg object-cover" style="aspect-ratio: 4/3;">
                             Your browser does not support the video tag.
                         </video>
                     </div>
-            
+
                     <div class="space-y-3 text-md text-gray-800 leading-relaxed">
                         <p>
-                            I work within the areas of <strong>Human Computer Interaction</strong>, <strong>Wearables</strong>, and <strong>XR</strong>.
+                            I work within the areas of <strong>Human Computer Interaction</strong>,
+                            <strong>Wearables</strong>, and <strong>XR</strong>.
                         </p>
-                        
-                        <p>
-                          At Cornell I conduct research under <a href="https://www.scifilab.org/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Cheng Zhang in the Sci-Fi Lab</a> as well as previously with <a href="https://www.matteroftechlab.org/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Thijs Roumen at Cornell Tech</a>.
-                          My current project involves <strong>fabricating textile-based dry electrodes for electro-tactile stimulation</strong>.                        </p>
 
                         <p>
-                          I am also the <strong>founder and lead of <a href="https://cornellxr.com" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-semibold">Cornell XR</a></strong>, the fastest club to ever become an official Cornell Engineering project team building projects in <strong>Haptics and XR</strong>.                        </p>
+                            At Cornell I conduct research under <a href="https://www.scifilab.org/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Cheng Zhang in the
+                                Sci-Fi Lab</a> as well as previously with <a href="https://www.matteroftechlab.org/"
+                                target="_blank" rel="noopener noreferrer"
+                                class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Thijs Roumen at
+                                Cornell Tech</a>.
+                            My current project involves <strong>fabricating textile-based dry electrodes for
+                                electro-tactile stimulation</strong>. </p>
+
+                        <p>
+                            I am also the <strong>founder and lead of <a href="https://cornellxr.com" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-orange-600 hover:text-orange-800 font-semibold">Cornell XR</a></strong>,
+                            the fastest club to ever become an official Cornell Engineering project team building
+                            projects in <strong>Haptics and XR</strong>. </p>
 
 
                         <p>
-                          Previously, I was an <strong>engineering intern @ <a href="https://www.halo.so/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800">Halo</a></strong>, building both software and hardware for smartglasses with a display + always-listening AI assistance, also made <a href="https://x.com/AnhPhuNguyen1/status/1950644225126826370" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-semibold">firebending</a> real.
-                      </p>
+                            Previously, I was an <strong>engineering intern @ <a href="https://www.halo.so/"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="text-orange-600 hover:text-orange-800">Halo</a></strong>, building both
+                            software and hardware for smartglasses with a display + always-listening AI assistance, also
+                            made <a href="https://x.com/AnhPhuNguyen1/status/1950644225126826370" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-orange-600 hover:text-orange-800 font-semibold">firebending</a> real.
+                        </p>
 
-                      <p>
-                        Outside of my academics, I enjoy creative work, building weird tech, and making satirical designs. I've been commisioned to make 3D-printed sculptures and other works before.
-                    </p>
-                        
+                        <p>
+                            Outside of my academics, I enjoy creative work, building weird tech, and making satirical
+                            designs. I've been commisioned to make 3D-printed sculptures and other works before.
+                        </p>
+
                         <div class="pt-3 space-y-2">
-                            <p class="text-md">Feel free to reach out to me at <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono"> ph475@cornell.edu</code> or connect with me on <a href="https://www.linkedin.com/in/ph475/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-bold">LinkedIn</a>.</p>
+                            <p class="text-md">Feel free to reach out to me at <code
+                                    class="bg-gray-100 px-2 py-1 rounded text-sm font-mono"> ph475@cornell.edu</code> or
+                                connect with me on <a href="https://www.linkedin.com/in/ph475/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-orange-600 hover:text-orange-800 font-bold">LinkedIn</a>.</p>
                             <div class="flex space-x-4">
-                                <a href="https://github.com/molegod" target="_blank" rel="noopener noreferrer" class="text-lg text-orange-600 hover:text-orange-800 font-bold">GitHub</a>
-                                <a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-lg text-orange-600 hover:text-orange-800 font-bold">Google Scholar</a>
+                                <a href="https://github.com/molegod" target="_blank" rel="noopener noreferrer"
+                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">GitHub</a>
+                                <a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=en" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">Google Scholar</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Desktop Video - appears on right side on desktop, hidden on mobile -->
                 <div class="hidden lg:block w-96 flex-shrink-0 ml-4">
-                    <video src="doomed.mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata" class="w-full h-auto rounded-lg object-cover" style="aspect-ratio: 4/3;">
+                    <video src="doomed.mp4" autoplay muted loop playsinline webkit-playsinline preload="metadata"
+                        class="w-full h-auto rounded-lg object-cover" style="aspect-ratio: 4/3;">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -82,33 +235,37 @@
         <!-- Research Section -->
         <section id="research" class="mb-16">
             <h2 class="text-4xl font-bold text-black mb-8">publications</h2>
-            
+
             <div class="space-y-12">
                 <!-- SplatOverflow Research -->
                 <div class="bg-gray-50 rounded-2xl p-6 shadow-sm">
-                    <div class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
+                    <div
+                        class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                         <!-- Image Section -->
                         <div class="w-full lg:w-80 flex-shrink-0">
                             <img src="figureSplat.png" alt="SplatOverflow" class="w-full h-auto rounded-lg shadow-md">
                         </div>
-                        
+
                         <!-- Content Section -->
                         <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-black mb-4 leading-tight">SplatOverflow: Asynchronous Hardware Troubleshooting</h3>
-                            
+                            <h3 class="text-3xl font-bold text-black mb-4 leading-tight">SplatOverflow: Asynchronous
+                                Hardware Troubleshooting</h3>
+
                             <div class="mb-4">
                                 <p class="text-xl text-gray-800 leading-relaxed mb-3">
-                                    Amritansh Kwatra, Tobias Wienberg, Ilan Mandel, Ritik Batra, <strong class="text-black">Peter He</strong>, Francois Guimbretiere, Thijs Roumen
+                                    Amritansh Kwatra, Tobias Wienberg, Ilan Mandel, Ritik Batra, <strong
+                                        class="text-black">Peter He</strong>, Francois Guimbretiere, Thijs Roumen
                                 </p>
                             </div>
-                            
+
                             <div class="space-y-2">
-                                <a href="https://dl.acm.org/doi/10.1145/3706598.3714129" target="_blank" rel="noopener noreferrer" 
-                                   class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
+                                <a href="https://dl.acm.org/doi/10.1145/3706598.3714129" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
                                     Paper (CHI 2025)
                                 </a>
-                                
-                                <p class="text-amber-600 font-semibold text-lg">
+
+                                <p class="text-orange-600 font-semibold text-lg">
                                     Honorable Mention at ACM CHI 2025
                                 </p>
                             </div>
@@ -118,29 +275,34 @@
 
                 <!-- SeamPose Research -->
                 <div class="bg-gray-50 rounded-2xl p-6 shadow-sm">
-                    <div class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
+                    <div
+                        class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                         <!-- Image Section -->
                         <div class="w-full lg:w-80 flex-shrink-0">
                             <img src="seamsnew.png" alt="SeamPose" class="w-full h-auto rounded-lg shadow-md">
                         </div>
-                        
+
                         <!-- Content Section -->
                         <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-black mb-4 leading-tight">SeamPose: Repurposing Seams as Capacitive Sensors in a Shirt for Upper-Body Pose Tracking</h3>
-                            
+                            <h3 class="text-3xl font-bold text-black mb-4 leading-tight">SeamPose: Repurposing Seams as
+                                Capacitive Sensors in a Shirt for Upper-Body Pose Tracking</h3>
+
                             <div class="mb-4">
                                 <p class="text-xl text-gray-800 leading-relaxed mb-3">
-                                    Tianhong Catherine Yu, *Manru Mary Zhang, <strong class="text-black">*Peter He</strong>, Chi-Jung Lee, Cassidy Cheesman, Saif Mahmud, Ruidong Zhang, Francois Guimbretiere, Cheng Zhang
+                                    Tianhong Catherine Yu, *Manru Mary Zhang, <strong class="text-black">*Peter
+                                        He</strong>, Chi-Jung Lee, Cassidy Cheesman, Saif Mahmud, Ruidong Zhang,
+                                    Francois Guimbretiere, Cheng Zhang
                                 </p>
                             </div>
-                            
+
                             <div class="space-y-2">
-                                <a href="https://dl.acm.org/doi/abs/10.1145/3654777.3676341" target="_blank" rel="noopener noreferrer" 
-                                   class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
+                                <a href="https://dl.acm.org/doi/abs/10.1145/3654777.3676341" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
                                     Paper (UIST 2024)
                                 </a>
-                                
-                                <p class="text-amber-600 font-semibold text-lg">
+
+                                <p class="text-orange-600 font-semibold text-lg">
                                     *Co-Second Author on the Paper for contributions (Freshman Year)
                                 </p>
                             </div>
@@ -149,6 +311,73 @@
                 </div>
             </div>
         </section>
+
+
+        <h2 class="text-4xl font-bold text-black mb-4">featured projects</h2>
+        <p class="text-lg text-gray-600 mb-6">A few of my publically documented projects, for more, look at my <a href="https://peterhe.dev/projects.html"
+            class="text-orange-600 hover:text-orange-800 font-semibold">projects</a> page!.</p>
+        <div class="projects-grid">
+            <div>
+                <div class="project-card">
+                    <img src="spideyfake.png" alt="SixthSense">
+                    <a href="sixthsense.html"><span>Sixth-Sense</span></a>
+                </div>
+                <div class="project-title">Sixth-Sense</div>
+                <div class="project-subtitle">Automatic obstacle (spidey-sense) avoidance using electrostimuation <br>
+                    (Galvanic Vestibular Stimulation eg. GVS).</div>
+            </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="gifsplat.gif" alt="Gaussian Splat Localization">
+                    <a href="gaussian-splat.html"><span>Gaussian Splat Localization</span></a>
+                </div>
+                <div class="project-title">Gaussian Splat Localization</div>
+                <div class="project-subtitle">Camera localization into a 3D Gaussian Splat scene using CV, COLMAP, and Hierarchical Localization (hloc).</div>
+            </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="firebending_will.png" alt="Firebender">
+                    <a href=""><span>Firebender<br> (Page coming soon)</span></a>
+                </div>
+                <div class="project-title">Firebender</div>
+                <div class="project-subtitle">Designed (CAD + Electronics), programmed, and built consumer
+                    punch-activated flamethrowers for a startup's publicity stunt.</div>
+            </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="neuroscent2.png" alt="NeuroScent">
+                    <a href="neuroscent.html"><span>NeuroScent</span></a>
+                </div>
+                <div class="project-title">NeuroScent</div>
+                <div class="project-subtitle">Brain-computer interface + DIY Olfactory Display.</div>
+            </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="seampcbdrawing.png" alt="SeamPose PCB">
+                    <a href="seampose.html"><span>SeamPose PCB</span></a>
+                </div>
+                <div class="project-title">SeamPose PCB</div>
+                <div class="project-subtitle">PCB for conductive thread + capacitive based pose tracking.</div>
+            </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="ieeecornelljob.png" alt="ECE Job Board">
+                    <a href="https://github.com/IEEEAtCornell/2026-ECE-Internships" target="_blank"
+                        rel="noopener noreferrer"><span>ECE Job Board</span></a>
+                </div>
+                <div class="project-title">ECE Job Board</div>
+                <div class="project-subtitle">Automatic + web-scraping ECE internship job board for Cornell's Student
+                    IEEE branch.</div>
+            </div>
+
+            
+
+        </div>
 
     </main>
 
@@ -159,4 +388,5 @@
         </div>
     </footer>
 </body>
+
 </html>
