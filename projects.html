@@ -12,7 +12,7 @@
     <style>
         .main-title {
             text-align: left;
-            margin: 3rem 0 0.5rem;
+            margin: 3rem 0 0.4rem;
             font-size: 3rem;
             color: #000000;
             font-weight: bold;
@@ -22,7 +22,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
-            padding: 0.5rem;
+            padding: 0.4rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -34,6 +34,7 @@
             transition: transform 0.3s ease;
             aspect-ratio: auto;
             height: auto;
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.2), 0 4px 8px -2px rgba(0, 0, 0, 0.15);
         }
 
         .project-card.small {
@@ -43,6 +44,7 @@
 
         .project-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 12px -4px rgba(0, 0, 0, 0.2);
         }
 
         .project-card img {
@@ -80,6 +82,25 @@
             color: #ffffff !important;
         }
 
+        .project-title {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 0.75rem;
+            padding: 0 0.5rem;
+        }
+
+        .project-subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6b7280;
+            margin-top: 0.25rem;
+            padding: 0 0.5rem;
+            line-height: 1.4;
+        }
+
 
         @media (max-width: 768px) {
             .main-title {
@@ -97,6 +118,14 @@
             .project-card a span {
                 font-size: 1.2rem;
             }
+
+            .project-title {
+                font-size: 1.1rem;
+            }
+
+            .project-subtitle {
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -107,6 +136,14 @@
 
             .project-card a span {
                 font-size: 1rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-subtitle {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -126,58 +163,113 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-6 py-4">
+    <main class="max-w-6xl mx-auto px-5 py-1">
         <h1 class="main-title">projects</h1>
-        <p class="text-xl text-gray-600 mb-12">A collection of my projects work across different domains and contexts.</p>
-        <h2 class="text-3xl font-bold text-black mb-2 mt-16">personal</h2>
-        <p class="text-lg text-gray-600 mb-8">Individual projects and personal explorations (more coming soon).</p>
+        <p class="text-xl text-gray-600 mb-12">A collection of my technical projects across different domains and contexts.</p>
+
+        <h2 class="text-3xl font-bold text-black mb-2 mt-2">personal</h2>
+        <p class="text-lg text-gray-600 mb-8">Personal explorations, experimental, fun, projects (more coming soon).</p>
         <div class="projects-grid">
-            <div class="project-card small">
-                <img src="sixth-senseprojects.png" alt="SixthSense">
-                <a href="sixthsense.html"><span>SixthSense</span></a>
+            <div>
+                <div class="project-card">
+                    <img src="spideyfake.png" alt="SixthSense">
+                    <a href="sixthsense.html"><span>Sixth-Sense</span></a>
+                </div>
+                <div class="project-title">Sixth-Sense</div>
+                <div class="project-subtitle">Automatic obstacle (spidey-sense) avoidance using electrostimuation <br> (Galvanic Vestibular Stimulation eg. GVS).</div>
             </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="firebending_will.png" alt="Firebender">
+                    <a href=""><span>Firebender<br> (Page coming soon)</span></a>
+                </div>
+                <div class="project-title">Firebender</div>
+                <div class="project-subtitle">Designed (CAD + Electronics), programmed, and built consumer punch-activated flamethrowers for a startup's publicity stunt.</div>
+            </div>
+
+            <div>
+                <div class="project-card">
+                    <img src="ieeecornelljob.png" alt="ECE Job Board">
+                    <a href="https://github.com/IEEEAtCornell/2026-ECE-Internships" target="_blank" rel="noopener noreferrer"><span>ECE Job Board</span></a>
+                </div>
+                <div class="project-title">ECE Job Board</div>
+                <div class="project-subtitle">Automatic + web-scraping ECE internship job board for Cornell's Student IEEE branch.</div>
+            </div>
+
+ 
         </div>
 
-        <h2 class="text-3xl font-bold text-black mb-2 mt-16">hackathon</h2>
-        <p class="text-lg text-gray-600 mb-8">Featured hackathon projects.</p>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="neuroscent.png" alt="NeuroScent">
-                <a href="neuroscent.html"><span>NeuroScent</span></a>
-            </div>
-            <div class="project-card">
-                <img src="flexvr.png" alt="Flex VR Wellness">
-                <a href="flexvr.html"><span>Flex VR Wellness</span></a>
-            </div>
-            <div class="project-card">
-                <img src="rewind.png" alt="Rewind">
-                <a href="rewind.html"><span>Rewind</span></a>
-            </div>
-        </div>
 
-        <h2 class="text-3xl font-bold text-black mb-2 mt-16">research</h2>
+        <h2 class="text-3xl font-bold text-black mb-2 mt-4">research</h2>
         <p class="text-lg text-gray-600 mb-8">Projects that were part of research papers.</p>
         <div class="projects-grid">
-            <div class="project-card">
-                <img src="pcb.png" alt="SeamPose PCB">
-                <a href="seampose.html"><span>SeamPose PCB</span></a>
+            <div>
+                <div class="project-card">
+                    <img src="seampcbdrawing.png" alt="SeamPose PCB">
+                    <a href="seampose.html"><span>SeamPose PCB</span></a>
+                </div>
+                <div class="project-title">SeamPose PCB</div>
+                <div class="project-subtitle">PCB for conductive thread + capacitive based pose tracking.</div>
             </div>
-            <div class="project-card">
-                <img src="localization1.gif" alt="Gaussian Splat Localization">
-                <a href="gaussian-splat.html"><span>Gaussian Splat Localization</span></a>
+            <div>
+                <div class="project-card">
+                    <img src="gifsplat.gif" alt="Gaussian Splat Localization">
+                    <a href="gaussian-splat.html"><span>Gaussian Splat Localization</span></a>
+                </div>
+                <div class="project-title">Gaussian Splat Localization</div>
+                <div class="project-subtitle">Camera localization into a 3D Gaussian Splat scene using CV, COLMAP, and Hierarchical Localization (hloc).</div>
             </div>
         </div>
 
-        <h2 class="text-3xl font-bold text-black mb-2 mt-16">school</h2>
-        <p class="text-lg text-gray-600 mb-8">Coursework projects and academic assignments</p>
+        <h2 class="text-3xl font-bold text-black mb-2 mt-4">hackathon</h2>
+        <p class="text-lg text-gray-600 mb-8">Featured hackathon projects - haven't lost one yet!</p>
         <div class="projects-grid">
-            <div class="project-card">
-                <img src="nappy.png" alt="Nappy Robot Arm">
-                <a href="nappy.html"><span>Nappy Robot Arm</span></a>
+            <div>
+                <div class="project-card">
+                    <img src="neuroscent.png" alt="NeuroScent">
+                    <a href="neuroscent.html"><span>NeuroScent</span></a>
+                </div>
+                <div class="project-title">NeuroScent</div>
+                <div class="project-subtitle">Brain-computer interface + DIY Olfactory Display.</div>
             </div>
-            <div class="project-card">
-                <img src="thor1.png" alt="Thor Hammer">
-                <a href="thor-hammer.html"><span>Thor Hammer</span></a>
+            <div>
+                <div class="project-card">
+                    <img src="flexvr.png" alt="Flex VR Wellness">
+                    <a href="flexvr.html"><span>Flex VR Wellness</span></a>
+                </div>
+                <div class="project-title">Flex VR Wellness</div>
+                <div class="project-subtitle">Virtual reality rehabilitation and  Electrical Muscle Stimulation (EMS) 
+                    therapy platform.</div>
+            </div>
+            <div>
+                <div class="project-card">
+                    <img src="rewind.png" alt="Rewind">
+                    <a href="rewind.html"><span>Rewind</span></a>
+                </div>
+                <div class="project-title">Rewind</div>
+                <div class="project-subtitle">Memory management system + 3D Scene reconstruction from video.</div>
+            </div>
+        </div>
+
+        <h2 class="text-3xl font-bold text-black mb-2 mt-4">school</h2>
+        <p class="text-lg text-gray-600 mb-8">Coursework projects and academic assignments.</p>
+        <div class="projects-grid">
+            <div>
+                <div class="project-card">
+                    <img src="nappynew.png" alt="Nappy Robot Arm">
+                    <a href="nappy.html"><span>Nappy Robot Arm</span></a>
+                </div>
+                <div class="project-title">Nappy Robot Arm</div>
+                <div class="project-subtitle">4-DOF robot arm with custom servo library.</div>
+            </div>
+            <div>
+                <div class="project-card">
+                    <img src="thor_hammer.png" alt="Thor Hammer">
+                    <a href="thor-hammer.html"><span>Thor Hammer</span></a>
+                </div>
+                <div class="project-title">Thor Hammer</div>
+                <div class="project-subtitle">Electromagnetic + Biometric Thor Hammer.</div>
             </div>
         </div>
     </main>
