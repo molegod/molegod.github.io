@@ -174,6 +174,17 @@
       margin-top: 4rem;
     }
 
+    .video-section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .video-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #000000;
+    }
+
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
@@ -223,7 +234,7 @@
       
       <div class="project-details">
         <h3>Key Features</h3>
-        <ul>
+        <ul class="text-gray-600 list-disc pl-8">
           <li>8 conductive seams for capacitive sensing</li>
           <li>Real-time upper-body pose estimation</li>
           <li>Integration with vision-based ground truth</li>
@@ -246,12 +257,21 @@
       </div>
       <div class="feature">
         <h3>Data Collection</h3>
+        <img src="system-overview.webp" alt="system" class="w-full h-auto mb-4 rounded-lg shadow-md">
         <p>Combined capacitive signals with vision-based ground truth to create a comprehensive dataset for training.</p>
       </div>
       <div class="feature">
         <h3>Machine Learning</h3>
-        <p>Developed a machine learning model that accurately predicts upper-body pose from capacitive sensor data.</p>
+        <img src="signals.png" alt="signals" class="w-full h-auto mb-4 rounded-lg shadow-md">
+        <p>We used a machine learning model that accurately predicts upper-body pose from capacitive sensor data.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="video-section alt-bg">
+    <h2>Video</h2>
+    <div style="display: flex; justify-content: center; margin: 2rem 0;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/KBBBOOAVwes" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
