@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bebe: Emotive Bipedal Robot | Peter He</title>
+  <meta name="description" content="Bipedal robot with expressive eyes and IMU wand control.">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev/bebe" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bebe: Emotive Bipedal Robot | Peter He" />
+  <meta property="og:description" content="Bipedal robot with expressive eyes and IMU wand control." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Three.js Import Map (same viewer as indexexample.html) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .left-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .project-label {
+      color: #666666;
+      font-size: 2.5rem;
+      font-weight: 400;
+    }
+
+    .project-name {
+      color: #000000;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 1rem 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #333333;
+      margin: 0 0 1rem 0;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0.5rem 0;
+      color: #555555;
+    }
+
+    small {
+      color: #888888;
+      font-style: italic;
+    }
+
+    .project-details {
+      margin: 2rem 0;
+    }
+
+    .project-details h3 {
+      font-size: 1.25rem;
+      margin: 0 0 1rem 0;
+      color: #000000;
+    }
+
+    .learn-more-btn-wrapper {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .learn-more-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #000000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .learn-more-btn:hover {
+      background-color: #333333;
+    }
+
+    .learn-more-section {
+      padding: 4rem 2rem;
+      background-color: #f8f9fa;
+    }
+
+    .learn-more-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #000000;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature h3 {
+      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+      color: #000000;
+    }
+
+    .feature p {
+      margin: 1rem 0;
+      color: #555555;
+    }
+
+    .feature img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #666666;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 4rem;
+    }
+
+    /* 3D viewer container, matching indexexample.html behavior */
+    #model-container {
+      width: 100%;
+      max-width: 500px;
+      height: 600px;
+      background-color: #fff;
+      margin: 20px auto;
+      position: relative;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #loading-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: monospace;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 0 1rem;
+      }
+
+      .left-section,
+      .right-section {
+        padding: 1rem;
+      }
+
+      .project-name {
+        font-size: 2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Navigation -->
+  <nav class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+        <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+        <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+        <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+        <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Left: 3D Viewer in place of graphic -->
+    <div class="left-section">
+      <div id="model-container">
+        <div id="loading-text">Loading 3D Model...</div>
+      </div>
+    </div>
+
+    <!-- Right: Text content -->
+    <div class="right-section">
+      <h1><span class="project-label">ECE 4760 | </span> <span class="project-name">Bebe</span></h1>
+      <h2 class="text-xl font-semibold">An emotive bipedal robot with IMU-based wand control.</h2>
+      <p>Built as an final project for my ECE 4760 Microcontrollers class, focusing on human-robot interaction.
+      </p>
+
+      <div class="project-details">
+        <p class="text-sm font-bold text-orange-500">
+          Drag the 3D model on the left to view the robot from different angles.
+        </p>
+      </div>
+
+      <div class="learn-more-btn-wrapper">
+        <a href="https://ece4760.github.io/Projects/Fall2025/ph475_rq36_wm345/index.html" target="_blank"
+          rel="noopener noreferrer" class="learn-more-btn">View Project Page</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-more-section" id="learn-more">
+    <h2>Project Details</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>Robot Body & Motion</h3>
+        <img src="assets/robot_wireframe.png" alt="Bebe robot body placeholder">
+        <p>Bebe uses six MG996R servos at the hip, knee, and ankle joints. Walking is implemented as a sequence of
+          stable open-loop PWM poses that keep the center of mass within a safe region for shuffling steps and turns.</p>
+      </div>
+      <div class="feature">
+        <h3>Wand Control & IMU</h3>
+        <img src="assets/block_diagram.png" alt="Control wand placeholder">
+        <p>The handheld wand runs on another Pico W with an MPU6050 IMU. A complementary filter converts tilt into
+          direction and activation magnitude, then streams commands over Wi‑Fi via UDP.</p>
+      </div>
+      <div class="feature">
+        <h3>Eyes & Expression</h3>
+        <img src="assets/eye_animation.png" alt="LED eyes placeholder">
+        <img src="assets/bebe_eyes.png" alt="LED eyes placeholder">
+        <p>Two MAX7219 LED matrices render animated eyes that cycle through idle, blink, and expressive patterns,
+          making Bebe’s internal state legible while motion control runs independently.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Peter He. All rights reserved.</p>
+  </footer>
+
+  <!-- Three.js viewer script (same as indexexample.html) -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+    import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // Configuration
+    const container = document.getElementById('model-container');
+    const loadingText = document.getElementById('loading-text');
+    const objPath = '/assets/bebe_model.obj'; // OBJ file from indexexample.html
+    const mtlPath = '/assets/bebe_model.mtl'; // MTL file from indexexample.html
+
+    // Scene Setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff); // Pure white background
+
+    // Camera Setup
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.set(50, 50, 50);
+
+    // Renderer Setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.outputColorSpace = THREE.SRGBColorSpace; // Better color accuracy
+    container.appendChild(renderer.domElement);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enablePan = false; // Keep robot centered
+    controls.enableZoom = false; // Fixed perspective like original viewer
+
+    // Lighting (same setup)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    keyLight.position.set(10, 20, 10);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xeef0ff, 0.8);
+    fillLight.position.set(-10, 10, 10);
+    scene.add(fillLight);
+
+    const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    backLight.position.set(0, 10, -20);
+    scene.add(backLight);
+
+    // Load Model
+    loadingText.textContent = 'Loading 3D Model...';
+
+    const mtlLoader = new MTLLoader();
+
+    mtlLoader.load(
+      mtlPath,
+      (materials) => {
+        materials.preload();
+
+        const objLoader = new OBJLoader();
+        objLoader.setMaterials(materials);
+
+        objLoader.load(
+          objPath,
+          (object) => {
+            loadingText.style.display = 'none';
+
+            // Center the object
+            const box = new THREE.Box3().setFromObject(object);
+            const center = box.getCenter(new THREE.Vector3());
+
+            object.position.x += (object.position.x - center.x);
+            object.position.y += (object.position.y - center.y);
+            object.position.z += (object.position.z - center.z);
+
+            scene.add(object);
+
+            // Auto-fit camera
+            const size = box.getSize(new THREE.Vector3()).length();
+
+            controls.maxDistance = size * 4;
+            controls.minDistance = size * 0.5;
+
+            camera.near = size / 100;
+            camera.far = size * 100;
+            camera.updateProjectionMatrix();
+
+            camera.position.copy(center);
+            camera.position.x += size / 1.3;
+            camera.position.y += size / 2.0;
+            camera.position.z += size / 1.3;
+            camera.lookAt(center);
+          },
+          (xhr) => {
+            if (xhr.lengthComputable) {
+              const percentComplete = xhr.loaded / xhr.total * 100;
+              loadingText.textContent = `Loading: ${Math.round(percentComplete)}%`;
+            }
+          },
+          (error) => {
+            console.error('Error loading OBJ:', error);
+            loadingText.textContent = "Error: 'bebe_model.obj' not found.";
+            loadingText.style.color = "red";
+          }
+        );
+      },
+      undefined,
+      (error) => {
+        console.error('Error loading MTL:', error);
+        loadingText.textContent = "Error: 'bebe_model.mtl' not found.";
+        loadingText.style.color = "red";
+      }
+    );
+
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle Resize
+    window.addEventListener('resize', onWindowResize, false);
+    function onWindowResize() {
+      if (container) {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      }
+    }
+  </script>
+</body>
+</html>
+
