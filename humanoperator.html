@@ -1,238 +1,594 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Human Operator | Peter He</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
-        <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
-        <link rel="manifest" href="favicon/site.webmanifest">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Human Operator | Peter He</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
 
-        <style>
-            body {
-                font-family: "Inter", sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #ffffff;
-                color: #000000;
-                line-height: 1.6;
-                overflow-x: hidden;
-            }
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
 
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 3rem 4rem 6rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .left-section h2 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .left-section p {
+            font-size: 1.125rem;
+            color: #555555;
+            margin-bottom: 1.25rem;
+        }
+
+        .visit-website {
+            font-size: 0.9rem;
+            color: #222;
+            font-style: italic;
+            opacity: 0.85;
+        }
+
+        .right-section {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .right-section img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            object-position: right center;
+            transform: scale(1.2);
+            transform-origin: right center;
+            opacity: 0.85;
+        }
+
+        .project-name {
+            color: #000000;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            margin: 0 0 1rem 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin: 0 0 1rem 0;
+            font-weight: 500;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: #222;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+            opacity: 0.85;
+        }
+
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .team-member {
+            background-color: whitesmoke;
+            color: #374151;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            padding: 0.85rem 1.75rem;
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background-color: #333333;
+        }
+
+        .learn-more-btn.secondary {
+            background-color: #f3f4f6;
+            color: #111827;
+            border: 1px solid #d1d5db;
+        }
+
+        .learn-more-btn.secondary:hover {
+            background-color: #e5e7eb;
+        }
+
+        .learn-more-btn.orange {
+            background-color: #ea580c;
+            color: white;
+        }
+
+        .learn-more-btn.orange:hover {
+            background-color: #9a3412;
+        }
+
+        .content-section {
+            padding: 3rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #000;
+        }
+
+        .content-section h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: #111;
+        }
+
+        .content-section p {
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            color: #444;
+            margin: 0 0 1rem 1.25rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .content-section a {
+            color: #ea580c;
+            text-decoration: underline;
+        }
+
+        .content-section a:hover {
+            color: #9a3412;
+        }
+
+        .attribution-card {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            margin-top: 1.5rem;
+            color: #7c2d12;
+        }
+
+        .attribution-card p {
+            margin-bottom: 1rem;
+        }
+
+        .attribution-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .attribution-links a {
+            color: #ea580c;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .attribution-links a:hover {
+            color: #9a3412;
+            text-decoration: underline;
+        }
+
+        .safety-header,
+        .acknowledgements-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2.5rem 0 1rem;
+            color: #ea580c;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .safety-header::after,
+        .acknowledgements-header::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ffedd5;
+        }
+
+        .safety-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            color: #7c2d12;
+            font-size: 0.95rem;
+        }
+
+        .conference-section {
+            padding: 3rem 2rem 4rem;
+            background: #fafafa;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .conference-section .inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .conference-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .conference-section p {
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .conference-section img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .conference-caption {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+
+        .gif-captions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Video Section Styles */
+        .video-section {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        .video-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #000000;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .learn-more-section {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .learn-more-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #000000;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666666;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
             .hero-container {
-                display: flex;
-                min-height: 100vh;
-                width: 100%; 
-                position: relative;
+                flex-direction: column;
             }
 
             .left-section {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding: 4rem 3rem 4rem 6rem;
-                position: relative;
-                z-index: 10;
-            }
-
-            .left-section h2 {
-                font-size: 1.5rem;
-                color: #333333;
-                margin: 0 0 0.5rem 0;
-                font-weight: 500;
-            }
-
-            .left-section p {
-                font-size: 1.125rem;
-                color: #555555;
-                margin-bottom: 1.25rem;
-            }
-
-            .visit-website {
-                font-size: 0.9rem;
-                color: #222;
-                font-style: italic;
-                opacity: 0.85;
+                padding: 3rem 1.5rem;
             }
 
             .right-section {
-                flex: 1;
-                position: relative;
-                overflow: hidden;
+                min-height: 300px;
             }
+        }
+    </style>
+</head>
 
-            .right-section img {
-                position: absolute;
-                top: 0;
-                right: 0; 
-                height: 100%;
-                width: 100%;
-                object-fit: contain;
-                object-position: right center; 
-                transform: scale(1.2); 
-                transform-origin: right center;
-                opacity: 0.85;
-            }
-            
-            .project-name {
-                color: #000000;
-                font-size: 2.5rem;
-                font-weight: 700;
-                letter-spacing: -0.02em;
-            }
+<body>
+    <nav class="border-b border-gray-200 py-4">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex space-x-8">
+                <a href="index.html" class="text-gray-500 hover:text-gray-700">home</a>
+                <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+                <a href="research.html" class="text-gray-500 hover:text-gray-700">research</a>
+                <a href="creative.html" class="text-gray-500 hover:text-gray-700">creative</a>
+                <a href="fun.html" class="text-gray-500 hover:text-gray-700">fun</a>
+            </div>
+        </div>
+    </nav>
 
-            h1 { margin: 0 0 1rem 0; }
-            h2 { font-size: 1.5rem; color: #333333; margin: 0 0 1rem 0; font-weight: 500; }
-            .tagline { font-size: 0.9rem; color: #222; font-style: italic; margin-bottom: 1.25rem; opacity: 0.85; }
+    <div class="hero-container">
+        <div class="left-section">
+            <h1><span class="project-name">human operator</span></h1>
+            <h2>MIT Hardware × AI Hackathon — Hard Mode Winner</h2>
+            <p class="tagline">"We gave AI a body, your body."</p>
+            <p>
+                Human Operator is a human augmentation tool that allows AI
+                to briefly take control of your body to help you learn or do
+                things you cannot do.
+            </p>
 
-            .team-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
-            .team-member { background-color: whitesmoke; color: #374151; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.875rem; font-weight: 500; }
-
-            .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
-            .learn-more-btn { display: inline-block; padding: 0.85rem 1.75rem; background-color: #000000; color: white; text-decoration: none; border-radius: 5px; font-weight: 500; transition: background-color 0.3s ease; }
-            .learn-more-btn:hover { background-color: #333333; }
-
-            /* Video Section Styles */
-            .video-section {
-                padding: 4rem 2rem;
-                background-color: #ffffff;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: -140px;
-            }
-
-            .video-section h2 {
-                font-size: 2.5rem;
-                margin-bottom: 2rem;
-                color: #000000;
-                font-weight: 700;
-                text-align: center;
-            }
-
-            .video-wrapper {
-                width: 100%;
-                max-width: 900px;
-                aspect-ratio: 16 / 9;
-                border-radius: 12px;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-
-            .video-wrapper iframe {
-                width: 100%;
-                height: 100%;
-                border: none;
-            }
-
-            .learn-more-section { padding: 4rem 2rem; background-color: white; }
-            .learn-more-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #000000; }
-            .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-            .feature { background-color: white; padding: 1rem; border-radius: 10px; }
-            .feature h3 { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 700; }
-            .feature img { width: 100%; height: auto; border-radius: 8px; }
-
-            footer { text-align: center; padding: 2rem 0; color: #666666; border-top: 1px solid #e5e5e5; margin-top: 4rem; }
-
-            @media (max-width: 768px) {
-                .hero-container { flex-direction: column; }
-                .left-section { padding: 3rem 1.5rem; }
-                .right-section { min-height: 300px; }
-            }
-        </style>
-    </head>
-
-    <body>
-        <nav class="border-b border-gray-200 py-4">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="flex space-x-8">
-                    <a href="index.html" class="text-gray-500 hover:text-gray-700">home</a>
-                    <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
-                    <a href="research.html" class="text-gray-500 hover:text-gray-700">research</a>
-                    <a href="creative.html" class="text-gray-500 hover:text-gray-700">creative</a>
-                    <a href="fun.html" class="text-gray-500 hover:text-gray-700">fun</a>
+            <div class="mt-8">
+                <h3 class="text-base font-semibold text-gray-700 mb-2">Team</h3>
+                <div class="team-list">
+                    <span class="team-member">Peter He</span>
+                    <span class="team-member">Yutong Wu</span>
+                    <span class="team-member">Ashley Neall</span>
+                    <span class="team-member">Daniel Kaijzer</span>
+                    <span class="team-member">Valdemar Danry</span>
+                    <span class="team-member">Sean Hardesty Lewis</span>
                 </div>
             </div>
-        </nav>
-
-        <div class="hero-container">
-            <div class="left-section">
-                <h1><span class="project-name">human operator</span></h1>
-                <h2>MIT Hardware × AI Hackathon — Hard Mode Winner</h2>
-                <p class="tagline">"We gave AI a body, your body."</p>
-                <p>
-                    Human Operator is a human augmentation tool that allows AI
-                    to briefly take control of your body to help you learn or do
-                    things you cannot do.
-                </p>
-
-                <div class="mt-8">
-                    <h3 class="text-base font-semibold text-gray-700 mb-2">Team</h3>
-                    <div class="team-list">
-                        <span class="team-member">Peter He</span>
-                        <span class="team-member">Yutong Wu</span>
-                        <span class="team-member">Ashley Neall</span>
-                        <span class="team-member">Daniel Kaijzer</span>
-                        <span class="team-member">Valdemar Danry</span>
-                        <span class="team-member">Sean Hardesty Lewis</span>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="https://humanoperator.org" target="_blank" class="learn-more-btn">Visit Website</a>
-                </div>
-                <br>
-                <p class="visit-website">Please visit the website to learn more and access the github repository.</p>
-            </div>
-
-            <div class="right-section">
-                <img src="assets/handproduct.png" alt="Human Operator product shot" />
+            <div class="btn-group">
+                <a href="https://humanoperator.org" target="_blank" rel="noopener noreferrer"
+                    class="learn-more-btn">Visit Website</a>
+                <a href="https://github.com/danielkaijzer/Human-Operator" target="_blank" rel="noopener noreferrer"
+                    class="learn-more-btn secondary">View on GitHub</a>
+                <a href="https://www3.nhk.or.jp/nhkworld/en/shows/2015361/" target="_blank" rel="noopener noreferrer"
+                    class="learn-more-btn orange">Featured on NHK WORLD-JAPAN</a>
             </div>
         </div>
 
-        <div class="video-section">
-            <h2>Demonstration</h2>
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/fCLxENGs7CY" 
-                    title="Human Operator: MIT Hard Mode 2026 Winner (Learn Track)" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
+        <div class="right-section">
+            <img src="assets/handproduct.png" alt="Human Operator product shot" />
+        </div>
+    </div>
+
+    <div class="max-w-[900px] mx-auto px-6 relative z-10 mt-8 mb-8">
+        <div class="acknowledgements-header">Acknowledgements</div>
+        <div class="attribution-card" style="margin-top: 0;">
+            <p>
+                Human Operator was inspired by research and systems from the
+                <a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer">Human Computer Integration
+                    Lab</a>
+                at UChicago on neuromuscular interfaces and electrode placement optimization.
+            </p>
+            <div class="attribution-links">
+                <a href="https://lab.plopes.org/published/2023-CHI-BackOfHandElectroTactile.pdf" target="_blank"
+                    rel="noopener noreferrer">
+                    Full-Hand Electro Tactile Feedback without Obstructing Palmar Side of Hand
+                </a>
+                <a href="https://lab.plopes.org/published/2026-CHI-GenerativeMuscleStimulation.pdf" target="_blank"
+                    rel="noopener noreferrer">
+                    Generative Muscle Stimulation: Providing Users with Physical Assistance by Constraining
+                    Multimodal-AI with Embodied Knowledge
+                </a>
+                <a href="https://lab.plopes.org/published/2021-CHI-BackHandEMS.pdf" target="_blank"
+                    rel="noopener noreferrer">
+                    Increasing Electrical Muscle Stimulation's Dexterity by means of Back of the Hand Actuation
+                </a>
             </div>
         </div>
+    </div>
 
-        <div class="learn-more-section" id="learn-more">
-            <!-- <h2>Project Details</h2> -->
-            <div class="features-grid">
-                <div class="feature">
-                    <!-- <h3>The Wearable</h3> -->
-                    <img src="assets/humanoperator1.gif" alt="The Wearable" />
-                </div>
+    <div class="video-section">
+        <h2>Demonstration</h2>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/fCLxENGs7CY"
+                title="Human Operator: MIT Hard Mode 2026 Winner (Learn Track)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
 
-                <div class="feature">
-                    <!-- <h3>AI in the Loop</h3> -->
-                    <img src="assets/humanoperator2.gif" alt="AI in the Loop" />
-                </div>
-
-                <div class="feature">
-                    <!-- <h3>Learning by Doing</h3> -->
-                    <img src="assets/humanoperator3.gif" alt="Learning by Doing" />
-                </div>
+    <div class="learn-more-section" id="learn-more">
+        <div class="features-grid">
+            <div class="feature">
+                <img src="assets/humanoperator1.gif" alt="AI stimulates wrist to wave" />
+            </div>
+            <div class="feature">
+                <img src="assets/humanoperator2.gif" alt="AI stimulates fingers to play a melody" />
+            </div>
+            <div class="feature">
+                <img src="assets/humanoperator3.gif" alt="AI stimulates fingers to form an OK sign" />
             </div>
         </div>
+        <div class="gif-captions">
+            <p>AI stimulates the wrist to wave</p>
+            <p>AI drives fingers in sequence to play a melody</p>
+            <p>AI forms an OK sign through targeted stimulation</p>
+        </div>
+    </div>
 
-        <footer>
-            <p>© 2026 Peter He. All rights reserved.</p>
-        </footer>
-    </body>
+    <section class="content-section">
+        <h2>Overview</h2>
+        <p>
+            Human Operator is a wearable augmentation system that actively moves your body based off of AI commands. A
+            pair of camera glasses feeds live video to a vision-language
+            model (VLM) while you speak a command like “play a tune.” The model interprets what
+            it sees, plans a sequence of motor actions, and dispatches those commands to hardware that stimulates the
+            muscles controlling your fingers and wrist.
+        </p>
+        <p>
+            The goal is not to replace your agency, but to offer brief, guided physical
+            assistance, a step toward on-body intelligence where AI output is movement, not
+            just text.
+        </p>
+
+        <h3>How it works</h3>
+        <ul>
+            <li><strong>Sensing:</strong> A camera captures your point of view; a voice trigger starts each interaction.
+            </li>
+            <li><strong>Reasoning:</strong> Video and speech are sent to Claude, which returns a timed plan of finger
+                and wrist actions.</li>
+            <li><strong>Actuation:</strong> A Flask receiver routes commands to an Arduino that switches relays on a
+                TENS/EMS unit, delivering pulses through gel electrodes on the forearm and hand.</li>
+        </ul>
+
+        <h3>My contribution: hardware &amp; electrode placement</h3>
+        <p>
+            I built the hardware and did electrode placement for the system: wiring the relay board, Arduino firmware
+            integration, and the EMS stimulator path that turns software commands into muscle
+            contractions.
+        </p>
+        <p>
+            Electrode placement was the other critical piece. EMS only works when current
+            passes through the right muscle groups. Drawing on back-of-hand actuation research from the
+            <a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer">Human Computer Integration
+                Lab</a>
+            at UChicago, I adjusted pad layout and routing so stimulation felt targeted without
+            blocking palmar dexterity. The white scale-like patches visible on the
+            wearable are covering the electrodes placed.
+        </p>
+        <p>
+            I also ran calibration to find appropiate amplitude, frequency, and pulse-width
+            ranges per channel before we let the AI take over.
+        </p>
+
+        <div class="safety-header">Safety</div>
+        <div class="safety-box">
+            Human Operator is a prototype. It is not a medical device or a consumer product.
+            EMS can be dangerous if misused and requires calibration, caution, and informed consent.
+        </div>
+    </section>
+
+    <section class="conference-section">
+        <div class="inner">
+            <h2>Displayed at the Anthropic Code w/ Claude Conference</h2>
+            <p>
+                Human Operator was showcased at Anthropic's Code w/ Claude Conference. Anthropic kindly flew us out to
+                attend!
+            </p>
+            <img src="assets/humanoperator-claude-conference.png"
+                alt="Human Operator display at the Anthropic Code w/ Claude Conference" />
+            <p class="conference-caption">
+                Exhibit display at the Code w/ Claude Conference
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Peter He. All rights reserved.</p>
+    </footer>
+</body>
+
 </html>
