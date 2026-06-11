@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Sixth-Sense | Peter He" />
   <meta property="og:description" content="Automatic Obstacle Avoidance using Electrostimulation" />
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
@@ -19,12 +19,14 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
   <link rel="manifest" href="favicon/site.webmanifest">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -256,18 +258,18 @@
 
 <body class="bg-white text-gray-900 font-sans">
 
-    <!-- Navigation -->
-    <nav class="border-b border-gray-200 py-4">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex space-x-8">
-                <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
-                <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
-                <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
-                <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
-                <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
-            </div>
-        </div>
-    </nav>
+  <!-- Navigation -->
+  <nav class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+        <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+        <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+        <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+        <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="container">
     <div class="left-section">
@@ -277,11 +279,21 @@
     <div class="right-section">
       <h1><span class="project-label">Project:</span> <span class="project-name">Sixth-Sense</span></h1>
       <h2 class="font-semibold">Automatic Obstacle Avoidance using Electrostimulation</h2>
-        <h2 class="text-orange-600">Heavily inspired by spiderman.</h2>
+      <h2 class="text-orange-600">Heavily inspired by spiderman.</h2>
 
       <p>Version 1.0</p>
-      <p><small>*Disclaimer: this is currently a independent research project, not a product.</small></p> 
-      
+
+      <p><small>*Disclaimer: this is currently a independent research project, not a product.</small></p>
+
+      <div class="my-6 p-4 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg">
+        <p class="text-sm text-gray-700 leading-relaxed">
+          This project has been paused due to academic research commitments and engineering studeng workload but a
+          similar project of mine is <a href="humanoperator.html"
+            class="text-orange-600 hover:text-orange-800 font-semibold underline">Human
+            Operator</a>.
+        </p>
+      </div>
+
       <!-- <div class="signup-form">
         <h3>Get Project Updates</h3>
         <form name="submit-to-google-sheet">
@@ -300,14 +312,17 @@
     <div class="features-grid">
       <div class="feature">
         <h3>Is it safe?</h3>
-        <p>Similar devices are commonly used in physical therapy. Also, this is a research project, not a commercial product.</p>
+        <p>Similar devices are commonly used in physical therapy. Also, this is a research project, not a commercial
+          product.</p>
         <img src="assets/estim.gif" alt="electrostimulation">
       </div>
       <div class="feature">
         <h3>Yes, it moves your body.</h3>
-        <p>Sixth-Sense does this by stimulating your vestibular system, which is responsible for balance and spatial orientation.</p>
+        <p>Sixth-Sense does this by stimulating your vestibular system, which is responsible for balance and spatial
+          orientation.</p>
         <img src="assets/gvs.gif" alt="GVS">
-        <p>Shifting your balance causes you to stumble in the shifted direction. This is called <strong>Galvanic Vestibular Stimulation (GVS)</strong>.</p>
+        <p>Shifting your balance causes you to stumble in the shifted direction. This is called <strong>Galvanic
+            Vestibular Stimulation (GVS)</strong>.</p>
       </div>
       <div class="feature">
         <h3>Why???</h3>
@@ -321,7 +336,8 @@
   <div class="video-section alt-bg">
     <h2>Video</h2>
     <div style="display: flex; justify-content: center; margin: 2rem 0;">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/PdceDlWq3pc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/PdceDlWq3pc" title="YouTube video player"
+        frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -350,7 +366,7 @@
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
           alert('Thank you for signing up for my project updates!');
           form.reset();
@@ -363,4 +379,5 @@
 
   </script>
 </body>
+
 </html>

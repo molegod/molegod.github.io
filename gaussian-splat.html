@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="SplatOverflow Localization | Peter He" />
   <meta property="og:description" content="Real-time Localization in Gaussian Splat Scenes" />
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
@@ -19,12 +19,14 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
   <link rel="manifest" href="favicon/site.webmanifest">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -199,83 +201,279 @@
 </head>
 
 <body class="bg-white text-gray-900 font-sans">
-    <!-- Navigation -->
-    <nav class="border-b border-gray-200 py-4">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex space-x-8">
-                <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
-                <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
-                <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
-                <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
-                <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
-            </div>
-        </div>
-    </nav>
+  <!-- Navigation -->
+  <nav class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+        <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+        <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+        <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+        <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="container">
     <div class="left-section">
       <img id="productImage" src="assets/localization1.gif" alt="Gaussian Splat Localization">
     </div>
 
-    <div class="right-section">
-      <h1><span class="project-name">SplatOverflow</span></h1>
-      <h2>Research Project - CHI 2025</h2>
-      <p>Real-time localization in Gaussian splat scenes and SfM models</p>
-      
-      <div class="project-details">
-        <h3>Key Features</h3>
-        <ul>
-          <li>Python library for real-time localization in Gaussian splat scenes</li>
-          <li>Optimized PyTorch pipeline for faster localization</li>
-          <li>Windows-compatible Gaussian splatting software</li>
-          <li>WebXR interface for collaborative hardware projects</li>
-        </ul>
+    <div class="right-section space-y-6">
+      <div class="space-y-3">
+        <h1 class="text-4xl font-extrabold tracking-tight text-black sm:text-5xl">
+          Gaussian Splat Localization
+        </h1>
+        <p class="text-sm font-semibold uppercase tracking-wider text-orange-600">
+          Part of SplatOverflow — Published at ACM CHI 2025
+        </p>
+        <p class="text-gray-600 leading-relaxed text-base">
+          Splatoverflow is a paper about using 3D Gaussian Splats as artifacts for remote hardware device (e.g., 3D
+          Printers) debugging for remote maintainers.
+        </p>
       </div>
 
-      <div class="learn-more-btn-wrapper">
-        <a href="https://dl.acm.org/doi/10.1145/3706598.3714129" target="_blank" rel="noopener noreferrer" class="learn-more-btn">View Paper</a>
+
+      <div class="space-y-3">
+        <p class="text-xl text-gray-900 font-medium leading-relaxed">
+          Real-time localization in Gaussian splat scenes and SfM models.
+        </p>
+        <p class="text-gray-600 leading-relaxed text-sm">
+          The GIF on the left shows real-time camera tracking within a 3D scene using a standard phone camera.
+        </p>
       </div>
+
+
+
+      <div class="pt-4">
+        <a href="https://dl.acm.org/doi/10.1145/3706598.3714129" target="_blank" rel="noopener noreferrer"
+          class="learn-more-btn">View Paper</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: 3D Embodied Interaction Concepts -->
+  <div class="bg-white py-16 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-6">
+      <section class="space-y-6">
+        <h2 class="text-[2.5rem] font-bold text-black text-center mb-12 tracking-tight">3D Embodied Interaction Concepts</h2>
+        <div class="flex flex-col gap-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div class="space-y-4">
+            <p class="text-gray-700 leading-relaxed text-base">
+              These ideas were ideas not used in the final paper, but are still cool nevertheless. These are
+              potential applications of the localization combined with gaussian splats that I thought would be cool.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1: Hand Tracking & Interaction -->
+            <div
+              class="bg-gray-50/60 hover:bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md transition-all duration-300 rounded-xl p-5 flex flex-col justify-between">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">Hand Tracking & Interaction</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Overlaying a 3D hand skeleton framework on the user's workspace to register precise manual gestures
+                  and interactions with the device.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2: Mobile AR Annotation -->
+            <div
+              class="bg-gray-50/60 hover:bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md transition-all duration-300 rounded-xl p-5 flex flex-col justify-between">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">Mobile AR Annotation</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  A mobile interface that tracks physical objects in 3D, providing real-time bounding boxes and parts
+                  labels (e.g. "PART #") dynamically positioned on screen.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3: Multi-Camera Localization -->
+            <div
+              class="bg-gray-50/60 hover:bg-white border border-gray-100 hover:border-orange-200 hover:shadow-md transition-all duration-300 rounded-xl p-5 flex flex-col justify-between">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">Multi-Camera Localization</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Utilizing multiple camera angles and tracking them in one 3D Gaussian Splat scene. Could be useful
+                  for Social AR around a gaussian splatted object.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full flex flex-col items-center">
+            <img src="assets/splatoverflow-interaction-modes.png" alt="Concept interaction sketches"
+              class="w-full max-w-3xl h-auto rounded-xl border border-gray-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]">
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 
   <div class="learn-more-section" id="learn-more">
-    <h2>Project Details</h2>
-    <div class="features-grid">
+    <h2>Overview</h2>
+    <!-- <div class="features-grid">
       <div class="feature">
         <h3>Real-time Localization</h3>
-        <p>Developed a Python library that enables real-time localization in pre-made Gaussian splat scenes and Structure from Motion (SfM) models.</p>
+        <p>Developed a Python library that enables real-time localization in pre-made Gaussian splat scenes and
+          Structure from Motion (SfM) models.</p>
       </div>
       <div class="feature">
         <h3>Performance Optimization</h3>
-        <p>Optimized the PyTorch pipeline by pre-loading models and optimizing structure for smaller-scale scenes, significantly reducing localization time.</p>
+        <p>Optimized the PyTorch pipeline by pre-loading models and optimizing structure for smaller-scale scenes,
+          significantly reducing localization time.</p>
       </div>
       <div class="feature">
         <h3>Cross-Platform Support</h3>
-        <p>Converted open-source Gaussian splatting software to be Windows-compatible using CUDA and COLMAP documentation.</p>
+        <p>Converted open-source Gaussian splatting software to be Windows-compatible using CUDA and COLMAP
+          documentation.</p>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <footer>
-    <p>© 2026 Peter He. All rights reserved.</p>
-  </footer>
+    <!-- Detailed Features / Implementation Sections -->
+    <div class="bg-gray-50 border-t border-gray-100 py-16">
+      <div class="max-w-4xl mx-auto px-6 space-y-20">
 
-  <script>
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function () {
-      var currentScrollPos = window.pageYOffset;
-      var navbar = document.getElementById("navbar");
+        <!-- Section 1: Usual Gaussian Splat Pipeline -->
+        <section class="space-y-6">
+          <div class="border-b border-gray-200 pb-4">
+            <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Gaussian Splatting Reconstruction Pipeline</h2>
+          </div>
+          <div class="flex flex-col gap-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <div class="space-y-4">
+              <p class="text-gray-700 leading-relaxed text-base">
+                Standard pipelines take video inputs, construct a Structure-from-Motion (SfM) sparse point cloud model
+                via
+                COLMAP,
+                and use that geometry to optimize the final Gaussian Splat.
+              </p>
+              <p class="text-gray-700 leading-relaxed font-semibold text-base">
+                My system took advantage of this underlying SfM model to compute real-time camera
+                localization, mapping query frames directly to the corresponding 3D splat.
+              </p>
 
-      if (prevScrollpos > currentScrollPos) {
-        navbar.style.top = "0px";
-      } else {
-        if (currentScrollPos > 0) {
-          navbar.style.top = "-70px";
+              <p>I was able to do this because the overall SplatOverflow system already computes a COLMAP model for the
+                created 3D artifact of the machine.</p>
+            </div>
+            <div class="w-full flex flex-col items-center">
+              <img src="assets/splatoverflow-pipeline-highlevel.png" alt="High-Level Gaussian Splat Pipeline"
+                class="w-full max-w-3xl h-auto rounded-xl border border-gray-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">High-level overview of my pipeline
+                hooking into standard SfM-based splatting.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Hierarchical Localization Algorithm -->
+        <section class="space-y-6">
+          <div class="border-b border-gray-200 pb-4">
+            <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Hierarchical Localization (hloc)</h2>
+          </div>
+          <div class="flex flex-col lg:flex-row gap-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <div class="flex-1 space-y-4">
+              <p class="text-gray-700 leading-relaxed text-base">
+                To achieve real-time camera tracking inside pre-built Gaussian splat environments, I used a
+                state-of-the-art Hierarchical Localization (hloc) algorithm:
+              </p>
+              <ul class="space-y-3 pl-1 text-gray-700 text-base">
+                <li class="flex items-start">
+                  <span class="text-orange-600 mr-2 font-bold">•</span>
+                  <span><strong>Global Database Speedup:</strong> Relies on a global database of image descriptors from
+                    the SfM model to rapidly search and narrow down matching regions.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-orange-600 mr-2 font-bold">•</span>
+                  <span><strong>Integration:</strong> Since the image database is already generated during
+                    the initial SplatOverflow reconstruction process, I could use it with no extra prep.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-orange-600 mr-2 font-bold">•</span>
+                  <span><strong>Optimization:</strong> I Optimized the PyTorch model preloading and inference steps
+                    specifically tailored to the known global database to make it fast.</span>
+                </li>
+              </ul>
+              <div class="pt-2">
+                <a href="https://github.com/cvg/Hierarchical-Localization" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-700 transition-colors">
+                  View hloc repository on GitHub <span class="ml-1">&rarr;</span>
+                </a>
+              </div>
+            </div>
+            <div class="w-full lg:w-[50%] flex-shrink-0 flex flex-col justify-center">
+              <img src="assets/splatoverflow-hloc-pipeline.png" alt="Hierarchical Localization Pipeline"
+                class="w-full h-auto rounded-xl border border-gray-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">The Offline (feature indexing) and
+                Online
+                (query image retrieval, 2D-3D matches, and 6-DoF pose estimation) pipeline.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Connecting Videos with 3D Artifacts -->
+        <section class="space-y-6">
+          <div class="border-b border-gray-200 pb-4">
+            <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Spatial Video-to-Splat Alignment</h2>
+          </div>
+          <div
+            class="flex flex-col md:flex-row-reverse items-center gap-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <div class="flex-1 space-y-4">
+              <p class="text-gray-700 leading-relaxed text-base">
+                My implementation was used to connect user-captured mobile videos with the static 3D Gaussian Splat
+                scene,
+                facilitating real-time asynchronous troubleshooting.
+              </p>
+              <ul class="space-y-3 pl-1 text-gray-700 text-base">
+                <li class="flex items-start">
+                  <span class="text-orange-600 mr-2 font-bold">•</span>
+                  <span><strong>Floating Video Perspective:</strong> The local user's video is projected as a
+                    floating virtual screen inside the SplatOverflow viewport, aligned to the exact spatial perspective
+                    it
+                    was captured from.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-orange-600 mr-2 font-bold">•</span>
+                  <span><strong>Collaborative Inspection:</strong> Remote maintainers can inspect hardware issues (e.g.,
+                    verifying a 3D printer's vacuum nozzle alignment) in sync with the live splat and overlaying CAD
+                    models.</span>
+                </li>
+
+              </ul>
+            </div>
+            <div class="w-full md:w-[48%] flex-shrink-0">
+              <img src="assets/splatoverflow-video-connection.png" alt="Video to Splat Connection"
+                class="w-full h-auto rounded-xl border border-gray-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">Floating video screen placement</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 Peter He. All rights reserved.</p>
+    </footer>
+
+    <script>
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        var navbar = document.getElementById("navbar");
+
+        if (prevScrollpos > currentScrollPos) {
+          navbar.style.top = "0px";
+        } else {
+          if (currentScrollPos > 0) {
+            navbar.style.top = "-70px";
+          }
         }
-      }
-      prevScrollpos = currentScrollPos;
-    };
+        prevScrollpos = currentScrollPos;
+      };
 
-  </script>
+    </script>
 </body>
+
 </html>
