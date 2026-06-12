@@ -29,6 +29,17 @@
             overflow-x: hidden;
         }
 
+        /* Sticky Navigation with Glassmorphism */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            transition: top 0.3s ease;
+        }
+
         .hero-container {
             display: flex;
             min-height: 100vh;
@@ -87,8 +98,8 @@
 
         .project-name {
             color: #000000;
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             letter-spacing: -0.02em;
         }
 
@@ -175,17 +186,22 @@
         }
 
         .content-section h2 {
-            font-size: 1.75rem;
+            font-size: 1.875rem;
+            /* text-3xl */
             font-weight: 700;
+            letter-spacing: -0.025em;
+            /* tracking-tight */
             margin-bottom: 1.25rem;
-            color: #000;
+            color: #000000;
         }
 
         .content-section h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
+            font-size: 1.75rem;
+            /* matches neuroscent.html h3 */
+            font-weight: 700;
+            letter-spacing: -0.02em;
             margin: 1.5rem 0 0.75rem;
-            color: #111;
+            color: #000000;
         }
 
         .content-section p {
@@ -211,35 +227,7 @@
             color: #9a3412;
         }
 
-        .attribution-card {
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-            border-radius: 12px;
-            padding: 1.5rem 1.75rem;
-            margin-top: 1.5rem;
-            color: #7c2d12;
-        }
 
-        .attribution-card p {
-            margin-bottom: 1rem;
-        }
-
-        .attribution-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .attribution-links a {
-            color: #ea580c;
-            font-size: 0.95rem;
-            text-decoration: none;
-        }
-
-        .attribution-links a:hover {
-            color: #9a3412;
-            text-decoration: underline;
-        }
 
         .safety-header,
         .acknowledgements-header {
@@ -262,14 +250,7 @@
             background: #ffedd5;
         }
 
-        .safety-box {
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-            border-radius: 10px;
-            padding: 1.25rem 1.5rem;
-            color: #7c2d12;
-            font-size: 0.95rem;
-        }
+
 
         .conference-section {
             padding: 3rem 2rem 4rem;
@@ -283,9 +264,13 @@
         }
 
         .conference-section h2 {
-            font-size: 1.75rem;
+            font-size: 1.875rem;
+            /* text-3xl */
             font-weight: 700;
+            letter-spacing: -0.025em;
+            /* tracking-tight */
             margin-bottom: 1rem;
+            color: #000000;
         }
 
         .conference-section p {
@@ -299,23 +284,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
 
-        .conference-caption {
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-top: 0.75rem;
-            text-align: center;
-        }
 
-        .gif-captions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #555;
-        }
 
         /* Video Section Styles */
         .video-section {
@@ -328,10 +297,13 @@
         }
 
         .video-section h2 {
-            font-size: 2.5rem;
+            font-size: 1.875rem;
+            /* text-3xl */
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            /* tracking-tight */
             margin-bottom: 2rem;
             color: #000000;
-            font-weight: 700;
             text-align: center;
         }
 
@@ -357,7 +329,11 @@
 
         .learn-more-section h2 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 1.875rem;
+            /* text-3xl */
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            /* tracking-tight */
             margin-bottom: 3rem;
             color: #000000;
         }
@@ -377,9 +353,12 @@
         }
 
         .feature h3 {
-            font-size: 1.4rem;
+            font-size: 1.75rem;
+            /* matches neuroscent.html h3 */
             margin-bottom: 1rem;
             font-weight: 700;
+            color: #000000;
+            letter-spacing: -0.02em;
         }
 
         .feature img {
@@ -413,7 +392,7 @@
 </head>
 
 <body>
-    <nav class="border-b border-gray-200 py-4">
+    <nav id="navbar" class="border-b border-gray-200 py-4">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex space-x-8">
                 <a href="index.html" class="text-gray-500 hover:text-gray-700">home</a>
@@ -427,8 +406,10 @@
 
     <div class="hero-container">
         <div class="left-section">
-            <h1><span class="project-name">human operator</span></h1>
-            <h2>MIT Hardware × AI Hackathon — Hard Mode Winner</h2>
+            <h1 class="text-4xl font-extrabold tracking-tight text-black sm:text-5xl mb-3"><span
+                    class="project-name">human operator</span></h1>
+            <p class="text-sm font-semibold uppercase tracking-wider text-orange-600 mb-2">MIT Hardware × AI Hackathon —
+                Hard Mode Winner</p>
             <p class="tagline">"We gave AI a body, your body."</p>
             <p>
                 Human Operator is a human augmentation tool that allows AI
@@ -437,7 +418,7 @@
             </p>
 
             <div class="mt-8">
-                <h3 class="text-base font-semibold text-gray-700 mb-2">Team</h3>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">Team</h3>
                 <div class="team-list">
                     <span class="team-member">Peter He</span>
                     <span class="team-member">Yutong Wu</span>
@@ -464,25 +445,25 @@
 
     <div class="max-w-[900px] mx-auto px-6 relative z-10 mt-8 mb-8">
         <div class="acknowledgements-header">Acknowledgements</div>
-        <div class="attribution-card" style="margin-top: 0;">
-            <p>
+        <div class="my-6 p-4 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg" style="margin-top: 0;">
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">
                 Human Operator was inspired by research and systems from the
-                <a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer">Human Computer Integration
+                <a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-semibold underline">Human Computer Integration
                     Lab</a>
                 at UChicago on neuromuscular interfaces and electrode placement optimization.
             </p>
-            <div class="attribution-links">
+            <div class="flex flex-col gap-2">
                 <a href="https://lab.plopes.org/published/2023-CHI-BackOfHandElectroTactile.pdf" target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer" class="text-sm text-orange-600 hover:text-orange-800 font-semibold underline">
                     Full-Hand Electro Tactile Feedback without Obstructing Palmar Side of Hand
                 </a>
                 <a href="https://lab.plopes.org/published/2026-CHI-GenerativeMuscleStimulation.pdf" target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer" class="text-sm text-orange-600 hover:text-orange-800 font-semibold underline">
                     Generative Muscle Stimulation: Providing Users with Physical Assistance by Constraining
                     Multimodal-AI with Embodied Knowledge
                 </a>
                 <a href="https://lab.plopes.org/published/2021-CHI-BackHandEMS.pdf" target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer" class="text-sm text-orange-600 hover:text-orange-800 font-semibold underline">
                     Increasing Electrical Muscle Stimulation's Dexterity by means of Back of the Hand Actuation
                 </a>
             </div>
@@ -504,18 +485,18 @@
         <div class="features-grid">
             <div class="feature">
                 <img src="assets/humanoperator1.gif" alt="AI stimulates wrist to wave" />
+                <p class="text-xs text-gray-500 text-center mt-2 italic">AI stimulates the wrist to wave</p>
             </div>
             <div class="feature">
                 <img src="assets/humanoperator2.gif" alt="AI stimulates fingers to play a melody" />
+                <p class="text-xs text-gray-500 text-center mt-2 italic">AI drives fingers in sequence to play a melody
+                </p>
             </div>
             <div class="feature">
                 <img src="assets/humanoperator3.gif" alt="AI stimulates fingers to form an OK sign" />
+                <p class="text-xs text-gray-500 text-center mt-2 italic">AI forms an OK sign through targeted
+                    stimulation</p>
             </div>
-        </div>
-        <div class="gif-captions">
-            <p>AI stimulates the wrist to wave</p>
-            <p>AI drives fingers in sequence to play a melody</p>
-            <p>AI forms an OK sign through targeted stimulation</p>
         </div>
     </div>
 
@@ -565,9 +546,11 @@
         </p>
 
         <div class="safety-header">Safety</div>
-        <div class="safety-box">
-            Human Operator is a prototype. It is not a medical device or a consumer product.
-            EMS can be dangerous if misused and requires calibration, caution, and informed consent.
+        <div class="my-6 p-4 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg">
+            <p class="text-sm text-gray-700 leading-relaxed">
+                Human Operator is a prototype. It is not a medical device or a consumer product.
+                EMS can be dangerous if misused and requires calibration, caution, and informed consent.
+            </p>
         </div>
     </section>
 
@@ -578,7 +561,7 @@
         </p>
         <p>
             Funny enough, the project did go viral across Twitter/X, Instagram, Reddit, Youtube, 小红书 (RedNote) and etc.,
-            accumulating over 20
+            accumulating ~20
             million views (if not more) across all sites.
         </p>
         <p>
@@ -609,7 +592,7 @@
             </p>
             <img src="assets/humanoperator-claude-conference.png"
                 alt="Human Operator display at the Anthropic Code w/ Claude Conference" />
-            <p class="conference-caption">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">
                 Exhibit display at the Code w/ Claude Conference
             </p>
         </div>
@@ -619,5 +602,22 @@
         <p>© 2026 Peter He. All rights reserved.</p>
     </footer>
 </body>
+
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        var navbar = document.getElementById("navbar");
+
+        if (prevScrollpos > currentScrollPos) {
+            navbar.style.top = "0px";
+        } else {
+            if (currentScrollPos > 0) {
+                navbar.style.top = "-70px";
+            }
+        }
+        prevScrollpos = currentScrollPos;
+    };
+</script>
 
 </html>

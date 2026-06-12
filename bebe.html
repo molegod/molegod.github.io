@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,6 +45,17 @@
       background-color: #ffffff;
       color: #000000;
       line-height: 1.6;
+    }
+
+    /* Sticky Navigation with Glassmorphism */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: top 0.3s ease;
     }
 
     .container {
@@ -114,7 +126,7 @@
     }
 
     .learn-more-btn-wrapper {
-      text-align: center;
+      text-align: left;
       margin-top: 2rem;
     }
 
@@ -134,48 +146,154 @@
     }
 
     .learn-more-section {
-      padding: 4rem 2rem;
-      background-color: #f8f9fa;
+      padding: 6rem 2rem;
+      background-color: #ffffff;
+      border-top: 1px solid #eaeaea;
     }
 
     .learn-more-section h2 {
       text-align: center;
       font-size: 2.5rem;
-      margin-bottom: 3rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
       color: #000000;
+      letter-spacing: -0.03em;
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
+    .overview-content {
+      max-width: 1100px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
     }
 
-    .feature {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    .overview-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
     }
 
-    .feature h3 {
-      font-size: 1.5rem;
-      margin: 0 0 1rem 0;
-      color: #000000;
+    .overview-item.reverse {
+      flex-direction: row-reverse;
     }
 
-    .feature p {
-      margin: 1rem 0;
-      color: #555555;
+    .overview-text {
+      flex: 1.2;
     }
 
-    .feature img {
+    .overview-text h3 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1.05rem;
+      color: #444444;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .overview-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .overview-media {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overview-media img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
-      margin-bottom: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-media img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .overview-media.dual-images {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .overview-media.dual-images img {
+      width: 100%;
+    }
+
+    .overview-hero {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eaeaea;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .overview-hero:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .overview-hero:hover img {
+      transform: scale(1.01);
+    }
+
+    .overview-media.side-by-side {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .overview-media.side-by-side img {
+      width: calc(50% - 0.5rem);
+      object-fit: cover;
+    }
+
+    .overview-media.three-columns {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .three-columns-wrapper {
+      width: calc(33.333% - 0.67rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .three-columns-wrapper img {
+      width: 100%;
+      height: auto;
+    }
+
+    .three-columns-wrapper img.cropped-gif {
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
     }
 
     footer {
@@ -222,16 +340,48 @@
         font-size: 2rem;
       }
 
-      .features-grid {
-        grid-template-columns: 1fr;
+      .overview-content {
+        gap: 4rem;
+      }
+
+      .overview-item,
+      .overview-item.reverse {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .overview-text h3 {
+        font-size: 1.5rem;
+      }
+
+      .overview-media {
+        width: 100%;
+      }
+
+      .overview-media.side-by-side {
+        flex-direction: column;
         gap: 1rem;
+      }
+
+      .overview-media.side-by-side img {
+        width: 100%;
+      }
+
+      .overview-media.three-columns {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .three-columns-wrapper {
+        width: 100%;
       }
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-900 font-sans">
   <!-- Navigation -->
-  <nav class="border-b border-gray-200 py-4">
+  <nav id="navbar" class="border-b border-gray-200 py-4">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex space-x-8">
         <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
@@ -255,7 +405,8 @@
     <div class="right-section">
       <h1><span class="project-label">ECE 4760 | </span> <span class="project-name">Bebe</span></h1>
       <h2 class="text-xl font-semibold">An emotive bipedal robot with IMU-based wand control.</h2>
-      <p>Built as an final project for my ECE 4760 Microcontrollers class, focusing on human-robot interaction.
+      <p>Built as an final project for my ECE 4760 Microcontrollers class, inspired by Disney droids, focusing on
+        human-robot interaction.
       </p>
 
       <div class="project-details">
@@ -266,32 +417,117 @@
 
       <div class="learn-more-btn-wrapper">
         <a href="https://ece4760.github.io/Projects/Fall2025/ph475_rq36_wm345/index.html" target="_blank"
-          rel="noopener noreferrer" class="learn-more-btn">View Project Page</a>
+          rel="noopener noreferrer" class="learn-more-btn">View Class Project Page</a>
+
+        <br>
+        <br>
+
+        <div class="my-6 p-4 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg">
+          <p class="text-xs font-bold text-orange-600 uppercase tracking-wider mb-1">Active Redesign</p>
+          <p class="text-sm text-gray-700 leading-relaxed m-0">
+            Currently working on a redesign to make the robot slightly more stable, fix the walking joint orientation
+            issues, and to try and import it into a simulation.
+            <br>
+            <br>
+            Also want to add sensors but pricey ;-;
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="learn-more-section" id="learn-more">
-    <h2>Project Details</h2>
-    <div class="features-grid">
-      <div class="feature">
-        <h3>Robot Body & Motion</h3>
-        <img src="assets/robot_wireframe.png" alt="Bebe robot body placeholder">
-        <p>Bebe uses six MG996R servos at the hip, knee, and ankle joints. Walking is implemented as a sequence of
-          stable open-loop PWM poses that keep the center of mass within a safe region for shuffling steps and turns.</p>
+    <h2>Overview</h2>
+    <div class="overview-content">
+      <!-- Section 1: Mechanical Design & CAD -->
+      <div class="flex flex-col gap-8">
+        <div class="overview-item">
+          <div class="overview-media flex flex-col items-center">
+            <img src="assets/bebe_desk.jpg" alt="Bebe Robot on Desk">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">Bebe robot prototype beauty shot on a workbench</p>
+          </div>
+          <div class="overview-text">
+            <h3>Mechanical Design & CAD</h3>
+            <p>Bebe's mechanical structure was designed by me using Fusion CAD software. The design prioritizes
+              stability
+              and balance while maintaining a
+              compact form factor suitable for the Pico W controller and power systems. We also used Fusion (our CAD
+              software of choice)'s center of gravity tool to
+              check stability. A major pain-point was the budget though, so we were unable to design any too fancy
+              robot joints.
+            </p>
+            <p>All of Bebe's components were 3D printed using PLA filament, allowing for precise fabrication of the
+              joint
+              structures and body frame. The 3D printing process enabled rapid iteration during the design phase, which
+              made
+              it easy to test different joints and refine the robot's form factor.</p>
+            <p>The robot uses six MG996R servos at the hip, knee, and ankle joints. Walking is implemented as a
+              sequence of
+              stable open-loop PWM poses that keep the center of mass within a safe region for shuffling steps and
+              turns. We also made it dance in the same way.
+            </p>
+            <p>
+              We honestly could've done much better with the mechanical design as the orientation of the servos made it
+              hard for the robot to walk, but time and 3D-printer constraints
+              were an issue.
+            </p>
+          </div>
+        </div>
+        <div class="overview-media three-columns">
+          <div class="three-columns-wrapper">
+            <img src="assets/robot_wireframe.png" alt="CAD Wireframe of Robot Design">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">Fusion 360 CAD wireframe design of the bipedal
+              robot</p>
+          </div>
+          <div class="three-columns-wrapper">
+            <img src="assets/bebe_legs.jpg" alt="3D Printed Robot Legs">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">3D printed PLA leg test assembled with MG996R
+              servos</p>
+          </div>
+          <div class="three-columns-wrapper">
+            <img src="assets/bebe_walk.gif" alt="Bebe Robot Walking Test" class="cropped-gif">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">Open-loop walking gait test</p>
+          </div>
+        </div>
       </div>
-      <div class="feature">
-        <h3>Wand Control & IMU</h3>
-        <img src="assets/block_diagram.png" alt="Control wand placeholder">
-        <p>The handheld wand runs on another Pico W with an MPU6050 IMU. A complementary filter converts tilt into
-          direction and activation magnitude, then streams commands over Wi‑Fi via UDP.</p>
-      </div>
-      <div class="feature">
-        <h3>Eyes & Expression</h3>
-        <img src="assets/eye_animation.png" alt="LED eyes placeholder">
-        <img src="assets/bebe_eyes.png" alt="LED eyes placeholder">
-        <p>Two MAX7219 LED matrices render animated eyes that cycle through idle, blink, and expressive patterns,
-          making Bebe’s internal state legible while motion control runs independently.</p>
+
+      <!-- Section 2: Control & Expression (IMU Wand & Eyes combined) -->
+      <div class="border-t border-gray-100 pt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- Wand Control & IMU -->
+          <div class="flex flex-col justify-between">
+            <div class="overview-text mb-6">
+              <h3>Wand Control & IMU</h3>
+              <p>The handheld wand runs on another Pico W with an MPU6050 IMU. A complementary filter converts tilt into
+                direction and activation magnitude, then streams commands over Wi‑Fi via UDP.</p>
+            </div>
+            <div class="overview-media mt-auto flex flex-col items-center">
+              <img src="assets/block_diagram.png" alt="Control wand block diagram">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">System block diagram for UDP wireless wand
+                control</p>
+            </div>
+          </div>
+
+          <!-- Eyes & Expression -->
+          <div class="flex flex-col">
+            <div class="overview-text mb-6" style="flex: none;">
+              <h3>Eyes & Expression</h3>
+              <p>Two MAX7219 LED matrices render animated eyes that cycle through idle, blink, and expressive patterns,
+                making Bebe’s internal state legible while motion control runs independently.</p>
+            </div>
+            <div class="overview-media dual-images">
+              <div class="flex flex-col items-center w-full">
+                <img src="assets/bebe_eyes.png" alt="Bebe robot physical eyes">
+                <p class="text-xs text-gray-500 text-center mt-2 italic">MAX7219 8x8 LED matrix display example
+              </div>
+              <div class="flex flex-col items-center w-full">
+                <img src="assets/eye_animation.png" alt="LED eyes animation frames">
+                <p class="text-xs text-gray-500 text-center mt-2 italic">Custom LED grid eye animation frames
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -434,6 +670,23 @@
       }
     }
   </script>
-</body>
-</html>
 
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0px";
+      } else {
+        if (currentScrollPos > 0) {
+          navbar.style.top = "-70px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  </script>
+</body>
+
+</html>

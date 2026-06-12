@@ -204,11 +204,23 @@
             }
         }
     </style>
+    <style>
+      /* Sticky Navigation with Glassmorphism */
+      nav {
+        position: sticky;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 100;
+        transition: top 0.3s ease;
+      }
+    </style>
 </head>
 
 <body class="bg-white text-gray-900 font-sans">
     <!-- Navigation -->
-    <nav class="border-b border-gray-200 py-4">
+    <nav id="navbar" class="border-b border-gray-200 py-4">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex space-x-8">
                 <a href="index.html" class="text-black font-medium border-b-2 border-black pb-1">home</a>
@@ -323,13 +335,17 @@
                                     undergraduate REU or industry research
                                     opportunities.
                                 </p> -->
-                            <div class="flex space-x-4">
+                            <div class="flex space-x-4 items-center">
                                 <a href="https://github.com/molegod" target="_blank" rel="noopener noreferrer"
                                     class="text-lg text-orange-600 hover:text-orange-800 font-bold">GitHub</a>
+                                <span class="text-gray-300">|</span>
+                                <a href="https://x.com/peterhci" target="_blank" rel="noopener noreferrer"
+                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">Twitter</a>
+                                <span class="text-gray-300">|</span>
                                 <a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=en" target="_blank"
                                     rel="noopener noreferrer"
                                     class="text-lg text-orange-600 hover:text-orange-800 font-bold">Google Scholar</a>
-
+                                <span class="text-gray-300">|</span>
                                 <a href="assets/peterhe_cv.pdf" target="_blank" rel="noopener noreferrer"
                                     class="text-lg text-orange-600 hover:text-orange-800 font-bold">CV</a>
                             </div>
@@ -537,5 +553,22 @@
         </div>
     </footer>
 </body>
+
+    <script>
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        var navbar = document.getElementById("navbar");
+
+        if (prevScrollpos > currentScrollPos) {
+          navbar.style.top = "0px";
+        } else {
+          if (currentScrollPos > 0) {
+            navbar.style.top = "-70px";
+          }
+        }
+        prevScrollpos = currentScrollPos;
+      };
+    </script>
 
 </html>

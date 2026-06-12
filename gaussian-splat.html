@@ -37,6 +37,17 @@
       line-height: 1.6;
     }
 
+    /* Sticky Navigation with Glassmorphism */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: top 0.3s ease;
+    }
+
     .container {
       display: flex;
       min-height: 100vh;
@@ -134,12 +145,7 @@
       background-color: #f8f9fa;
     }
 
-    .learn-more-section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #000000;
-    }
+
 
     .features-grid {
       display: grid;
@@ -202,7 +208,7 @@
 
 <body class="bg-white text-gray-900 font-sans">
   <!-- Navigation -->
-  <nav class="border-b border-gray-200 py-4">
+  <nav id="navbar" class="border-b border-gray-200 py-4">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex space-x-8">
         <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
@@ -257,7 +263,7 @@
   <div class="bg-white py-16 border-t border-gray-100">
     <div class="max-w-4xl mx-auto px-6">
       <section class="space-y-6">
-        <h2 class="text-[2.5rem] font-bold text-black text-center mb-12 tracking-tight">3D Embodied Interaction Concepts
+        <h2 class="text-3xl font-bold text-black text-center mb-10 tracking-tight">3D Embodied Interaction Concepts
         </h2>
         <div class="flex flex-col gap-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <div class="space-y-4">
@@ -318,7 +324,7 @@
   </div>
 
   <div class="learn-more-section" id="learn-more">
-    <h2>Overview</h2>
+    <h2 class="text-3xl font-bold text-black text-center mb-10 tracking-tight">Overview</h2>
     <!-- <div class="features-grid">
       <div class="feature">
         <h3>Real-time Localization</h3>

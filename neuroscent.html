@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="NeuroScent | Peter He" />
   <meta property="og:description" content="VR Brain-Computer Interface with Olfactory Display" />
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
@@ -19,12 +19,14 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
   <link rel="manifest" href="favicon/site.webmanifest">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -35,20 +37,32 @@
       line-height: 1.6;
     }
 
+    /* Sticky Navigation with Glassmorphism */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: top 0.3s ease;
+    }
+
     .container {
       display: flex;
+      align-items: center;
       min-height: 100vh;
-      max-width: 1400px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 2rem;
+      gap: 3rem;
     }
 
     .left-section {
-      flex: 1;
+      flex: 1.1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
     }
 
     .right-section {
@@ -56,228 +70,372 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 2rem;
     }
 
     .left-section img {
       max-width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .left-section img:hover {
+      transform: scale(1.02);
     }
 
     .project-name {
       color: #000000;
-      font-size: 2.5rem;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Video Section Styles */
+    .video-section {
+      padding: 4rem 2rem;
+      background-color: #f8f9fa;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      background-color: #000;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Overview Section Styles */
+    .learn-more-section {
+      padding: 5rem 2rem;
+      background-color: #ffffff;
+    }
+
+    .overview-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .overview-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .overview-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .overview-text {
+      flex: 1.2;
+    }
+
+    .overview-text h3 {
+      font-size: 1.75rem;
       font-weight: 700;
-    }
-
-    h1 {
-      margin: 0 0 1rem 0;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      color: #333333;
-      margin: 0 0 1rem 0;
-      font-weight: 500;
-    }
-
-    p {
-      margin: 0.5rem 0;
-      color: #555555;
-    }
-
-    .project-details {
-      margin: 2rem 0;
-    }
-
-    .project-details h3 {
-      font-size: 1.25rem;
-      margin: 0 0 1rem 0;
+      margin-top: 0;
+      margin-bottom: 1rem;
       color: #000000;
+      letter-spacing: -0.02em;
     }
 
-    .project-details ul {
+    .overview-text p {
+      font-size: 1.025rem;
+      color: #4b5563;
+      line-height: 1.7;
       margin: 0;
-      padding-left: 1.5rem;
     }
 
-    .project-details li {
-      margin: 0.5rem 0;
-      color: #555555;
+    .overview-media {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .learn-more-btn-wrapper {
-      text-align: center;
-      margin-top: 2rem;
+    .overview-media img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f1f5f9;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    .overview-media img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .overview-media.side-by-side {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .overview-media.side-by-side img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f1f5f9;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-media.side-by-side img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .side-by-side-wrapper {
+      width: calc(50% - 0.75rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Devpost Button Styles */
     .learn-more-btn {
       display: inline-block;
-      padding: 1rem 2rem;
-      background-color: #000000;
+      padding: 0.8rem 1.75rem;
+      background-color: #ea580c;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     .learn-more-btn:hover {
-      background-color: #333333;
+      background-color: #c2410c;
+      transform: translateY(-2px);
     }
-
-    .learn-more-section {
-      padding: 4rem 2rem;
-      background-color: #f8f9fa;
-    }
-
-    .learn-more-section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #000000;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .feature {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .feature h3 {
-      font-size: 1.5rem;
-      margin: 0 0 1rem 0;
-      color: #000000;
-    }
-
-    .feature p {
-      margin: 1rem 0;
-      color: #555555;
-    }
-
-    .video-section {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    .video-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #000000;
-    }
-
 
     footer {
       text-align: center;
-      padding: 2rem 0;
-      color: #666666;
-      border-top: 1px solid #e5e5e5;
-      margin-top: 4rem;
+      padding: 2.5rem 0;
+      color: #6b7280;
+      border-top: 1px solid #f1f5f9;
     }
 
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
-        padding: 0 1rem;
+        padding: 2rem 1rem;
+        gap: 2rem;
       }
 
       .left-section,
       .right-section {
-        padding: 1rem;
+        padding: 0;
+        width: 100%;
       }
 
       .project-name {
-        font-size: 2rem;
+        font-size: 2.25rem;
       }
 
-      .features-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+      .overview-content {
+        gap: 3rem;
       }
 
+      .overview-item,
+      .overview-item.reverse {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .overview-text h3 {
+        font-size: 1.5rem;
+      }
+
+      .overview-media {
+        width: 100%;
+      }
+
+      .video-section {
+        padding: 2.5rem 1rem;
+      }
+
+      .learn-more-section {
+        padding: 3rem 1rem;
+      }
+
+      .overview-media.side-by-side {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .side-by-side-wrapper {
+        width: 100%;
+      }
+
+      .overview-media.side-by-side img {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body class="bg-white text-gray-900 font-sans">
-    <!-- Navigation -->
-    <nav class="border-b border-gray-200 py-4">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex space-x-8">
-                <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
-                <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
-                <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
-                <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
-                <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
-            </div>
-        </div>
-    </nav>
+  <!-- Navigation -->
+  <nav id="navbar" class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+        <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+        <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+        <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+        <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="container">
     <div class="left-section">
-      <img id="productImage" src="assets/neuroscentold.png" alt="NeuroScent">
+      <img id="productImage" src="assets/neuroscentold.jpg" alt="NeuroScent System Design">
     </div>
 
-    <div class="right-section">
-      <h1><span class="project-name">NeuroScent</span></h1>
-      <h2>MIT Reality Hack 2025 - Hardware: Smart Sensing Winner</h2>
-      <p>A VR brain-computer interface system with olfactory display for mental well-being</p>
-      
-      <div class="project-details">
-        <h3>Key Features</h3>
-        <ul>
-          <li>OpenBCI's Galea BCI VR Headset integration with Unity</li>
-          <li>Dynamic interactive environment based on alpha brain waves</li>
-          <li>Custom-built olfactory display (~$60) with dual scent capability</li>
-          <li>ESP32 micro-controller firmware for USB serial connection</li>
+    <div class="right-section space-y-6">
+      <div class="space-y-3">
+        <h1 class="text-4xl font-extrabold tracking-tight text-black sm:text-5xl">
+          NeuroScent
+        </h1>
+        <p class="text-sm font-semibold uppercase tracking-wider text-orange-600">
+          MIT Reality Hack 2025 — Hardware: Smart Sensing Winner
+        </p>
+        <p class="text-gray-600 leading-relaxed text-base">
+          A VR brain-computer interface system with olfactory display for mental well-being.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-lg font-bold text-gray-900">Key Features</h3>
+        <ul class="space-y-2 text-gray-600 text-sm leading-relaxed">
+          <li class="flex items-start">
+            <span class="text-orange-600 mr-2 font-bold">•</span>
+            <span>OpenBCI's Galea BCI VR Headset integration with Unity</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-orange-600 mr-2 font-bold">•</span>
+            <span>Dynamic interactive environment based on alpha brain waves</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-orange-600 mr-2 font-bold">•</span>
+            <span>Custom-built olfactory display (~$60) with dual scent capability</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-orange-600 mr-2 font-bold">•</span>
+            <span>ESP32 micro-controller firmware for USB serial connection</span>
+          </li>
         </ul>
       </div>
 
-      <div class="learn-more-btn-wrapper">
-        <a href="https://devpost.com/software/neuroscent" target="_blank" rel="noopener noreferrer" class="learn-more-btn">View on Devpost</a>
+      <div class="pt-4">
+        <a href="https://devpost.com/software/neuroscent" target="_blank" rel="noopener noreferrer"
+          class="learn-more-btn">View on Devpost</a>
       </div>
     </div>
   </div>
 
-  <div class="video-section alt-bg">
-    <h2>Video</h2>
-    <div style="display: flex; justify-content: center; margin: 2rem 0;">
-      <iframe width="560" height="315" src="https://player.vimeo.com/video/1059625069" title="Vimeo video player" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
+  <!-- Overview Section -->
   <div class="learn-more-section" id="learn-more">
-    <h2>Project Details</h2>
-    <div class="features-grid">
-      <div class="feature">
-        <h3>Brain-Computer Interface</h3>
-        <img src="assets/neuroscent1.png" alt="olfactory" class="w-full h-auto mb-4 rounded-lg shadow-md">
-        <p>Utilized OpenBCI's Galea BCI VR Headset to detect and respond to alpha brain waves, creating an immersive experience that adapts to the user's mental state.</p>
+    <h2 class="text-3xl font-bold text-black text-center mb-10 tracking-tight">Overview</h2>
+    <div class="overview-content">
+      <div class="overview-item">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/neuroscent1.png" alt="Brain-Computer Interface details">
+          <p class="text-xs text-gray-500 text-center mt-2 italic">OpenBCI Galea headset integration for real-time
+            EEG/EMG data visualization</p>
+        </div>
+        <div class="overview-text">
+          <h3>Brain-Computer Interface</h3>
+          <p>We used OpenBCI's Galea BCI VR Headset to detect and respond to alpha brain waves, creating an immersive
+            experience that adapts to the user's mental state. The system captured EEG, EMG, and heart rate data from
+            Galea, analyzed real time mental state, and triggered adaptive scent releases and visual effects (flowers,
+            etc.) to guide
+            users toward calm or focus.
+
+          </p>
+        </div>
       </div>
-      <div class="feature">
-        <h3>Olfactory Display</h3>
-          <img src="assets/olfactory.png" alt="olfactory" class="w-full h-auto mb-4 rounded-lg shadow-md">
-        <p>Built a cost-effective olfactory display system using rapid-prototyping components and two diffusers, capable of delivering lavender and orange scents.</p>
+      <div class="flex flex-col gap-8">
+        <div class="overview-item reverse">
+          <div class="overview-media flex flex-col items-center">
+            <img src="assets/olfactory.png" alt="Olfactory Display hardware">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">Custom-built dual-scent olfactory display hardware
+              prototype</p>
+          </div>
+          <div class="overview-text">
+            <h3>Olfactory Display & Hardware Engineering</h3>
+            <p>I built the entire custom electrical system and olfactory display from scratch. I started by taking apart
+              and harvesting components from two off-the-shelf CVS diffusers using their ultrasonic atomizers. I then
+              hotwired everything to custom-made driver circuits controlled by
+              external relays and an ESP32 microcontroller, bypassing their original control circuitry to enable
+              control.</p>
+            <p class="mt-4">The ESP32 firmware was written to communicate directly with a Unity VR
+              scene via a USB serial connection. This allowed the virtual environment to trigger lavender or
+              orange scents in real time based on the user's alpha brain wave state, resulting in a,
+              closed-loop biofeedback system.</p>
+          </div>
+        </div>
+        <div class="overview-media side-by-side">
+          <div class="side-by-side-wrapper">
+            <img src="assets/neuroscent_assembly.jpg" alt="Assembling olfactory display hardware components">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">Assembling the olfactory display hardware
+              components</p>
+          </div>
+          <div class="side-by-side-wrapper">
+            <img src="assets/neuroscent_internals.jpg" alt="Detail view of the hotwired PCB and relay electronics">
+            <p class="text-xs text-gray-500 text-center mt-2 italic">Detailed view of the diffuser PCB that was hotwired
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="feature">
-        <h3>Unity Integration</h3>
-        <img src="assets/neurounity.png" alt="olfactory" class="w-full h-auto mb-4 rounded-lg shadow-md">
-        <p>Developed custom Unity scripts to create a dynamic VR environment that responds to brain wave patterns, enhancing the user's mental well-being.</p>
+      <div class="overview-item">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/neurounity.png" alt="Unity VR Integration">
+          <p class="text-xs text-gray-500 text-center mt-2 italic">Unity VR integration interface</p>
+        </div>
+        <div class="overview-text">
+          <h3>Unity Integration</h3>
+          <p>Within Unity, C# scripts capture Galea biometric data via a USB serial connection. As these biofeedback
+            signals hit specific thresholds, they drive Shader Graph, particle systems, and animation scripts to trigger
+            synchronized visual and olfactory (scent) effects in real time.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  
+  <!-- Video Section -->
+  <div class="video-section">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 tracking-tight">Demonstration Video</h2>
+    <div class="video-wrapper">
+      <iframe src="https://player.vimeo.com/video/1059625069" title="NeuroScent Demonstration Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+
+
 
   <footer>
     <p>© 2026 Peter He. All rights reserved.</p>
@@ -301,4 +459,5 @@
 
   </script>
 </body>
+
 </html>
