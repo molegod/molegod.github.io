@@ -203,6 +203,23 @@
                 left: 150%;
             }
         }
+
+        .intern-callout {
+            position: relative;
+            background: linear-gradient(135deg,
+                    rgba(243, 244, 246, 0.8) 0%,
+                    rgba(249, 250, 251, 0.6) 50%,
+                    rgba(243, 244, 246, 0.8) 100%);
+            border: 1px solid rgba(156, 163, 175, 0.25);
+            border-radius: 0.75rem;
+            padding: 0.875rem 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .intern-callout:hover {
+            border-color: rgba(107, 114, 128, 0.35);
+        }
     </style>
     <style>
       /* Sticky Navigation with Glassmorphism */
@@ -320,6 +337,15 @@
                             </p>
                         </div>
 
+                        <div class="intern-callout my-4">
+                            <p class="text-sm text-gray-700 leading-relaxed">
+                                I am currently a <span class="font-semibold text-gray-800">Summer 2026 research intern</span> under
+                                <a href="https://www.internetofmatter.org/" target="_blank" rel="noopener noreferrer"
+                                    class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Tingyu Cheng</a>
+                                at the University of Notre Dame, working on wearables, stretchy electronics, and their toolkits.
+                            </p>
+                        </div>
+
                         <div class="pt-3 space-y-2">
                             <p class="text-md">
                                 Feel free to reach out to me at
@@ -366,7 +392,7 @@
         <!-- Research Section -->
         <section id="research" class="mb-16">
             <h2 class="text-4xl font-bold text-black mb-2">publications</h2>
-            <p class="text-gray-500 italic mb-8">*excluding some preprints/pending submissions</p>
+            <p class="text-gray-500 italic mb-8">*excluding pending submissions ;-;</p>
 
             <div class="space-y-12">
                 <!-- SplatOverflow Research -->
