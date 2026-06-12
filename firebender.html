@@ -175,13 +175,6 @@
       background-color: #f8f9fa;
     }
 
-    .learn-more-section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #000000;
-    }
-
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -218,12 +211,30 @@
     .video-section {
       padding: 4rem 2rem;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .video-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #000000;
+    .video-wrapper {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      background-color: #000;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-embed-wrapper {
+      width: 100%;
+      max-width: 800px;
     }
 
     .alt-bg {
@@ -309,7 +320,7 @@
   </div>
 
   <div class="learn-more-section" id="learn-more">
-    <h2>Features</h2>
+    <h2 class="text-3xl font-bold text-black text-center mb-10 tracking-tight">Features</h2>
     <div class="features-grid">
       <div class="feature">
         <h3>Industrial Design</h3>
@@ -353,10 +364,9 @@
   </div>
 
   <div class="video-section alt-bg">
-    <h2>Video</h2>
-    <div style="display: flex; justify-content: center; margin: 2rem 0;">
-
-      <blockquote class="twitter-tweet" data-media-max-width="560">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 tracking-tight">Video</h2>
+    <div class="video-embed-wrapper">
+      <blockquote class="twitter-tweet" data-media-max-width="800">
         <p lang="en" dir="ltr">firebender by <a href="https://twitter.com/HaloInSF?ref_src=twsrc%5Etfw">@HaloInSF</a>
           <br><br>tag your favorite x user, to win one for free.<br><br>3 for sale. 1 free. <a
             href="https://t.co/cZnHhOhXDH">pic.twitter.com/cZnHhOhXDH</a>

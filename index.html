@@ -15,7 +15,7 @@
     <style>
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 3rem;
             padding: 0.4rem;
             max-width: 1400px;
@@ -99,7 +99,7 @@
             .projects-grid {
                 grid-template-columns: 1fr;
                 padding: 0.25rem;
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
             .project-card a span {
@@ -113,11 +113,20 @@
             .project-subtitle {
                 font-size: 0.85rem;
             }
+
+            .phd-callout {
+                padding: 1rem;
+            }
+
+            .intern-callout {
+                padding: 0.75rem;
+            }
         }
 
         @media (max-width: 480px) {
             .projects-grid {
                 padding: 0.5rem;
+                gap: 1.25rem;
             }
 
             .project-card a span {
@@ -220,6 +229,11 @@
         .intern-callout:hover {
             border-color: rgba(107, 114, 128, 0.35);
         }
+
+        img,
+        video {
+            max-width: 100%;
+        }
     </style>
     <style>
       /* Sticky Navigation with Glassmorphism */
@@ -237,9 +251,9 @@
 
 <body class="bg-white text-gray-900 font-sans">
     <!-- Navigation -->
-    <nav id="navbar" class="border-b border-gray-200 py-4">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex space-x-8">
+    <nav id="navbar" class="border-b border-gray-200 py-3 sm:py-4">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-wrap gap-x-5 gap-y-2 sm:gap-x-8 text-sm sm:text-base">
                 <a href="index.html" class="text-black font-medium border-b-2 border-black pb-1">home</a>
                 <a href="projects.html" class="text-gray-500 hover:text-gray-700 transition-colors">projects</a>
                 <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
@@ -250,12 +264,12 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-6 py-8">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <!-- About Section -->
-        <section class="mb-12">
+        <section class="mb-8 sm:mb-12">
             <div class="flex flex-col lg:flex-row items-start lg:items-center space-y-6 lg:space-y-0 lg:space-x-16">
                 <div class="flex-1 lg:max-w-3xl">
-                    <h1 class="text-5xl font-bold text-black mb-2">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-2">
                         Hi, I'm
                         <span style="
                                     font-family:
@@ -263,7 +277,7 @@
                                     font-style: italic;
                                 ">Peter He</span>
                     </h1>
-                    <h2 class="text-3xl font-medium mb-4">
+                    <h2 class="text-xl sm:text-2xl lg:text-3xl font-medium mb-4">
                         Cornell 🌽 ECE + Robotics '27
                     </h2>
 
@@ -284,7 +298,7 @@
                         </p>
 
                         <p>
-                            At Cornell I conduct research under
+                            At Cornell University I conduct research under
                             <a href="https://www.scifilab.org/" target="_blank" rel="noopener noreferrer"
                                 class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Cheng Zhang in the
                                 Sci-Fi Lab</a>
@@ -296,13 +310,16 @@
                             and previously with
                             <a href="https://www.matteroftechlab.org/" target="_blank" rel="noopener noreferrer"
                                 class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Thijs Roumen at
-                                Cornell Tech</a>. My current project involves
+                                Cornell Tech</a>. 
+                                
+                                
+                                <!-- My current project involves
                             <strong>fabricating textile-based dry electrodes
-                                for electrical stimulation + sensing</strong>.
+                                for electrical stimulation + sensing</strong>. -->
                         </p>
 
                         <p>
-                            I also the founded and lead
+                            I also founded and lead
                             <a href="https://cornellxr.com" target="_blank" rel="noopener noreferrer"
                                 class="text-orange-600 hover:text-orange-800 font-semibold">Cornell XR</a>, the fastest
                             club to ever become an official
@@ -323,7 +340,7 @@
                         </p>
 
                         <p>
-                            Outside of academics, I enjoy creative work and
+                            Outside of academics, I really enjoy creative work and
                             <a href="humanoperator.html"
                                 class="text-orange-600 hover:text-orange-800 font-semibold">prototyping interaction
                                 concepts</a>.
@@ -331,7 +348,7 @@
 
                         <div class="phd-callout my-6">
                             <p class="text-gray-800 leading-relaxed font-medium">
-                                I am currently applying for <span class="shimmer-gradient-text font-bold">PhDs with a
+                                I am applying for <span class="shimmer-gradient-text font-bold">PhDs with a
                                     Fall 2027 start date</span>. If you have a position available and find my work
                                 interesting, I would love to chat about potential opportunities!
                             </p>
@@ -342,14 +359,14 @@
                                 I am currently a <span class="font-semibold text-gray-800">Summer 2026 research intern</span> under
                                 <a href="https://www.internetofmatter.org/" target="_blank" rel="noopener noreferrer"
                                     class="text-orange-600 hover:text-orange-800 font-semibold">Prof. Tingyu Cheng</a>
-                                at the University of Notre Dame, working on wearables, stretchy electronics, and their fabrication.
+                                at the University of Notre Dame, working on wearables, stretchy textile electronics, and their fabrication.
                             </p>
                         </div>
 
                         <div class="pt-3 space-y-2">
                             <p class="text-md">
                                 Feel free to reach out to me at
-                                <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">
+                                <code class="bg-gray-100 px-2 py-1 rounded text-xs sm:text-sm font-mono break-all">
                                         ph475@cornell.edu</code>
                                 or connect with me on
                                 <a href="https://www.linkedin.com/in/ph475/" target="_blank" rel="noopener noreferrer"
@@ -361,19 +378,19 @@
                                     undergraduate REU or industry research
                                     opportunities.
                                 </p> -->
-                            <div class="flex space-x-4 items-center">
+                            <div class="flex flex-wrap gap-x-4 gap-y-2 items-center">
                                 <a href="https://github.com/molegod" target="_blank" rel="noopener noreferrer"
-                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">GitHub</a>
-                                <span class="text-gray-300">|</span>
+                                    class="text-base sm:text-lg text-orange-600 hover:text-orange-800 font-bold">GitHub</a>
+                                <span class="text-gray-300 hidden sm:inline">|</span>
                                 <a href="https://x.com/peterhci" target="_blank" rel="noopener noreferrer"
-                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">Twitter</a>
-                                <span class="text-gray-300">|</span>
+                                    class="text-base sm:text-lg text-orange-600 hover:text-orange-800 font-bold">Twitter</a>
+                                <span class="text-gray-300 hidden sm:inline">|</span>
                                 <a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=en" target="_blank"
                                     rel="noopener noreferrer"
-                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">Google Scholar</a>
-                                <span class="text-gray-300">|</span>
+                                    class="text-base sm:text-lg text-orange-600 hover:text-orange-800 font-bold">Google Scholar</a>
+                                <span class="text-gray-300 hidden sm:inline">|</span>
                                 <a href="assets/peterhe_cv.pdf" target="_blank" rel="noopener noreferrer"
-                                    class="text-lg text-orange-600 hover:text-orange-800 font-bold">CV</a>
+                                    class="text-base sm:text-lg text-orange-600 hover:text-orange-800 font-bold">CV</a>
                             </div>
                         </div>
                     </div>
@@ -390,13 +407,13 @@
         </section>
 
         <!-- Research Section -->
-        <section id="research" class="mb-16">
-            <h2 class="text-4xl font-bold text-black mb-2">publications</h2>
-            <p class="text-gray-500 italic mb-8">*excluding pending submissions ;-;</p>
+        <section id="research" class="mb-10 sm:mb-16">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2">publications</h2>
+            <p class="text-gray-500 italic mb-6 sm:mb-8 text-sm sm:text-base">*excluding pending submissions ;-;</p>
 
-            <div class="space-y-12">
+            <div class="space-y-8 sm:space-y-12">
                 <!-- SplatOverflow Research -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm">
+                <div class="bg-gray-50 rounded-2xl p-4 sm:p-6 shadow-sm">
                     <div
                         class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                         <!-- Image Section -->
@@ -407,13 +424,13 @@
 
                         <!-- Content Section -->
                         <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-black mb-4 leading-tight">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-3 sm:mb-4 leading-tight">
                                 SplatOverflow: Asynchronous Hardware
                                 Troubleshooting
                             </h3>
 
                             <div class="mb-4">
-                                <p class="text-xl text-gray-800 leading-relaxed mb-3">
+                                <p class="text-base sm:text-lg lg:text-xl text-gray-800 leading-relaxed mb-3">
                                     Amritansh Kwatra, Tobias Wienberg, Ilan
                                     Mandel, Ritik Batra,
                                     <strong class="text-black">Peter He</strong>, Francois Guimbretiere, Thijs Roumen
@@ -423,11 +440,11 @@
                             <div class="space-y-2">
                                 <a href="https://dl.acm.org/doi/10.1145/3706598.3714129" target="_blank"
                                     rel="noopener noreferrer"
-                                    class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
+                                    class="inline-block bg-black text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-800 transition-colors">
                                     Paper (CHI 2025)
                                 </a>
 
-                                <p class="text-orange-600 font-semibold text-lg">
+                                <p class="text-orange-600 font-semibold text-base sm:text-lg">
                                     Honorable Mention at ACM CHI 2025
                                 </p>
                             </div>
@@ -436,7 +453,7 @@
                 </div>
 
                 <!-- SeamPose Research -->
-                <div class="bg-gray-50 rounded-2xl p-6 shadow-sm">
+                <div class="bg-gray-50 rounded-2xl p-4 sm:p-6 shadow-sm">
                     <div
                         class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                         <!-- Image Section -->
@@ -446,14 +463,14 @@
 
                         <!-- Content Section -->
                         <div class="flex-1">
-                            <h3 class="text-3xl font-bold text-black mb-4 leading-tight">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-3 sm:mb-4 leading-tight">
                                 SeamPose: Repurposing Seams as Capacitive
                                 Sensors in a Shirt for Upper-Body Pose
                                 Tracking
                             </h3>
 
                             <div class="mb-4">
-                                <p class="text-xl text-gray-800 leading-relaxed mb-3">
+                                <p class="text-base sm:text-lg lg:text-xl text-gray-800 leading-relaxed mb-3">
                                     Tianhong Catherine Yu, *Manru Mary
                                     Zhang,
                                     <strong class="text-black">*Peter He</strong>, Chi-Jung Lee, Cassidy Cheesman, Saif
@@ -465,11 +482,11 @@
                             <div class="space-y-2">
                                 <a href="https://dl.acm.org/doi/abs/10.1145/3654777.3676341" target="_blank"
                                     rel="noopener noreferrer"
-                                    class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gray-800 transition-colors">
+                                    class="inline-block bg-black text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-800 transition-colors">
                                     Paper (UIST 2024)
                                 </a>
 
-                                <p class="text-orange-600 font-semibold text-lg">
+                                <p class="text-orange-600 font-semibold text-base sm:text-lg">
                                     *Co-Second Author on the Paper for
                                     contributions (Freshman Year)
                                 </p>
@@ -480,10 +497,10 @@
             </div>
         </section>
 
-        <h2 class="text-4xl font-bold text-black mb-4">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-3 sm:mb-4">
             featured projects
         </h2>
-        <p class="text-lg text-gray-600 mb-6">
+        <p class="text-base sm:text-lg text-gray-600 mb-6">
             A few of my publicly documented projects, for more, look at my
             <a href="https://peterhe.dev/projects.html"
                 class="text-orange-600 hover:text-orange-800 font-semibold">projects</a>
@@ -573,12 +590,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-200 py-8">
-        <div class="max-w-6xl mx-auto px-6 text-center text-gray-500">
+    <footer class="border-t border-gray-200 py-6 sm:py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-gray-500 text-sm sm:text-base">
             <p>&copy; 2026 Peter He. All rights reserved.</p>
         </div>
     </footer>
-</body>
 
     <script>
       var prevScrollpos = window.pageYOffset;
@@ -596,5 +612,6 @@
         prevScrollpos = currentScrollPos;
       };
     </script>
+</body>
 
 </html>
