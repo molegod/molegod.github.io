@@ -369,7 +369,18 @@
         </div>
         <div class="overview-text">
           <h3>Capacitive Sensing</h3>
-          <p>Designed a PCB with 8 conductive seams that enable precise capacitive sensing for upper-body pose tracking.
+          <p> I designed a PCB for 8 conductive seams that enabled capacitive sensing for upper-body pose tracking.
+            This PCB was made in EasyEDA and used two FDC2214 capacitive sensing chips from Texas Instruments connected
+            to a Seeed Studio XIAO nRF52840 microcontroller.
+            <br>
+            <br>
+            A smaller version of this PCB was later designed in KiCAD using a ball-grid-array (BGA) nRF52840 chip as
+            part of a
+            modular
+            SeamPose system, however, we
+            did not end up
+            moving forward with the project.
+
           </p>
         </div>
       </div>
@@ -382,7 +393,9 @@
         </div>
         <div class="overview-text">
           <h3>Data Collection</h3>
-          <p>Combined capacitive signals with vision-based ground truth to create a comprehensive dataset for training.
+          <p>The capacitive signals from conductive seams was combined with vision-based ground truth to create a
+            dataset for training a DL model. Movement in the participant caused changes in capacitance that was detected
+            by the PCB, sent to the XIAO nRF52840 microcontroller, which sent the data over bluetooth to a laptop.
           </p>
         </div>
       </div>
@@ -394,7 +407,9 @@
         </div>
         <div class="overview-text">
           <h3>Machine Learning</h3>
-          <p>We used a machine learning model that accurately predicts upper-body pose from capacitive sensor data.</p>
+          <p>We used a CNN model to accurately predict upper-body pose from capacitive sensor data using the
+            vision-based ground truth. I was not part of the ML part of this project and questions about that should be
+            directed to the corresponding author, Catherine.</p>
         </div>
       </div>
     </div>
