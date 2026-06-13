@@ -1,108 +1,531 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fun - Peter He</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            /* Sticky Navigation with Glassmorphism */
-            nav {
-                position: sticky;
-                top: 0;
-                background-color: rgba(255, 255, 255, 0.85);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                z-index: 100;
-                transition: top 0.3s ease;
-            }
-        </style>
-    </head>
 
-    <body class="bg-white text-gray-900 font-sans">
-        <nav id="navbar" class="border-b border-gray-200 py-4">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="flex space-x-8">
-                    <a
-                        href="index.html"
-                        class="text-gray-500 hover:text-gray-700 transition-colors"
-                        >home</a
-                    >
-                    <a
-                        href="projects.html"
-                        class="text-gray-500 hover:text-gray-700 transition-colors"
-                        >projects</a
-                    >
-                    <a
-                        href="research.html"
-                        class="text-gray-500 hover:text-gray-700 transition-colors"
-                        >research</a
-                    >
-                    <a
-                        href="creative.html"
-                        class="text-gray-500 hover:text-gray-700 transition-colors"
-                        >creative</a
-                    >
-                    <a
-                        href="fun.html"
-                        class="text-black font-medium border-b-2 border-black pb-1"
-                        >fun</a
-                    >
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun - Peter He</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* Sticky Navigation with Glassmorphism */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            transition: top 0.3s ease;
+        }
+
+        /* Pixel hammer cursor (inline SVG data URI) */
+        .hammer-cursor {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(0 24 12)'%3E%3Crect x='12' y='6' width='24' height='4' fill='%23888'/%3E%3Crect x='10' y='10' width='28' height='8' fill='%23aaa'/%3E%3Crect x='10' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='35' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='21' y='18' width='6' height='22' fill='%238B5E3C'/%3E%3Crect x='21' y='18' width='2' height='22' fill='%23A0724B'/%3E%3Crect x='25' y='18' width='2' height='22' fill='%23704B2F'/%3E%3Crect x='19' y='40' width='10' height='4' fill='%238B5E3C'/%3E%3C/g%3E%3C/svg%3E") 24 12, pointer;
+        }
+
+        .hammer-cursor-smash {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(-45 24 12)'%3E%3Crect x='12' y='6' width='24' height='4' fill='%23888'/%3E%3Crect x='10' y='10' width='28' height='8' fill='%23aaa'/%3E%3Crect x='10' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='35' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='21' y='18' width='6' height='22' fill='%238B5E3C'/%3E%3Crect x='21' y='18' width='2' height='22' fill='%23A0724B'/%3E%3Crect x='25' y='18' width='2' height='22' fill='%23704B2F'/%3E%3Crect x='19' y='40' width='10' height='4' fill='%238B5E3C'/%3E%3C/g%3E%3C/svg%3E") 24 12, pointer;
+        }
+
+        #brick-wall-canvas {
+            border-radius: 8px;
+            image-rendering: pixelated;
+            display: block;
+        }
+
+        .wall-container {
+            position: relative;
+            border-radius: 12px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wall-canvas-wrap {
+            position: relative;
+            display: inline-block;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .wall-canvas-wrap img.wall-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #brick-wall-canvas {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brick-stats {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #888;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+            color: #374151;
+            border: none;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .reset-btn:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 font-sans">
+    <nav id="navbar" class="border-b border-gray-200 py-4">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex space-x-8">
+                <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+                <a href="projects.html" class="text-gray-500 hover:text-gray-700 transition-colors">projects</a>
+                <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+                <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+                <a href="fun.html" class="text-black font-medium border-b-2 border-black pb-1">fun</a>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="max-w-6xl mx-auto px-6 py-12">
-            <section class="mb-8">
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+            <!-- Left: intro text -->
+            <section class="lg:col-span-2">
                 <h1 class="text-5xl font-bold text-black mb-4">fun</h1>
                 <p class="text-xl text-gray-600">
                     Random fun stuff, games, and things.<br /><br />
                     If you are looking for my more technical projects, check out
                     my
-                    <a
-                        href="projects.html"
-                        class="font-semibold text-orange-500 hover:text-orange-700 transition-colors"
-                        >projects</a
-                    >
+                    <a href="projects.html"
+                        class="font-semibold text-orange-500 hover:text-orange-700 transition-colors">projects</a>
                     page.
+                </p>
+                <p class="text-base text-gray-400 mt-6 italic">
+                    This is like not updated at all with stuff because I've
+                    been procrastinating but enjoy the brick wall :)
                 </p>
             </section>
 
-            <!-- Add your fun content here -->
-            <p class="text-xl text-orange-600">
-                Coming soon because Peter has been lazy (feel free to harass him
-                about it).
-            </p>
-        </main>
+            <!-- Right: pixel brick wall -->
+            <section class="lg:col-span-3" id="brick-wall-section">
+                <div class="wall-container">
+                    <div class="wall-canvas-wrap">
+                        <img src="assets/rickroll.gif" alt="" class="wall-bg" id="rickroll-bg" />
+                        <canvas id="brick-wall-canvas" class="hammer-cursor"></canvas>
+                    </div>
+                    <div class="brick-stats">
+                        <span id="brick-counter" style="display: none;">Bricks broken: 0</span>
+                        <button class="reset-btn" id="reset-wall-btn" onclick="resetWall()">⟳ Rebuild Wall</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-        <footer class="border-t border-ra-200 py-8">
-            <div class="max-w-6xl mx-auto px-6 text-center text-gray-500">
-                <p>&copy; 2026 Peter He. All rights reserved.</p>
-            </div>
-        </footer>
-    </body>
+    <footer class="border-t border-gray-200 py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2026 Peter He. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 
-    <script>
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function () {
-            var currentScrollPos = window.pageYOffset;
-            var navbar = document.getElementById("navbar");
+<script>
+    // --- Navbar hide-on-scroll ---
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        var navbar = document.getElementById("navbar");
 
-            if (prevScrollpos > currentScrollPos) {
-                navbar.style.top = "0px";
-            } else {
-                if (currentScrollPos > 0) {
-                    navbar.style.top = "-70px";
+        if (prevScrollpos > currentScrollPos) {
+            navbar.style.top = "0px";
+        } else {
+            if (currentScrollPos > 0) {
+                navbar.style.top = "-70px";
+            }
+        }
+        prevScrollpos = currentScrollPos;
+    };
+
+    // --- Pixel Brick Wall ---
+    (function () {
+        const canvas = document.getElementById("brick-wall-canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Brick grid config
+        const BRICK_W = 28;
+        const BRICK_H = 14;
+        const MORTAR = 2;
+        const COLS = 16;
+        const ROWS = 20;
+
+        const canvasW = COLS * (BRICK_W + MORTAR) + MORTAR;
+        const canvasH = ROWS * (BRICK_H + MORTAR) + MORTAR;
+        canvas.width = canvasW;
+        canvas.height = canvasH;
+
+        // Responsive sizing: fill container width
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const maxW = container.clientWidth - 32; // account for padding
+            const scale = Math.min(maxW / canvasW, 2);
+            canvas.style.width = (canvasW * scale) + "px";
+            canvas.style.height = (canvasH * scale) + "px";
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        // Brick color palette (pixel / retro tones)
+        const BRICK_COLORS = [
+            "#c0392b", "#e74c3c", "#d35400", "#b03a2e",
+            "#a93226", "#cb4335", "#e74c3c", "#cd6155",
+            "#d4503a", "#c0392b", "#b94a3d", "#a04030",
+        ];
+        const MORTAR_COLOR = "#ffffff";
+        const HIGHLIGHT_COLOR = "rgba(255,255,200,0.25)";
+        const SHADOW_COLOR = "rgba(0,0,0,0.35)";
+
+        // State
+        let bricks = []; // 2D array [row][col] = { alive, color }
+        let particles = [];
+        let shockwaves = [];
+        let bricksBroken = 0;
+        let hoveredBrick = null;
+
+        function initBricks() {
+            bricks = [];
+            for (let r = 0; r < ROWS; r++) {
+                bricks[r] = [];
+                const rowCols = (r % 2 === 1) ? COLS - 1 : COLS;
+                for (let c = 0; c < rowCols; c++) {
+                    bricks[r][c] = {
+                        alive: true,
+                        color: BRICK_COLORS[Math.floor(Math.random() * BRICK_COLORS.length)],
+                    };
                 }
             }
-            prevScrollpos = currentScrollPos;
+            bricksBroken = 0;
+            shockwaves = [];
+            updateCounter();
+        }
+
+        function brickRect(r, c) {
+            // Offset every other row by half a brick for a real brick pattern
+            const offset = (r % 2 === 1) ? (BRICK_W + MORTAR) / 2 : 0;
+            return {
+                x: MORTAR + c * (BRICK_W + MORTAR) + offset,
+                y: MORTAR + r * (BRICK_H + MORTAR),
+                w: BRICK_W,
+                h: BRICK_H,
+            };
+        }
+
+        function darken(hex, amt) {
+            let col = parseInt(hex.slice(1), 16);
+            let rr = Math.max(0, (col >> 16) - amt);
+            let gg = Math.max(0, ((col >> 8) & 0xff) - amt);
+            let bb = Math.max(0, (col & 0xff) - amt);
+            return "#" + ((1 << 24) + (rr << 16) + (gg << 8) + bb).toString(16).slice(1);
+        }
+
+        function lighten(hex, amt) {
+            let col = parseInt(hex.slice(1), 16);
+            let rr = Math.min(255, (col >> 16) + amt);
+            let gg = Math.min(255, ((col >> 8) & 0xff) + amt);
+            let bb = Math.min(255, (col & 0xff) + amt);
+            return "#" + ((1 << 24) + (rr << 16) + (gg << 8) + bb).toString(16).slice(1);
+        }
+
+        function drawBrick(r, c) {
+            const b = bricks[r][c];
+            if (!b.alive) return;
+            const rect = brickRect(r, c);
+
+            // Main brick
+            ctx.fillStyle = b.color;
+            ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+
+            // Top/left highlight (pixel bevel)
+            ctx.fillStyle = lighten(b.color, 40);
+            ctx.fillRect(rect.x, rect.y, rect.w, 2);
+            ctx.fillRect(rect.x, rect.y, 2, rect.h);
+
+            // Bottom/right shadow (pixel bevel)
+            ctx.fillStyle = darken(b.color, 50);
+            ctx.fillRect(rect.x, rect.y + rect.h - 2, rect.w, 2);
+            ctx.fillRect(rect.x + rect.w - 2, rect.y, 2, rect.h);
+
+            // Hover glow
+            if (hoveredBrick && hoveredBrick.r === r && hoveredBrick.c === c) {
+                ctx.fillStyle = HIGHLIGHT_COLOR;
+                ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+            }
+        }
+
+        // Load rickroll image for canvas background
+        const rickrollImg = document.getElementById("rickroll-bg");
+        const imgReady = () => rickrollImg && rickrollImg.complete && rickrollImg.naturalWidth > 0;
+
+        function draw() {
+            // 1. Fill entire canvas opaque white (covers gif behind)
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvasW, canvasH);
+
+            // 2. Draw mortar around alive bricks
+            ctx.fillStyle = MORTAR_COLOR;
+            for (let r = 0; r < ROWS; r++) {
+                const rowCols = bricks[r].length;
+                for (let c = 0; c < rowCols; c++) {
+                    if (bricks[r][c].alive) {
+                        const rect = brickRect(r, c);
+                        ctx.fillRect(rect.x - MORTAR, rect.y - MORTAR, rect.w + MORTAR * 2, rect.h + MORTAR * 2);
+                    }
+                }
+            }
+
+            // 3. Draw bricks on top of mortar
+            for (let r = 0; r < ROWS; r++) {
+                const rowCols = bricks[r].length;
+                for (let c = 0; c < rowCols; c++) {
+                    drawBrick(r, c);
+                }
+            }
+
+            // 4. Punch transparent holes where bricks are broken (reveals animated gif behind)
+            for (let r = 0; r < ROWS; r++) {
+                const rowCols = bricks[r].length;
+                for (let c = 0; c < rowCols; c++) {
+                    if (!bricks[r][c].alive) {
+                        const rect = brickRect(r, c);
+                        ctx.clearRect(rect.x - MORTAR, rect.y - MORTAR, rect.w + MORTAR * 2, rect.h + MORTAR * 2);
+                    }
+                }
+            }
+
+            // Particles
+            for (const p of particles) {
+                ctx.globalAlpha = p.alpha;
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+            ctx.globalAlpha = 1;
+
+            // 5. Draw and update shockwaves (impact frames)
+            for (let i = shockwaves.length - 1; i >= 0; i--) {
+                const s = shockwaves[i];
+
+                // Outer ring
+                ctx.strokeStyle = `rgba(255, 230, 100, ${s.alpha * 0.4})`;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius + 4, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Inner ring
+                ctx.strokeStyle = `rgba(255, 255, 255, ${s.alpha})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Update size and fade
+                s.radius += 3;
+                s.alpha -= 0.07;
+                if (s.alpha <= 0) {
+                    shockwaves.splice(i, 1);
+                }
+            }
+        }
+
+        function spawnParticles(rect, color) {
+            const count = 12 + Math.floor(Math.random() * 8);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: rect.x + Math.random() * rect.w,
+                    y: rect.y + Math.random() * rect.h,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: (Math.random() - 0.8) * 4,
+                    size: 2 + Math.floor(Math.random() * 4),
+                    alpha: 1,
+                    color: Math.random() > 0.5 ? color : darken(color, 30),
+                    gravity: 0.15,
+                });
+            }
+        }
+
+        function updateParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.alpha -= 0.018;
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        function updateCounter() {
+            const counter = document.getElementById("brick-counter");
+            if (counter) {
+                counter.textContent = "Bricks broken: " + bricksBroken;
+            }
+        }
+
+        // Get brick at canvas-local pixel coords
+        function getBrickAt(cx, cy) {
+            for (let r = 0; r < ROWS; r++) {
+                const rowCols = bricks[r].length;
+                for (let c = 0; c < rowCols; c++) {
+                    if (!bricks[r][c].alive) continue;
+                    const rect = brickRect(r, c);
+                    if (
+                        cx >= rect.x && cx < rect.x + rect.w &&
+                        cy >= rect.y && cy < rect.y + rect.h
+                    ) {
+                        return { r, c };
+                    }
+                }
+            }
+            return null;
+        }
+
+        function canvasCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvasW / rect.width;
+            const scaleY = canvasH / rect.height;
+            return {
+                x: (e.clientX - rect.left) * scaleX,
+                y: (e.clientY - rect.top) * scaleY,
+            };
+        }
+
+        // --- Interaction ---
+        canvas.addEventListener("mousemove", function (e) {
+            const pos = canvasCoords(e);
+            hoveredBrick = getBrickAt(pos.x, pos.y);
+        });
+
+        canvas.addEventListener("mouseleave", function () {
+            hoveredBrick = null;
+            canvas.classList.remove("hammer-cursor-smash");
+            canvas.classList.add("hammer-cursor");
+        });
+
+        canvas.addEventListener("mousedown", function () {
+            canvas.classList.remove("hammer-cursor");
+            canvas.classList.add("hammer-cursor-smash");
+        });
+
+        canvas.addEventListener("mouseup", function () {
+            canvas.classList.remove("hammer-cursor-smash");
+            canvas.classList.add("hammer-cursor");
+        });
+
+        canvas.addEventListener("click", function (e) {
+            const pos = canvasCoords(e);
+
+            // Always spawn shockwave at impact point
+            shockwaves.push({
+                x: pos.x,
+                y: pos.y,
+                radius: 2,
+                alpha: 1.0
+            });
+
+            // Collect all currently alive bricks and their distances to the click position
+            let candidates = [];
+            for (let r = 0; r < ROWS; r++) {
+                const rowCols = bricks[r].length;
+                for (let c = 0; c < rowCols; c++) {
+                    if (bricks[r][c].alive) {
+                        const rect = brickRect(r, c);
+                        const brickCenterX = rect.x + rect.w / 2;
+                        const brickCenterY = rect.y + rect.h / 2;
+                        const dx = pos.x - brickCenterX;
+                        const dy = pos.y - brickCenterY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        candidates.push({ r, c, dist });
+                    }
+                }
+            }
+
+            // Sort candidates by distance to click position
+            candidates.sort((a, b) => a.dist - b.dist);
+
+            // Break the closest 3 bricks (if within 55px)
+            const maxBricksToBreak = 3;
+            let brokenCount = 0;
+            let hitSomething = false;
+            for (let i = 0; i < candidates.length; i++) {
+                const cand = candidates[i];
+                if (cand.dist < 55 && brokenCount < maxBricksToBreak) {
+                    const b = bricks[cand.r][cand.c];
+                    const rect = brickRect(cand.r, cand.c);
+                    spawnParticles(rect, b.color);
+                    b.alive = false;
+                    bricksBroken++;
+                    brokenCount++;
+                    hitSomething = true;
+                }
+            }
+
+            if (hitSomething) {
+                updateCounter();
+            }
+        });
+
+        // Animation loop
+        function loop() {
+            updateParticles();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        // Reset
+        window.resetWall = function () {
+            particles = [];
+            shockwaves = [];
+            initBricks();
         };
-    </script>
+
+        // Init
+        initBricks();
+        loop();
+    })();
+</script>
+
 </html>
