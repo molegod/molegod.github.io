@@ -60,7 +60,7 @@
             <ul class="text-xl text-gray-600 list-disc pl-8">
                 <li><strong>Wearable systems</strong> <span class="text-orange-600 font-semibold">that you can't
                         distinguish from clothing or normal accessories.</span>
-                        <ul class="list-disc pl-6">
+                    <ul class="list-disc pl-6">
                         <li>For example, textile-based sensors and haptics.</li>
                     </ul>
                 </li>
@@ -70,15 +70,18 @@
                     <ul class="list-disc pl-6">
                         <li>EMG, BCI, gesture based <span class="text-orange-600 font-semibold">controls that don't
                                 need traditional button inputs.</span></li>
-                        <li>Non-traditional (eg. not text or audio) AI output like EMS, Olfactory, Temperature.</span></li>
+                        <li>Non-traditional (eg. not text or audio) AI output like EMS, Olfactory, Temperature.</span>
+                        </li>
                     </ul>
                 </li>
                 <br>
 
                 <li><strong>Human Sensory and Nervous System Modulation</strong>
                     <ul class="list-disc pl-6">
-                        <li>How do you <span class="text-orange-600 font-semibold">augment humans by enhancing senses?</span></li>
-                        <li>How many haptic and sensory devices can I possibly attach to a XR headset to make it more realistic?</li>
+                        <li>How do you <span class="text-orange-600 font-semibold">augment humans by enhancing
+                                senses?</span></li>
+                        <li>How many haptic and sensory devices can I possibly attach to a XR headset to make it more
+                            realistic?</li>
                     </ul>
                 </li>
 
@@ -89,11 +92,12 @@
                         <li>How can we <span class="text-orange-600 font-semibold">embed haptic devices into clothing or
                                 everyday wearables?</span>
                         </li>
-                        <li>How can these devices be used for interactions that are<span class="text-orange-600 font-semibold"> non-perceptible and seamless?</span>
+                        <li>How can these devices be used for interactions that are<span
+                                class="text-orange-600 font-semibold"> non-perceptible and seamless?</span>
                         </li>
                     </ul>
 
-              
+
 
 
             </ul>
@@ -142,7 +146,8 @@
                         class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                         <!-- Image Section -->
                         <div class="w-full lg:w-80 flex-shrink-0">
-                            <img src="assets/figureSplat.webp" alt="SplatOverflow" class="w-full h-auto rounded-lg shadow-md" loading="lazy">
+                            <img src="assets/figureSplat.webp" alt="SplatOverflow"
+                                class="w-full h-auto rounded-lg shadow-md" loading="lazy">
                         </div>
 
                         <!-- Content Section -->
@@ -182,7 +187,8 @@
                         class="flex flex-col lg:flex-row items-start lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                         <!-- Image Section -->
                         <div class="w-full lg:w-80 flex-shrink-0">
-                            <img src="assets/seamsnew.webp" alt="SeamPose" class="w-full h-auto rounded-lg shadow-md" loading="lazy">
+                            <img src="assets/seamsnew.webp" alt="SeamPose" class="w-full h-auto rounded-lg shadow-md"
+                                loading="lazy">
                         </div>
 
                         <!-- Content Section -->
@@ -210,7 +216,7 @@
                                 </a>
 
                                 <p class="text-orange-600 font-semibold text-lg">
-                                    *Co-Second Author on the Paper for contributions (Freshman Year)
+                                    *Co-Second Author on the Paper
                                 </p>
                             </div>
                         </div>
@@ -229,21 +235,21 @@
     </footer>
 </body>
 
-    <script>
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function () {
-            var currentScrollPos = window.pageYOffset;
-            var navbar = document.getElementById("navbar");
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        var navbar = document.getElementById("navbar");
 
-            if (prevScrollpos > currentScrollPos) {
-                navbar.style.top = "0px";
-            } else {
-                if (currentScrollPos > 0) {
-                    navbar.style.top = "-70px";
-                }
+        if (prevScrollpos > currentScrollPos) {
+            navbar.style.top = "0px";
+        } else {
+            if (currentScrollPos > 0) {
+                navbar.style.top = "-70px";
             }
-            prevScrollpos = currentScrollPos;
-        };
-    </script>
+        }
+        prevScrollpos = currentScrollPos;
+    };
+</script>
 
 </html>
