@@ -143,6 +143,12 @@
                 <div class="wall-container">
                     <div class="wall-canvas-wrap">
                         <img src="assets/rickroll.gif" alt="" class="wall-bg" id="rickroll-bg" />
+                        <!-- Gif Credit overlay (covered by bricks) -->
+                        <div id="gif-credit"
+                            class="absolute bottom-1 right-4 text-white font-medium select-none pointer-events-none"
+                            style="font-family: 'Jersey 10', sans-serif; font-size: 16px; z-index: 0;">
+                            gif credit: <span class="underline">musichistoryingifs.com</span>
+                        </div>
                         <canvas id="brick-wall-canvas" class="hammer-cursor"></canvas>
                         <!-- Easter Egg Popup overlay -->
                         <div id="easter-egg-popup"
@@ -157,8 +163,9 @@
                                     <button onclick="closeEasterEgg()"
                                         class="border-2 border-black bg-black text-white hover:bg-white hover:text-black font-bold px-4 py-1 text-base transition-colors"
                                         style="box-shadow: 2px 2px 0px #888;">OK</button>
-                                    <a href="projects.html"
-                                        class="border-2 border-black bg-black text-white hover:bg-white hover:text-black font-bold px-4 py-1 text-base transition-colors flex items-center justify-center"
+                                    <a href="projects.html" target="_blank" rel="noopener noreferrer" class="border-2 border-black bg-black text-white hover:bg-white
+                                        hover:text-black font-bold px-4 py-1 text-base transition-colors flex
+                                        items-center justify-center"
                                         style="box-shadow: 2px 2px 0px #888; text-decoration: none;">Projects</a>
                                 </div>
                             </div>
