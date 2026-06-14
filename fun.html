@@ -109,6 +109,214 @@
         .reset-btn:active {
             transform: translateY(1px);
         }
+
+        /* --- Training Dummy --- */
+        .dummy-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .dummy-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        #dummy-canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            image-rendering: pixelated;
+        }
+
+        .sword-cursor {
+            cursor: none;
+        }
+
+        #sword-overlay,
+        .sword-ghost {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            pointer-events: none;
+            z-index: 50;
+            image-rendering: pixelated;
+            transform-origin: 20% 80%;
+            transition: none;
+            filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.25));
+            display: none;
+        }
+
+        .sword-ghost {
+            z-index: 49;
+            opacity: 0;
+        }
+
+        @keyframes swordSlash {
+            0% {
+                transform: rotate(-90deg) scale(1);
+            }
+
+            15% {
+                transform: rotate(-100deg) scale(1.05);
+            }
+
+            40% {
+                transform: rotate(-150deg) scale(1.15);
+            }
+
+            55% {
+                transform: rotate(-120deg) scale(1.1);
+            }
+
+            75% {
+                transform: rotate(-45deg) scale(1);
+            }
+
+            100% {
+                transform: rotate(-90deg) scale(1);
+            }
+        }
+
+        /* Combo popup */
+        .combo-popup {
+            position: absolute;
+            font-family: 'Jersey 10', sans-serif;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 20;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+            animation: comboRise 1.2s ease-out forwards;
+            white-space: nowrap;
+        }
+
+        @keyframes comboRise {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.2);
+            }
+
+            40% {
+                transform: translateY(-20px) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) scale(0.8);
+            }
+        }
+
+        /* Damage number */
+        .damage-number {
+            position: absolute;
+            font-family: 'Jersey 10', sans-serif;
+            font-size: 28px;
+            color: #e74c3c;
+            pointer-events: none;
+            z-index: 15;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+            animation: damageFloat 0.9s ease-out forwards;
+        }
+
+        @keyframes damageFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.6);
+            }
+        }
+
+        /* Slash trail overlay */
+        .slash-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .dummy-hp-bar-bg {
+            width: 200px;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-top: 12px;
+            overflow: hidden;
+            border: 1px solid #d1d5db;
+        }
+
+        .dummy-hp-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ef4444, #f97316);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .dummy-label {
+            font-family: 'Jersey 10', sans-serif;
+            font-size: 18px;
+            color: #9ca3af;
+            margin-top: 6px;
+        }
+
+        .combo-counter {
+            font-family: 'Jersey 10', sans-serif;
+            font-size: 20px;
+            color: #d1d5db;
+            margin-top: 4px;
+            height: 24px;
+            transition: color 0.3s;
+        }
+
+        /* Rainbow text animations */
+        @keyframes rainbowText {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .godlike-text {
+            background: linear-gradient(to right, #ff007f, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff, #ff007f);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 1.5px #111) drop-shadow(0px 0px 6px rgba(255, 0, 128, 0.9)) drop-shadow(0px 0px 12px rgba(0, 191, 255, 0.7));
+            animation: comboRise 1.2s ease-out forwards, rainbowText 1.5s linear infinite !important;
+            text-shadow: none !important;
+        }
+
+        .godlike-active {
+            background: linear-gradient(to right, #ff007f, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff, #ff007f);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 1.5px #111) drop-shadow(0px 0px 8px rgba(255, 0, 255, 0.9));
+            animation: rainbowText 1.5s linear infinite !important;
+            text-shadow: none !important;
+            display: inline-block;
+        }
     </style>
 </head>
 
@@ -128,7 +336,7 @@
     <main class="max-w-6xl mx-auto px-6 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
             <!-- Left: intro text -->
-            <section class="lg:col-span-2">
+            <section class="lg:col-span-2 lg:col-start-1 lg:row-start-1">
                 <h1 class="text-5xl font-bold text-black mb-4">fun</h1>
                 <p class="text-xl text-gray-600">
                     Random fun stuff, games, and things.<br /><br />
@@ -140,12 +348,12 @@
                 </p>
                 <p class="text-base text-gray-400 mt-6 italic">
                     This is like not updated at all with stuff because I've
-                    been procrastinating but enjoy breaking the brick wall :)
+                    been procrastinating but try interacting with the wall and log :)
                 </p>
             </section>
 
             <!-- Right: pixel brick wall -->
-            <section class="lg:col-span-3" id="brick-wall-section">
+            <section class="lg:col-span-3 lg:col-start-3 lg:row-start-1 lg:row-span-2" id="brick-wall-section">
                 <div class="wall-container">
                     <div class="wall-canvas-wrap">
                         <img src="assets/rickroll.gif" alt="" class="wall-bg" id="rickroll-bg" />
@@ -182,6 +390,30 @@
                         <button class="reset-btn" id="reset-wall-btn" onclick="resetWall()">Rebuild Wall</button>
                     </div>
                 </div>
+            </section>
+
+            <!-- Training Dummy Section -->
+            <section class="lg:col-span-2 lg:col-start-1 lg:row-start-2 dummy-section mt-12 lg:mt-0" id="dummy-section">
+                <div class="dummy-container" id="dummy-container">
+                    <canvas id="dummy-canvas" class="sword-cursor"></canvas>
+                    <canvas id="slash-canvas" class="slash-effect"></canvas>
+                    <img id="sword-overlay" src="assets/sword.png" alt="" />
+                    <img id="sword-overlay-ghost1" class="sword-ghost" src="assets/sword.png" alt="" />
+                    <img id="sword-overlay-ghost2" class="sword-ghost" src="assets/sword.png" alt="" />
+                    <!-- Sad emoji and reset overlay -->
+                    <div id="log-broken-overlay"
+                        class="hidden absolute inset-0 flex flex-col items-center justify-center bg-white/40 z-20 pointer-events-auto">
+                        <div class="bg-white border-4 border-black p-6 text-center max-w-[260px] flex flex-col items-center"
+                            style="box-shadow: 6px 6px 0px #000; font-family: 'Jersey 10', sans-serif;">
+                            <span class="text-6xl select-none">😭</span>
+                            <p class="text-gray-800 text-2xl mt-2 mb-4 font-bold italic">the log had a family...</p>
+                            <button id="repair-log-btn"
+                                class="border-2 border-black bg-black text-white hover:bg-white hover:text-black font-bold px-4 py-2 text-xl transition-colors"
+                                style="box-shadow: 3px 3px 0px #888; cursor: pointer;">Repair Log</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="combo-counter" id="combo-counter"></div>
             </section>
         </div>
     </main>
@@ -599,7 +831,714 @@
 
         // Init
         initBricks();
-        loop(); i
+        loop();
+    })();
+</script>
+
+<!-- Training Dummy Script -->
+<script>
+    (function () {
+        const dCanvas = document.getElementById('dummy-canvas');
+        const dCtx = dCanvas.getContext('2d');
+        const slashCanvas = document.getElementById('slash-canvas');
+        const slashCtx = slashCanvas.getContext('2d');
+        const container = document.getElementById('dummy-container');
+
+        const comboCounterEl = document.getElementById('combo-counter');
+        const swordEl = document.getElementById('sword-overlay');
+
+        // Canvas sizing
+        const DW = 500;
+        const DH = 500;
+        dCanvas.width = DW;
+        dCanvas.height = DH;
+        slashCanvas.width = DW;
+        slashCanvas.height = DH;
+
+        // Load wood log image
+        const woodLogImg = new Image();
+        woodLogImg.src = 'assets/wood_log.webp';
+        let woodLogLoaded = false;
+        woodLogImg.onload = function () { woodLogLoaded = true; };
+
+        // --- Sword cursor tracking ---
+        let swordVisible = false;
+        let isSlashing = false;
+        const SWORD_SIZE = 64;
+
+        // Show sword when entering dummy area
+        dCanvas.addEventListener('mouseenter', function () {
+            if (isLogBroken) return;
+            swordEl.style.display = 'block';
+            document.querySelectorAll('.sword-ghost').forEach(el => el.style.display = 'block');
+            swordVisible = true;
+            if (!isSlashing) {
+                swordEl.style.transform = 'rotate(-90deg)';
+                document.querySelectorAll('.sword-ghost').forEach(el => {
+                    el.style.transform = 'rotate(-90deg)';
+                    el.style.opacity = '0';
+                });
+            }
+        });
+
+        dCanvas.addEventListener('mouseleave', function () {
+            swordEl.style.display = 'none';
+            document.querySelectorAll('.sword-ghost').forEach(el => el.style.display = 'none');
+            swordVisible = false;
+        });
+
+        // Track mouse position
+        dCanvas.addEventListener('mousemove', function (e) {
+            if (isLogBroken) {
+                swordEl.style.display = 'none';
+                document.querySelectorAll('.sword-ghost').forEach(el => el.style.display = 'none');
+                swordVisible = false;
+                return;
+            }
+            if (!swordVisible) return;
+            const rect = container.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            // Position sword so the hilt (bottom-left of image) is at cursor
+            const leftVal = (mx - SWORD_SIZE * 0.20) + 'px';
+            const topVal = (my - SWORD_SIZE * 0.80) + 'px';
+
+            swordEl.style.left = leftVal;
+            swordEl.style.top = topVal;
+
+            document.querySelectorAll('.sword-ghost').forEach(el => {
+                el.style.left = leftVal;
+                el.style.top = topVal;
+            });
+        });
+
+        // Slash animation on click
+        function triggerSlashAnimation() {
+            if (isSlashing) return;
+            isSlashing = true;
+
+            const ghosts = document.querySelectorAll('.sword-ghost');
+
+            swordEl.style.animation = 'none';
+            ghosts.forEach(el => el.style.animation = 'none');
+            // Force reflow
+            void swordEl.offsetWidth;
+
+            swordEl.style.animation = 'swordSlash 0.25s ease-out forwards';
+
+            if (ghosts.length >= 2) {
+                // Ghost 1: starts slightly later, lower opacity
+                ghosts[0].style.opacity = '0.4';
+                ghosts[0].style.animationDelay = '0.02s';
+                void ghosts[0].offsetWidth; // force reflow
+                ghosts[0].style.animation = 'swordSlash 0.25s ease-out forwards';
+
+                // Ghost 2: starts later, even lower opacity
+                ghosts[1].style.opacity = '0.2';
+                ghosts[1].style.animationDelay = '0.04s';
+                void ghosts[1].offsetWidth; // force reflow
+                ghosts[1].style.animation = 'swordSlash 0.25s ease-out forwards';
+            }
+
+            setTimeout(() => {
+                swordEl.style.animation = 'none';
+                swordEl.style.transform = 'rotate(-90deg)';
+
+                ghosts.forEach(el => {
+                    el.style.animation = 'none';
+                    el.style.transform = 'rotate(-90deg)';
+                    el.style.opacity = '0';
+                    el.style.animationDelay = '0s';
+                });
+
+                isSlashing = false;
+            }, 300);
+        }
+
+        // State
+        let hp = 100;
+        const maxHp = 100;
+        let combo = 0;
+        let comboTimer = null;
+        let shakeX = 0;
+        let shakeY = 0;
+        let shakeDecay = 0;
+        let dummyAngle = 0; // tilt when hit
+        let slashTrails = [];
+        let hitFlash = 0;
+
+        // Broken log state and physics
+        let isLogBroken = false;
+        let logPieces = [];
+
+        function createPiece(vertices, vx, vy, va) {
+            const sumX = vertices.reduce((sum, v) => sum + v.x, 0);
+            const sumY = vertices.reduce((sum, v) => sum + v.y, 0);
+            const initialCenterX = sumX / vertices.length;
+            const initialCenterY = sumY / vertices.length;
+
+            const localVertices = vertices.map(v => ({
+                x: v.x - initialCenterX,
+                y: v.y - initialCenterY
+            }));
+
+            return {
+                x: 0,
+                y: 0,
+                vx: vx,
+                vy: vy,
+                angle: 0,
+                va: va,
+                initialCenterX: initialCenterX,
+                initialCenterY: initialCenterY,
+                localVertices: localVertices
+            };
+        }
+
+        // Combo labels (vibrant arcade colors optimized with dark outlines for maximum pop)
+        const COMBO_LABELS = [
+            { min: 5, text: 'Nice!', color: '#fbbf24', size: 32 },       // Bright Gold/Yellow
+            { min: 10, text: 'Great!', color: '#f97316', size: 36 },      // Vibrant Orange
+            { min: 16, text: 'Awesome!', color: '#ff4d4d', size: 40 },    // Neon Coral-Red
+            { min: 24, text: 'Incredible!', color: '#ef4444', size: 44 }, // Bright Red
+            { min: 35, text: 'UNSTOPPABLE!', color: '#dc2626', size: 48 },// Hot Saturated Red
+            { min: 50, text: 'GODLIKE!!', color: '#ec4899', size: 54 },   // Vibrant Magenta/Pink
+        ];
+
+        function getComboLabel(c) {
+            let label = null;
+            for (const l of COMBO_LABELS) {
+                if (c >= l.min) label = l;
+            }
+            return label;
+        }
+
+        // Draw the wood log image
+        // Image dimensions and positioning
+        const LOG_DRAW_W = 200;
+        const LOG_DRAW_H = 340;
+        const LOG_X = (DW - LOG_DRAW_W) / 2;
+        const LOG_Y = DH - LOG_DRAW_H - 20;
+
+        function drawDummy() {
+            const cx = DW / 2;
+
+            if (isLogBroken) {
+                if (!woodLogLoaded) return;
+
+                for (const piece of logPieces) {
+                    dCtx.save();
+                    // Rotate and translate around the center of the piece
+                    const currentCx = piece.initialCenterX + piece.x;
+                    const currentCy = piece.initialCenterY + piece.y;
+                    dCtx.translate(currentCx, currentCy);
+                    dCtx.rotate(piece.angle);
+
+                    // Create clipping path for the polygon (using relative vertices)
+                    dCtx.beginPath();
+                    dCtx.moveTo(piece.localVertices[0].x, piece.localVertices[0].y);
+                    for (let k = 1; k < piece.localVertices.length; k++) {
+                        dCtx.lineTo(piece.localVertices[k].x, piece.localVertices[k].y);
+                    }
+                    dCtx.closePath();
+                    dCtx.clip();
+
+                    // Draw the woodLogImg relative to the translation origin
+                    dCtx.drawImage(
+                        woodLogImg,
+                        LOG_X - piece.initialCenterX,
+                        LOG_Y - piece.initialCenterY,
+                        LOG_DRAW_W,
+                        LOG_DRAW_H
+                    );
+                    dCtx.restore();
+                }
+            } else {
+                dCtx.save();
+                // Apply shake
+                dCtx.translate(shakeX, shakeY);
+                // Apply tilt from center-bottom
+                dCtx.translate(cx, DH - 20);
+                dCtx.rotate(dummyAngle);
+                dCtx.translate(-cx, -(DH - 20));
+
+                // Hit flash overlay alpha
+                const flashAlpha = hitFlash;
+
+                if (woodLogLoaded) {
+                    dCtx.drawImage(woodLogImg, LOG_X, LOG_Y, LOG_DRAW_W, LOG_DRAW_H);
+                }
+
+                // Hit flash overlay
+                if (flashAlpha > 0) {
+                    dCtx.globalAlpha = flashAlpha * 0.4;
+                    dCtx.fillStyle = '#ffffff';
+                    dCtx.fillRect(LOG_X, LOG_Y, LOG_DRAW_W, LOG_DRAW_H);
+                    dCtx.globalAlpha = 1;
+                }
+
+                dCtx.restore();
+            }
+        }
+
+        function hexToRgba(hex, alpha) {
+            hex = hex.replace('#', '');
+            let r = parseInt(hex.substring(0, 2), 16);
+            let g = parseInt(hex.substring(2, 4), 16);
+            let b = parseInt(hex.substring(4, 6), 16);
+            return `rgba(${r},${g},${b},${alpha})`;
+        }
+
+        // Slash trail effect
+        function drawSlashTrails() {
+            slashCtx.clearRect(0, 0, DW, DH);
+            for (let i = slashTrails.length - 1; i >= 0; i--) {
+                const s = slashTrails[i];
+                slashCtx.save();
+                slashCtx.translate(s.x, s.y);
+                slashCtx.rotate(s.angle);
+                slashCtx.globalAlpha = s.alpha;
+
+                // Slash arc
+                const grad = slashCtx.createLinearGradient(-s.len / 2, 0, s.len / 2, 0);
+                if (s.rainbow) {
+                    grad.addColorStop(0, 'rgba(255, 0, 127, 0)');
+                    grad.addColorStop(0.15, `rgba(255, 0, 0, ${s.alpha})`);
+                    grad.addColorStop(0.3, `rgba(255, 127, 0, ${s.alpha})`);
+                    grad.addColorStop(0.45, `rgba(255, 255, 0, ${s.alpha})`);
+                    grad.addColorStop(0.6, `rgba(0, 255, 0, ${s.alpha})`);
+                    grad.addColorStop(0.75, `rgba(0, 255, 255, ${s.alpha})`);
+                    grad.addColorStop(0.9, `rgba(139, 0, 255, ${s.alpha})`);
+                    grad.addColorStop(1, 'rgba(255, 0, 127, 0)');
+                } else {
+                    const c = s.color;
+                    grad.addColorStop(0, 'rgba(255,255,255,0)');
+                    grad.addColorStop(0.3, hexToRgba(c, s.alpha * 0.8));
+                    grad.addColorStop(0.5, `rgba(255,255,255,${s.alpha})`);
+                    grad.addColorStop(0.7, hexToRgba(c, s.alpha * 0.8));
+                    grad.addColorStop(1, 'rgba(255,255,255,0)');
+                }
+
+                slashCtx.strokeStyle = grad;
+                slashCtx.lineWidth = s.width;
+                slashCtx.lineCap = 'round';
+                slashCtx.beginPath();
+                slashCtx.moveTo(-s.len / 2, 0);
+                slashCtx.quadraticCurveTo(0, s.curve, s.len / 2, 0);
+                slashCtx.stroke();
+
+                // Inner bright line
+                slashCtx.strokeStyle = `rgba(255,255,255,${s.alpha * 0.8})`;
+                slashCtx.lineWidth = Math.max(1, s.width * 0.3);
+                slashCtx.beginPath();
+                slashCtx.moveTo(-s.len / 2, 0);
+                slashCtx.quadraticCurveTo(0, s.curve * 0.5, s.len / 2, 0);
+                slashCtx.stroke();
+
+                slashCtx.restore();
+
+                // Fade out
+                s.alpha -= 0.04;
+                s.len += 2;
+                s.width *= 0.95;
+                if (s.alpha <= 0) slashTrails.splice(i, 1);
+            }
+        }
+
+        // Spawns a single curved slash trail matching the active combo color
+        function spawnSlash(x, y) {
+            const label = getComboLabel(combo);
+            const cColor = label ? label.color : '#9ca3af';
+            const isRainbow = combo >= 50;
+
+            const angle = (Math.random() - 0.5) * Math.PI * 0.8;
+            slashTrails.push({
+                x, y,
+                angle,
+                len: 75 + Math.random() * 45,
+                width: 12 + Math.random() * 6,
+                curve: (Math.random() - 0.5) * 30,
+                alpha: 1,
+                color: cColor,
+                rainbow: isRainbow
+            });
+        }
+
+        function spawnComboPopup(label) {
+            const popup = document.createElement('div');
+            popup.className = 'combo-popup';
+            popup.textContent = label.text;
+            popup.style.fontSize = label.size + 'px';
+
+            // If it is the GODLIKE!! combo milestone, apply the animated rainbow style
+            if (label.text === 'GODLIKE!!') {
+                popup.classList.add('godlike-text');
+            } else {
+                popup.style.color = label.color;
+                // Build dynamic text glow with a solid dark outline for readability on light backgrounds
+                const cColor = label.color;
+                const outline = '-1.5px -1.5px 0 #111, 1.5px -1.5px 0 #111, -1.5px 1.5px 0 #111, 1.5px 1.5px 0 #111';
+                let glow = `${outline}, 0 0 8px ${cColor}`;
+                if (combo >= 16) {
+                    glow += `, 0 0 16px ${cColor}, 0 0 24px ${cColor}`;
+                }
+                if (combo >= 35) {
+                    glow += `, 0 0 32px #ffffff, 0 0 40px ${cColor}`;
+                }
+                popup.style.textShadow = glow;
+            }
+
+            popup.style.left = (DW / 2 - 60 + (Math.random() - 0.5) * 40) + 'px';
+            popup.style.top = (60 + (Math.random() - 0.5) * 30) + 'px';
+            container.appendChild(popup);
+            setTimeout(() => popup.remove(), 1200);
+        }
+
+        function spawnDamageNumber(x, y, dmg) {
+            const el = document.createElement('div');
+            el.className = 'damage-number';
+            el.textContent = '-' + dmg;
+            el.style.left = (x - 10 + (Math.random() - 0.5) * 30) + 'px';
+            el.style.top = (y - 10) + 'px';
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 900);
+        }
+
+        // Hit detection: is the click on the wood log image? (with expanded padding)
+        function isDummyHit(mx, my) {
+            const padding = 30; // 30px extra hit area around the log
+            return mx >= (LOG_X - padding) && mx <= (LOG_X + LOG_DRAW_W + padding) &&
+                my >= (LOG_Y - padding) && my <= (LOG_Y + LOG_DRAW_H + padding);
+        }
+
+        function canvasCoords(e) {
+            const rect = dCanvas.getBoundingClientRect();
+            const scaleX = DW / rect.width;
+            const scaleY = DH / rect.height;
+            return {
+                x: (e.clientX - rect.left) * scaleX,
+                y: (e.clientY - rect.top) * scaleY,
+            };
+        }
+
+        // Click handler
+        dCanvas.addEventListener('click', function (e) {
+            if (isLogBroken) return;
+            const pos = canvasCoords(e);
+
+            // Always trigger sword slash animation
+            triggerSlashAnimation();
+
+            if (isDummyHit(pos.x, pos.y)) {
+                // Calculate damage
+                const baseDmg = 5 + Math.floor(Math.random() * 4);
+                const comboDmg = Math.floor(baseDmg * (1 + combo * 0.15));
+                hp = Math.max(0, hp - comboDmg);
+
+
+                // Combo
+                combo++;
+                if (combo === 100) {
+                    isLogBroken = true;
+                    clearTimeout(comboTimer);
+
+                    // Initialize physics for log slices (randomized vertical, horizontal, or diagonal)
+                    logPieces = [];
+                    const splitTypes = ['vertical', 'horizontal', 'diagonal'];
+                    const splitType = splitTypes[Math.floor(Math.random() * splitTypes.length)];
+
+                    if (splitType === 'vertical') {
+                        const numPieces = 3 + Math.floor(Math.random() * 5); // 3 to 7
+                        const sliceW = LOG_DRAW_W / numPieces;
+                        for (let i = 0; i < numPieces; i++) {
+                            const centerIndex = (numPieces - 1) / 2;
+                            const direction = i - centerIndex;
+                            const vertices = [
+                                { x: LOG_X + i * sliceW, y: LOG_Y },
+                                { x: LOG_X + (i + 1) * sliceW, y: LOG_Y },
+                                { x: LOG_X + (i + 1) * sliceW, y: LOG_Y + LOG_DRAW_H },
+                                { x: LOG_X + i * sliceW, y: LOG_Y + LOG_DRAW_H }
+                            ];
+                            const vx = direction * (1.2 + Math.random()) + (Math.random() - 0.5) * 1.5;
+                            const vy = -5 - Math.random() * 4;
+                            const va = (Math.random() - 0.5) * 0.15;
+                            logPieces.push(createPiece(vertices, vx, vy, va));
+                        }
+                    } else if (splitType === 'horizontal') {
+                        const numPieces = 3 + Math.floor(Math.random() * 4); // 3 to 6
+                        const sliceH = LOG_DRAW_H / numPieces;
+                        for (let i = 0; i < numPieces; i++) {
+                            const centerIndex = (numPieces - 1) / 2;
+                            const direction = i - centerIndex;
+                            const vertices = [
+                                { x: LOG_X, y: LOG_Y + i * sliceH },
+                                { x: LOG_X + LOG_DRAW_W, y: LOG_Y + i * sliceH },
+                                { x: LOG_X + LOG_DRAW_W, y: LOG_Y + (i + 1) * sliceH },
+                                { x: LOG_X, y: LOG_Y + (i + 1) * sliceH }
+                            ];
+                            const vx = (Math.random() - 0.5) * 4;
+                            const vy = direction * (1.5 + Math.random()) - 3;
+                            const va = (Math.random() - 0.5) * 0.15;
+                            logPieces.push(createPiece(vertices, vx, vy, va));
+                        }
+                    } else { // diagonal
+                        const numPieces = 3 + Math.floor(Math.random() * 4); // 3 to 6
+                        const topPoints = [LOG_X];
+                        const bottomPoints = [LOG_X];
+                        const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+
+                        for (let k = 1; k < numPieces; k++) {
+                            const shift = (Math.random() - 0.5) * (LOG_DRAW_W / numPieces) * 0.9;
+                            topPoints.push(clamp(LOG_X + k * (LOG_DRAW_W / numPieces) + shift, LOG_X, LOG_X + LOG_DRAW_W));
+                            bottomPoints.push(clamp(LOG_X + k * (LOG_DRAW_W / numPieces) - shift, LOG_X, LOG_X + LOG_DRAW_W));
+                        }
+                        topPoints.push(LOG_X + LOG_DRAW_W);
+                        bottomPoints.push(LOG_X + LOG_DRAW_W);
+
+                        for (let i = 0; i < numPieces; i++) {
+                            const centerIndex = (numPieces - 1) / 2;
+                            const direction = i - centerIndex;
+                            const vertices = [
+                                { x: topPoints[i], y: LOG_Y },
+                                { x: topPoints[i + 1], y: LOG_Y },
+                                { x: bottomPoints[i + 1], y: LOG_Y + LOG_DRAW_H },
+                                { x: bottomPoints[i], y: LOG_Y + LOG_DRAW_H }
+                            ];
+                            const vx = direction * (1.2 + Math.random()) + (Math.random() - 0.5) * 1.5;
+                            const vy = -5 - Math.random() * 4;
+                            const va = (Math.random() - 0.5) * 0.15;
+                            logPieces.push(createPiece(vertices, vx, vy, va));
+                        }
+                    }
+
+                    // Hide sword overlay & reset cursor to pointer for clicking reset button
+                    dCanvas.style.cursor = 'default';
+                    swordEl.style.display = 'none';
+                    swordVisible = false;
+
+                    // Show the broken log overlay after a short delay (1.8s) to watch the animation
+                    setTimeout(() => {
+                        const brokenOverlay = document.getElementById('log-broken-overlay');
+                        if (brokenOverlay) {
+                            brokenOverlay.classList.remove('hidden');
+                        }
+                    }, 1800);
+
+                    // Update combo counter
+                    comboCounterEl.textContent = '100x Combo (BROKEN!)';
+                    comboCounterEl.classList.add('godlike-active');
+                } else {
+                    clearTimeout(comboTimer);
+                    comboTimer = setTimeout(() => {
+                        combo = 0;
+                        comboCounterEl.textContent = '';
+                        comboCounterEl.style.color = '#d1d5db';
+                        comboCounterEl.style.textShadow = 'none';
+                        comboCounterEl.classList.remove('godlike-active');
+                    }, 1500);
+                }
+
+                // Update combo counter (if not broken)
+                if (combo >= 1 && combo < 100) {
+                    comboCounterEl.textContent = combo + 'x Combo';
+
+                    if (combo >= 50) {
+                        // Godlike rainbow status!
+                        comboCounterEl.classList.add('godlike-active');
+                        comboCounterEl.style.color = '';
+                        comboCounterEl.style.textShadow = '';
+                    } else {
+                        comboCounterEl.classList.remove('godlike-active');
+                        const label = getComboLabel(combo);
+                        const cColor = label ? label.color : '#9ca3af';
+                        comboCounterEl.style.color = cColor;
+
+                        // Add glow that builds up as combo increases with outline for visibility
+                        if (combo >= 5) {
+                            const outline = '-1px -1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111, 1px 1px 0 #111';
+                            let glow = `${outline}, 0 0 4px ${cColor}`;
+                            if (combo >= 16) {
+                                glow += `, 0 0 10px ${cColor}`;
+                            }
+                            if (combo >= 35) {
+                                glow += `, 0 0 16px ${cColor}, 0 0 24px #ffffff`;
+                            }
+                            comboCounterEl.style.textShadow = glow;
+                        } else {
+                            // For low combos, add a subtle drop shadow instead of complex outlines/glows
+                            comboCounterEl.style.textShadow = '1px 1px 0px rgba(0, 0, 0, 0.15)';
+                        }
+                    }
+                }
+
+                // Spawn effects (slash on sword tip, damage numbers scattered on log body)
+                const logCenterX = LOG_X + LOG_DRAW_W / 2;
+                const logCenterY = LOG_Y + LOG_DRAW_H / 2;
+                const dmgX = logCenterX + (Math.random() - 0.5) * 80;
+                const dmgY = logCenterY + (Math.random() - 0.5) * 160;
+
+                const rect = dCanvas.getBoundingClientRect();
+                const scaleX = DW / rect.width;
+                const scaleY = DH / rect.height;
+                const tipX = pos.x - 41 * scaleX;
+                const tipY = pos.y - 41 * scaleY;
+
+                spawnSlash(tipX, tipY);
+                spawnDamageNumber(dmgX, dmgY, comboDmg);
+
+                // Combo label popup
+                const label = getComboLabel(combo);
+                if (label && (combo === label.min || combo % 5 === 0) && combo < 100) {
+                    spawnComboPopup(label);
+                }
+
+                // Shake
+                shakeX = (Math.random() - 0.5) * 8;
+                shakeY = (Math.random() - 0.5) * 4;
+                shakeDecay = 1;
+
+                // Tilt toward hit direction
+                dummyAngle = (pos.x < DW / 2 ? 1 : -1) * (0.03 + Math.random() * 0.04);
+
+                // Hit flash
+                hitFlash = 1;
+
+                // HP regen when depleted
+                if (hp <= 0 && !isLogBroken) {
+                    setTimeout(() => {
+                        hp = maxHp;
+
+                    }, 800);
+                }
+            }
+        });
+
+        // Passive HP regen
+        setInterval(() => {
+            if (isLogBroken) return;
+            if (hp < maxHp && hp > 0) {
+                hp = Math.min(maxHp, hp + 1);
+
+            }
+        }, 500);
+
+        // Repair button click event
+        const repairBtn = document.getElementById('repair-log-btn');
+        if (repairBtn) {
+            repairBtn.addEventListener('click', function () {
+                isLogBroken = false;
+
+                // Hide overlay
+                const brokenOverlay = document.getElementById('log-broken-overlay');
+                if (brokenOverlay) {
+                    brokenOverlay.classList.add('hidden');
+                }
+
+                // Reset game state
+                hp = maxHp;
+                combo = 0;
+                logPieces = [];
+
+                // Reset combo UI
+                comboCounterEl.textContent = '';
+                comboCounterEl.style.color = '#d1d5db';
+                comboCounterEl.style.textShadow = 'none';
+                comboCounterEl.classList.remove('godlike-active');
+
+                // Restore cursor
+                dCanvas.style.cursor = '';
+            });
+        }
+
+        // Animation loop
+        function dummyLoop() {
+            dCtx.clearRect(0, 0, DW, DH);
+
+            // Decay shake
+            if (shakeDecay > 0) {
+                shakeDecay *= 0.85;
+                shakeX *= 0.85;
+                shakeY *= 0.85;
+                if (shakeDecay < 0.01) {
+                    shakeX = 0;
+                    shakeY = 0;
+                    shakeDecay = 0;
+                }
+            }
+
+            // Decay tilt
+            dummyAngle *= 0.88;
+            if (Math.abs(dummyAngle) < 0.001) dummyAngle = 0;
+
+            // Decay hit flash
+            if (hitFlash > 0) {
+                hitFlash *= 0.8;
+                if (hitFlash < 0.01) hitFlash = 0;
+            }
+
+            // Update log split physics if broken
+            if (isLogBroken) {
+                const gravity = 0.35;
+                const groundMargin = 10;
+
+                for (const piece of logPieces) {
+                    piece.vy += gravity;
+                    piece.x += piece.vx;
+                    piece.y += piece.vy;
+                    piece.angle += piece.va;
+
+                    // Transform local vertices to find rotated bounds
+                    const rotated = piece.localVertices.map(v => {
+                        const rx = v.x * Math.cos(piece.angle) - v.y * Math.sin(piece.angle);
+                        const ry = v.x * Math.sin(piece.angle) + v.y * Math.cos(piece.angle);
+                        return { x: rx, y: ry };
+                    });
+
+                    const minX = Math.min(...rotated.map(v => v.x));
+                    const maxX = Math.max(...rotated.map(v => v.x));
+                    const minY = Math.min(...rotated.map(v => v.y));
+                    const maxY = Math.max(...rotated.map(v => v.y));
+
+                    let cx = piece.initialCenterX + piece.x;
+                    let cy = piece.initialCenterY + piece.y;
+
+                    // Floor bounce
+                    if (cy + maxY > DH - groundMargin) {
+                        piece.y = DH - groundMargin - maxY - piece.initialCenterY;
+                        piece.vy = -piece.vy * 0.3; // low bounce
+                        piece.vx *= 0.5; // friction
+                        piece.va *= 0.5; // rotational friction
+                        cy = piece.initialCenterY + piece.y;
+                    }
+                    // Top ceiling bounce
+                    if (cy + minY < 0) {
+                        piece.y = -minY - piece.initialCenterY;
+                        piece.vy = -piece.vy * 0.4;
+                        cy = piece.initialCenterY + piece.y;
+                    }
+                    // Left wall bounce
+                    if (cx + minX < 0) {
+                        piece.x = -minX - piece.initialCenterX;
+                        piece.vx = -piece.vx * 0.4;
+                        piece.va = -piece.va * 0.4;
+                        cx = piece.initialCenterX + piece.x;
+                    }
+                    // Right wall bounce
+                    if (cx + maxX > DW) {
+                        piece.x = DW - maxX - piece.initialCenterX;
+                        piece.vx = -piece.vx * 0.4;
+                        piece.va = -piece.va * 0.4;
+                        cx = piece.initialCenterX + piece.x;
+                    }
+                }
+            }
+
+            drawDummy();
+            drawSlashTrails();
+            requestAnimationFrame(dummyLoop);
+        }
+
+        dummyLoop();
     })();
 </script>
 
