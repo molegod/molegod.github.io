@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Accelerated AV1 Decoding | Peter He</title>
+  <meta name="description" content="FPGA inverse DCT co-processor for AV1 decoding on the DE1-SoC.">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev/av1-decoder" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hardware Accelerated AV1 Decoding | Peter He" />
+  <meta property="og:description" content="FPGA inverse DCT co-processor for AV1 decoding on the DE1-SoC." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico?v=2" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png?v=2" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png?v=2" />
+  <link rel="manifest" href="favicon/site.webmanifest?v=2" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: top 0.3s ease;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .left-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .project-label {
+      color: #666666;
+      font-size: 2.5rem;
+      font-weight: 400;
+    }
+
+    .project-name {
+      color: #000000;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 1rem 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #333333;
+      margin: 0 0 1rem 0;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0.5rem 0;
+      color: #555555;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 560px;
+      border-radius: 16px;
+      border: 1px solid #eaeaea;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      background: #ffffff;
+    }
+
+    .project-details {
+      margin: 2rem 0;
+    }
+
+    .team-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .team-member {
+      background-color: whitesmoke;
+      color: #374151;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .team-member:hover {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+
+    .learn-more-btn-wrapper {
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    .learn-more-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #000000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .learn-more-btn:hover {
+      background-color: #333333;
+    }
+
+    .learn-more-section {
+      padding: 6rem 2rem;
+      background-color: #ffffff;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .learn-more-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      color: #000000;
+      letter-spacing: -0.03em;
+    }
+
+    .overview-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .overview-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .overview-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .overview-text {
+      flex: 1.2;
+    }
+
+    .overview-text h3 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1.05rem;
+      color: #444444;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .overview-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .overview-media {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overview-media img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-media img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .metric-grid,
+    .report-grid,
+    .figure-gallery {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .metric-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .report-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .figure-gallery {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .metric,
+    .report-card,
+    .figure-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #fafafa;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.5rem;
+      color: #000000;
+      line-height: 1.2;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 0.5rem;
+      color: #666666;
+      font-size: 0.95rem;
+    }
+
+    .report-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #111111;
+      margin: 0 0 0.75rem 0;
+    }
+
+    .report-card p {
+      color: #555555;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin: 0;
+      text-align: left;
+    }
+
+    .figure-card {
+      padding: 0.75rem;
+      background: #ffffff;
+    }
+
+    .figure-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+      background: #f8f8f8;
+      border: 1px solid #ededed;
+    }
+
+    .figure-card p {
+      margin: 0.75rem 0 0 0;
+      color: #555555;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      text-align: left;
+    }
+
+    .section-band {
+      border-top: 1px solid #eeeeee;
+      padding-top: 4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #666666;
+      border-top: 1px solid #e5e5e5;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        min-height: auto;
+        padding: 2rem 1rem;
+      }
+
+      .left-section,
+      .right-section {
+        padding: 1rem;
+      }
+
+      .project-label,
+      .project-name {
+        font-size: 2rem;
+      }
+
+      .overview-content {
+        gap: 4rem;
+      }
+
+      .overview-item,
+      .overview-item.reverse {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .overview-text h3 {
+        font-size: 1.5rem;
+      }
+
+      .overview-media {
+        width: 100%;
+      }
+
+      .metric-grid,
+      .report-grid,
+      .figure-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .figure-card img {
+        height: auto;
+        max-height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Navigation -->
+  <nav id="navbar" class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+        <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+        <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+        <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+        <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="left-section">
+      <img src="assets/av1_title.png" alt="High-level structure of the AV1 decoder design" class="hero-image">
+    </div>
+
+    <div class="right-section">
+      <h1><span class="project-label">ECE 5760 | </span> <span class="project-name">AV1 Decoding</span></h1>
+      <h2 class="text-xl font-semibold">Hardware “Accelerated” AV1 Decoding" using an FPGA</h2>
+      <br>
+      <p>
+        <strong>ECE 5760 - Hardware Acceleration via FPGA</strong> final project. <br><br>We integrated custom FPGA
+        inverse discrete-cosine-transform (DCT) blocks with the open-source dav1d AV1 decoder running on the DE1-SoC HPS.
+      </p>
+
+      <div class="project-details">
+        <p class="text-sm font-bold text-orange-500">
+          Note: We did not manage to achieve performance gains over dav1d's optimized C and ARM assembly paths, but the project was a useful learning experience.
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Team</h3>
+        <div class="team-list">
+          <a href="index.html" class="team-member">Peter He</a>
+          <a href="https://utku.sh/" target="_blank" rel="noopener noreferrer" class="team-member">Utku Melemetci</a>
+          <a href="https://www.linkedin.com/in/samuel-keamy/" target="_blank" rel="noopener noreferrer"
+            class="team-member">Sam Keamy</a>
+        </div>
+      </div>
+
+      <div class="learn-more-btn-wrapper">
+        <a href="https://people.ece.cornell.edu/land/courses/ece5760/FinalProjects/s2026/ph475_um44_swk57/ph475_um44_swk57/ph475_um44_swk57/index.html"
+          target="_blank" rel="noopener noreferrer" class="learn-more-btn">View Class Project Page</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-more-section" id="learn-more">
+    <h2>Overview</h2>
+    <div class="overview-content">
+
+
+      <div class="overview-item reverse">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/av1-figure3.png" alt="High-level structure of the design" loading="lazy">
+          <p class="text-xs text-gray-500 text-center mt-2 italic">High-level split between dav1d on the HPS and
+            transform compute on the FPGA.</p>
+        </div>
+        <div class="overview-text">
+          <h3>Project Introduction</h3>
+          <p>
+            Accelerating the entirety of the AV1 decode process purely in hardware is fundamentally impossible on our target De1-SoC FPGA due to the amount of logic and memory resources required, despite the FPGA being relatively powerful for a college course. 
+            Therefore, our goal was not to complete the entire video decoding process in hardware, but to accelerate some of the key transformations that would otherwise be done in software.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="overview-item">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/av1-figure1.png" alt="Profiling graphs for 1D transform usage in dav1d" loading="lazy">
+          <p class="text-xs text-gray-500 text-center mt-2 italic">Profiling showed DCT transforms dominated 1D
+            transformation workload.</p>
+        </div>
+        <div class="overview-text">
+          <h3>1D Transform Selection</h3>
+          <p>
+            To identify the ideal candidate for hardware acceleration, 
+            we profiled the dav1d software decoder to analyze 1D Transform usage on a sample video.
+
+
+          </p>
+          <p>
+            We chose the inverse DCT transformation because our profiling showed that it was the most expensive part of dav1d's decode pipeline, and because it is heavily math based, there was a lot of potential for parallelism.
+          </p>
+        </div>
+      </div>
+
+
+      
+
+      <div class="overview-item reverse">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/av1-figure8.png" alt="Dependency graph of IDCT steps" loading="lazy">
+          <p class="text-xs text-gray-500 text-center mt-2 italic">Dependency graph used to combine valid optimized IDCT
+            steps.</p>
+        </div>
+        <div class="overview-text">
+          <h3>Inverse DCT</h3>
+   <p>
+            My main contribution was the inverse DCT implementation and helper-function package. I translated the AV1
+            specification's transform steps into SystemVerilog.
+          </p>
+          <p>
+            The first IDCT implementation was a direct state-machine implementation of the spec, which was useful for getting
+            correctness but wildly expensive: a single naive 32-wide block used 66 DSPs. Later we wrote an optimized version wrapped
+            the butterfly operation in reusable modules and muxed inputs through only two butterfly units, bringing
+            usage down to four DSPs per block.
+          </p>
+          <p>
+            Because the target block was 32x32, I could remove AV1 steps that only apply to 64-wide transforms. We also
+            used a step dependency graph to combine safe Hadamard and butterfly operations while preserving the
+            bit-exact ordering required by the decoder.
+          </p>
+        </div>
+      </div>
+
+      <div class="overview-item">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/av1-figure7.png" alt="Resource usage with a single naive IDCT block" loading="lazy">
+          <p class="text-xs text-gray-500 text-center mt-2 italic">The naive IDCT used 66 DSPs for one block.</p>
+        </div>
+        <div class="overview-text">
+          <h3>Hardware/Software Tradeoffs</h3>
+          <p>
+            The DCT was useful because hardware can apply many register-level operations in parallel, but dav1d's
+            assembly is extremely optimized and the HPS/FPGA transfer path is slow. So in the end, moving data to the accelerator cost
+            more than the saved compute.
+          </p>
+          <p>
+            We also hit FPGA resource limits hard. Only six transform blocks fit, mostly due to register and LUT
+            pressure.
+          </p>
+        </div>
+      </div>
+
+
+
+      <div class="section-band">
+        <h2>Results</h2>
+        <div class="overview-content">
+
+          <div class="overview-item reverse">
+            <div class="overview-media flex flex-col items-center">
+              <img src="assets/av1-figure9.png" alt="Frame from Rick Astley's Never Gonna Give You Up decoded by our accelerated dav1d" loading="lazy">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">A frame from Rick Astley's "Never Gonna Give You
+                Up" decoded by our accelerated version of dav1d.</p>
+            </div>
+            <div class="overview-text">
+              <h3>A (very slightly) Accelerated Rick Roll</h3>
+              <p>
+                For our test case we ran Rick Astley's "Never Gonna Give You Up" through our FPGA-assisted dav1d build.
+                Due to the limited storage available on our SD card, we had to downscale the video to 256x144 — larger
+                versions simply would not fit on the SD card once decoded into raw video.
+              </p>
+              <p>
+                The decoder produced correct, watchable frames, confirming that the inverse DCT co-processor was
+                integrated end-to-end with the software decode path.
+              </p>
+            </div>
+          </div>
+
+          <div class="overview-item">
+            <div class="overview-media flex flex-col items-center">
+              <img src="assets/av1-figure10.png" alt="Diff between CPU and FPGA-assisted decode showing no differences" loading="lazy">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">Diff between CPU and FPGA-assisted decode. The grey
+                shows that there are no differences.</p>
+            </div>
+            <div class="overview-text">
+              <h3>Verification</h3>
+              <p>
+                To make sure we were getting it right, we compared our FPGA-assisted output against software-only dav1d's
+                output frame by frame. The diff image is almost entirely uniform grey, which means there are no
+                differences between the two decodes, our hardware IDCT was bit-exact with the reference.
+              </p>
+            </div>
+          </div>
+
+          <div class="overview-item reverse">
+            <div class="overview-media flex flex-col items-center">
+              <img src="assets/av1-figure11.png" alt="Small white speck revealing a decoding error in dav1d's ARM assembly" loading="lazy">
+              <p class="text-xs text-gray-500 text-center mt-2 italic">A small white speck in the diff revealed a bug in
+                dav1d's ARM assembly path.</p>
+            </div>
+            <div class="overview-text">
+              <h3>A funny dav1d bug (we think)</h3>
+              <p>
+                While testing the identity transform, we noticed a small white speck in the diff, indicating a real
+                difference between the two outputs. After digging in, we determined that the ARM assembly version of
+                dav1d had a bug, not in the transform logic itself, but somewhere higher up the pipeline, that was causing
+                the transform logic to receive different coefficients.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- <div class="section-band">
+        <h2>All Report Figures</h2>
+        <div class="figure-gallery">
+          <div class="figure-card">
+            <img src="assets/av1-figure1.png" alt="Profiling graphs for 1D transform usage in dav1d" loading="lazy">
+            <p>Figure 1: 1D transform usage in dav1d.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure2.png" alt="Simple mathematical helper functions" loading="lazy">
+            <p>Figure 2: simple mathematical helper functions.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure3.png" alt="High-level structure of the design" loading="lazy">
+            <p>Figure 3: high-level hardware/software structure.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure4.png" alt="Request and response communication scheme" loading="lazy">
+            <p>Figure 4: request and response communication scheme.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure5.png" alt="FPGA-side hardware block diagram" loading="lazy">
+            <p>Figure 5: FPGA-side hardware block diagram.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure6.png" alt="Qsys layout" loading="lazy">
+            <p>Figure 6: Qsys layout for memory and PIO instances.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure7.png" alt="Resource usage with a single naive IDCT block" loading="lazy">
+            <p>Figure 7: resource usage with one naive IDCT block.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure8.png" alt="Dependency graph of IDCT steps" loading="lazy">
+            <p>Figure 8: dependency graph for optimized IDCT steps.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure9.png" alt="Frame from decoded video" loading="lazy">
+            <p>Figure 9: frame decoded by the FPGA-assisted dav1d build.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure10.png" alt="CPU versus FPGA-assisted decode difference" loading="lazy">
+            <p>Figure 10: CPU versus FPGA-assisted decode diff.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure11.png" alt="Small decoding error in dav1d assembly" loading="lazy">
+            <p>Figure 11: small decoding error discovered in dav1d assembly.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure12.png" alt="Surfer screenshot of lock logic" loading="lazy">
+            <p>Figure 12: waveform screenshot of lock logic working.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure13.png" alt="Quartus resource utilization summary" loading="lazy">
+            <p>Figure 13: Quartus resource utilization summary.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure14.png" alt="Quartus chip planner screenshot" loading="lazy">
+            <p>Figure 14: Quartus chip planner screenshot.</p>
+          </div>
+          <div class="figure-card">
+            <img src="assets/av1-figure15.png" alt="Performance comparison graph" loading="lazy">
+            <p>Figure 15: performance comparison of optimization options.</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Peter He. All rights reserved.</p>
+  </footer>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0px";
+      } else {
+        if (currentScrollPos > 0) {
+          navbar.style.top = "-70px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  </script>
+</body>
+
+</html>
