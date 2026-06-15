@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8x8 Shape Display | Peter He</title>
+  <meta name="description" content="A cheap programmable 8x8 mechanical shape display driven by 64 DC motors and a Raspberry Pi.">
+  <meta name="author" content="Peter He">
+  <meta property="og:url" content="https://peterhe.dev/shapedisplay" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="8x8 Shape Display | Peter He" />
+  <meta property="og:description" content="A cheap programmable 8x8 mechanical shape display driven by 64 DC motors and a Raspberry Pi." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico?v=2" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png?v=2" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png?v=2" />
+  <link rel="manifest" href="favicon/site.webmanifest?v=2" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Three.js Import Map (same viewer as indexexample.html) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+    }
+
+    /* Sticky Navigation with Glassmorphism */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: top 0.3s ease;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .left-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .project-label {
+      color: #666666;
+      font-size: 2.5rem;
+      font-weight: 400;
+    }
+
+    .project-name {
+      color: #000000;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 1rem 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #333333;
+      margin: 0 0 1rem 0;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0.5rem 0;
+      color: #555555;
+    }
+
+    small {
+      color: #888888;
+      font-style: italic;
+    }
+
+    .project-details {
+      margin: 2rem 0;
+    }
+
+    .project-details h3 {
+      font-size: 1.25rem;
+      margin: 0 0 1rem 0;
+      color: #000000;
+    }
+
+    .team-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .team-member {
+      background-color: whitesmoke;
+      color: #374151;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .learn-more-btn-wrapper {
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    .learn-more-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #000000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .learn-more-btn:hover {
+      background-color: #333333;
+    }
+
+    .learn-more-section {
+      padding: 6rem 2rem;
+      background-color: #ffffff;
+      border-top: 1px solid #eaeaea;
+    }
+
+    .learn-more-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      color: #000000;
+      letter-spacing: -0.03em;
+    }
+
+    .overview-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .overview-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .overview-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .overview-text {
+      flex: 1.2;
+    }
+
+    .overview-text h3 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text p {
+      font-size: 1.05rem;
+      color: #444444;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .overview-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .overview-media {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overview-media img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eaeaea;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-media img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .overview-media.dual-images {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .overview-media.dual-images img {
+      width: 100%;
+    }
+
+    .overview-hero {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eaeaea;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .overview-hero:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .overview-hero:hover img {
+      transform: scale(1.01);
+    }
+
+    .overview-media.side-by-side {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .overview-media.side-by-side img {
+      width: calc(50% - 0.5rem);
+      object-fit: cover;
+    }
+
+    .overview-media.three-columns {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .three-columns-wrapper {
+      width: calc(33.333% - 0.67rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .three-columns-wrapper img {
+      width: 100%;
+      height: auto;
+    }
+
+    .overview-single {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .figure-caption {
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* Code blocks for software section */
+    .overview-text pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0 0 1.25rem 0;
+    }
+
+    .overview-text pre code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      background: none;
+      color: inherit;
+      padding: 0;
+    }
+
+    .overview-text code {
+      background: #f1f5f9;
+      color: #b45309;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    /* Parts / references blocks */
+    .info-block {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .info-block table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .info-block th,
+    .info-block td {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid #eaeaea;
+      color: #444444;
+      vertical-align: top;
+    }
+
+    .info-block th {
+      color: #111111;
+      font-weight: 600;
+    }
+
+    .info-block tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    .info-block ul {
+      padding-left: 1.2rem;
+      color: #444444;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .info-block a {
+      color: #ea580c;
+      word-break: break-word;
+    }
+
+
+    /* 3D viewer container, matching indexexample.html behavior */
+    #model-container {
+      width: 100%;
+      max-width: 500px;
+      height: 600px;
+      background-color: #fff;
+      margin: 20px auto;
+      position: relative;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #loading-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: monospace;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 0 1rem;
+      }
+
+      .left-section,
+      .right-section {
+        padding: 1rem;
+      }
+
+      .project-name {
+        font-size: 2rem;
+      }
+
+      .overview-content {
+        gap: 4rem;
+      }
+
+      .overview-item,
+      .overview-item.reverse {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .overview-text h3 {
+        font-size: 1.5rem;
+      }
+
+      .overview-media {
+        width: 100%;
+      }
+
+      .overview-media.side-by-side {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .overview-media.side-by-side img {
+        width: 100%;
+      }
+
+      .overview-media.three-columns {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .three-columns-wrapper {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Navigation -->
+  <nav id="navbar" class="border-b border-gray-200 py-4">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex space-x-8">
+        <a href="index.html" class="text-gray-500 hover:text-gray-700 transition-colors">home</a>
+        <a href="projects.html" class="text-black font-medium border-b-2 border-black pb-1">projects</a>
+        <a href="research.html" class="text-gray-500 hover:text-gray-700 transition-colors">research</a>
+        <a href="creative.html" class="text-gray-500 hover:text-gray-700 transition-colors">creative</a>
+        <a href="fun.html" class="text-gray-500 hover:text-gray-700 transition-colors">fun</a>
+        <a href="assets/peterhe_cv.pdf" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-700 transition-colors">cv</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Left: 3D Viewer in place of graphic -->
+    <div class="left-section">
+      <div id="model-container">
+        <div id="loading-text">Loading 3D Model...</div>
+      </div>
+    </div>
+
+    <!-- Right: Text content -->
+    <div class="right-section">
+      <h1><span class="project-label">ECE 5725 | </span> <span class="project-name">8x8 Shape Display</span></h1>
+      <h2 class="text-xl font-semibold">A cheap programmable mechanical surface.</h2>
+      <br>
+      <p>An 8x8 grid of 64 N20 Gear motor cells that physically renders patterns, images, and height maps controlled from a browser through a Raspberry Pi for ~$120</p>
+
+      <div class="project-details">
+        <p class="text-sm font-bold text-orange-500">
+          Drag the 3D model on the left to view the shape display CAD from different angles.
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Team</h3>
+        <div class="team-list">
+          <span class="team-member">Peter He</span>
+          <span class="team-member">Ronald Qu</span>
+          <span class="team-member">Junwoo Kwon</span>
+        </div>
+      </div>
+
+      <!-- <div class="learn-more-btn-wrapper">
+        <a href="#learn-more" class="learn-more-btn">Read the Full Report</a>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="learn-more-section" id="learn-more">
+    <h2>Overview</h2>
+    <div class="overview-content">
+
+      <!-- Introduction -->
+      <div class="overview-item">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/shapedisplay_figure1.png" alt="Physical display and CAD both showing a heart" loading="lazy">
+          <p class="figure-caption">Figure 1: Physical display and CAD render both showing a heart.</p>
+        </div>
+        <div class="overview-text">
+          <h3>Introduction</h3>
+          <p>Our goal was to build a programmable 8x8 mechanical shape display that can physically represent simple
+            patterns, images, and height maps. Inspired by projects from the MIT Media Lab and Stanford SHAPE Lab.
+            Our biggest challenge was doing it
+            on a rather tight budget. Each cell is a small DC motor driving a lead screw that raises or lowers a printed block. Basically all
+            mechanical parts except the motors were 3D-printed, including the lead screws, which were kept in place by a set screw.</p>
+            <p> For this project, I did the entire mechanical design, the initial hardware schematic, and integration hell. My other group members helped with soldering and software.</p>
+        </div>
+      </div>
+
+      <!-- Objective -->
+      <div class="overview-media overview-single flex flex-col items-center">
+        <img src="assets/shapedisplay_figure2.png" alt="Display with wiring finished, not fully assembled"
+          loading="lazy">
+        <p class="figure-caption">Figure 2: Display with wiring finished, not yet fully assembled (with older DC motors that were eventually replaced with N20 motors)</p>
+      </div>
+
+      <!-- System Overview / Mechanical -->
+      <div class="overview-item">
+        <div class="overview-media flex flex-col items-center">
+          <img src="assets/shapedisplay_figure3.png" alt="4x4 module test of shape display" loading="lazy">
+          <p class="figure-caption">Figure 3: 4x4 module test of the shape display.</p>
+        </div>
+        <div class="overview-text">
+          <h3>System Overview &amp; Mechanical Design</h3>
+          <p>The display is made of 64 independently controlled motorized cells. The user generates an 8x8 array in the browser,
+            it's sent to the Pi, and the Pi converts it into motor commands routed through shift registers to the driver
+            boards, which controlled each motor's direction and run time.</p>
+
+          <p>Mechanically it was all designed in Fusion CAD. 
+            I designed it to be built around a modular 4x4 structure, 16 DC motors per module, each with a lead screw
+            lifting one printed block. Building and testing one 4x4 section first made the full 8x8 far easier to debug.</p>
+
+          <p>Early prototypes stalled on friction and tight tolerances, so I
+            adjusted the CAD, reprinted parts at a fine 0.08 mm layer height, sanded moving pieces, and tuned clearances
+            until blocks moved reliably.</p>
+        </div>
+      </div>
+
+      <div class="overview-media three-columns">
+        <div class="three-columns-wrapper">
+          <img src="assets/shapedisplay_figure4.png" alt="4x4 module test with 3x3 grid for friction and alignment"
+            loading="lazy">
+          <p class="figure-caption">Figure 4: 4x4 module test, using a 3x3 grid to check friction and alignment.</p>
+        </div>
+        <div class="three-columns-wrapper">
+          <img src="assets/shapedisplay_figure5.png" alt="3D-printed lead screws at 0.08mm layer height" loading="lazy">
+          <p class="figure-caption">Figure 5: 3D-printing lead screws at 0.08 mm layer height.</p>
+        </div>
+        <div class="three-columns-wrapper">
+          <img src="assets/shapedisplay_figure6.png" alt="Final wiring of the shape display" loading="lazy">
+          <p class="figure-caption">Figure 6: Final wiring.</p>
+        </div>
+      </div>
+
+      <!-- Electrical -->
+      <div class="overview-item">
+        <div class="overview-text">
+          <h3>Electrical Design</h3>
+          <p>Electrical componets were 64 DC motors, 32 motor driver boards, and 16 daisy-chained 74HC595 shift registers. Each motor needs
+            two control signals, so the full grid needs 128 control signals. 
+            
+            Rather than have 128 GPIO pins (which is far out of the realm of a Rasberry Pi), we used 16 shift
+            registers fed over SPI from the Pi.</p>
+
+          <p>The 8x8 is split into four physical 4x4 modules (top-left, top-right, bottom-left, bottom-right), each using
+            four shift registers for its 16 motors. This keeps wiring tidy and mirrors how the software divides the grid.</p>
+
+          <p>Power was also a big issue, running many motors at once drew too much current and destabilized the system, so
+            our software capped motion to four motors at a time. We used a 200 W PC power supply to get a stable current source.</p>
+        </div>
+      </div>
+
+      <div class="overview-media side-by-side">
+        <img src="assets/shapedisplay_figure7.png" alt="Schematic of 4x4 motor module" loading="lazy">
+        <img src="assets/shapedisplay_figure8.png" alt="Schematic of full 8x8 motor circuit" loading="lazy">
+      </div>
+      <p class="figure-caption">Figures 7 &amp; 8: Schematic of a single 4x4 motor module (left) and the full 8x8 motor
+        circuit (right).</p>
+
+
+      <!-- Milestones -->
+      <div class="overview-media overview-single flex flex-col items-center">
+        <img src="assets/shapedisplay_figure11.png" alt="200W PC power supply used for the display" loading="lazy">
+        <p class="figure-caption">Figure 9: 200 W PC power supply used to stabilize the system.</p>
+      </div>
+
+      <!-- Challenges -->
+      <div class="overview-item">
+        <div class="overview-text">
+          <h3>Challenges &amp; Resolutions</h3>
+          <p><strong>Friction.</strong> Tight printed tolerances stalled some blocks. We loosened the CAD fit, reprinted
+            tight parts, sanded contact surfaces, and bench-tested each motor-block pair before installing them, this also
+            isolated mechanical faults from electrical or software ones.</p>
+          <p><strong>Weak motors.</strong> The original DC motors we chose ended up being too weak to reliably lift the blocks, so we switched to stronger 
+            N20 motors, which solved the problem at the cost of more current draw and noise.</p>
+          <p><strong>Current draw.</strong> Moving many motors at once caused voltage drops and noisy control signals.
+            Batching to four motors at a time plus a 200 W desktop PC power supply dramatically improved stability.</p>
+        </div>
+      </div>
+
+      <div class="overview-media overview-single flex flex-col items-center">
+        <img src="assets/shapedisplay_figure12.png" alt="Shape display with inputs showing height map from original image"
+          loading="lazy">
+        <p class="figure-caption">Figure 10: Shape display alongside the inputs — height map generated from the original
+          image.</p>
+      </div>
+
+      <div class="overview-media overview-single flex flex-col items-center">
+        <img src="assets/shapedisplay_figure13.png" alt="Shape display with inputs showing height map from original image"
+          loading="lazy">
+        <p class="figure-caption">Figure 11: Shape display with new N20 motors.</p>
+      </div>
+
+
+      <!-- Conclusions / Future -->
+      <div class="overview-item">
+        <div class="overview-text">
+          <h3>Future Improvements</h3>
+          
+          <p>If we had more budget, as well as more time, improvements would probably center on closing the loop. Eg. adding limit switches, encoders, or sensors and
+            a real homing system that could correct height error and improve startup calibration. We would also probbaly make per-module connector PCBs would replace hand wiring to make the display cleaner and easier to scale beyond
+            8x8.</p>
+        </div>
+      </div>
+
+      <!-- Team -->
+      
+
+      <!-- Parts + References -->
+      
+
+    </div>
+  </div>
+
+  <footer class="border-t border-gray-200 py-6 sm:py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-gray-500 text-sm sm:text-base">
+      <p>&copy; 2026 Peter He. All rights reserved.</p>
+      <div class="flex flex-wrap gap-x-4 gap-y-2 items-center justify-center mt-3">
+          <a href="https://www.linkedin.com/in/ph475/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-bold">LinkedIn</a>
+          <span class="text-gray-300">|</span>
+          <a href="https://github.com/molegod" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-bold">GitHub</a>
+          <span class="text-gray-300">|</span>
+          <a href="https://x.com/peterhci" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-bold">Twitter</a>
+          <span class="text-gray-300">|</span>
+          <a href="https://scholar.google.com/citations?user=aoofdycAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-bold">Google Scholar</a>
+          <span class="text-gray-300">|</span>
+          <a href="assets/peterhe_cv.pdf" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-800 font-bold">CV</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js viewer script (GLB, same camera/lighting setup as index.html) -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // Configuration
+    const container = document.getElementById('model-container');
+    const loadingText = document.getElementById('loading-text');
+    const glbPath = 'assets/screwAssembled-compressed.glb';
+
+    // Scene Setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff); // Pure white background
+
+    // Camera Setup
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.set(50, 50, 50);
+
+    // Renderer Setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.outputColorSpace = THREE.SRGBColorSpace; // Better color accuracy
+    container.appendChild(renderer.domElement);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enablePan = false; // Keep model centered
+    controls.enableZoom = false; // Fixed perspective
+
+    // Lighting (same setup)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    keyLight.position.set(10, 20, 10);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xeef0ff, 0.8);
+    fillLight.position.set(-10, 10, 10);
+    scene.add(fillLight);
+
+    const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    backLight.position.set(0, 10, -20);
+    scene.add(backLight);
+
+    // Load Model (GLB — geometry + materials in one file)
+    loadingText.style.display = 'block';
+
+    const gltfLoader = new GLTFLoader();
+
+    gltfLoader.load(
+      glbPath,
+      (gltf) => {
+        loadingText.style.display = 'none';
+
+        const object = gltf.scene;
+
+        // Center the model at the origin
+        const box = new THREE.Box3().setFromObject(object);
+        const center = box.getCenter(new THREE.Vector3());
+        object.position.sub(center);
+
+        scene.add(object);
+
+        // Auto-fit camera
+        const size = box.getSize(new THREE.Vector3()).length();
+
+        controls.maxDistance = size * 4;
+        controls.minDistance = size * 0.5;
+
+        camera.near = size / 100;
+        camera.far = size * 100;
+        camera.updateProjectionMatrix();
+
+        const zoomOut = 1.25;
+        camera.position.set(
+          (size / 1.3) * zoomOut,
+          (size / 2.0) * zoomOut,
+          (size / 1.3) * zoomOut
+        );
+        camera.lookAt(0, 0, 0);
+      },
+      (xhr) => {
+        if (xhr.lengthComputable) {
+          const percentComplete = xhr.loaded / xhr.total * 100;
+          loadingText.textContent = `Loading: ${Math.round(percentComplete)}%`;
+        }
+      },
+      (error) => {
+        console.error('Error loading GLB:', error);
+        loadingText.textContent = "Error loading 3D model (GLB).";
+        loadingText.style.color = "red";
+      }
+    );
+
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle Resize
+    window.addEventListener('resize', onWindowResize, false);
+    function onWindowResize() {
+      if (container) {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      }
+    }
+  </script>
+
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      var navbar = document.getElementById("navbar");
+
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0px";
+      } else {
+        if (currentScrollPos > 0) {
+          navbar.style.top = "-70px";
+        }
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  </script>
+</body>
+
+</html>
