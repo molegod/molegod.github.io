@@ -39,6 +39,41 @@
             cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(-45 24 12)'%3E%3Crect x='12' y='6' width='24' height='4' fill='%23888'/%3E%3Crect x='10' y='10' width='28' height='8' fill='%23aaa'/%3E%3Crect x='10' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='35' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='21' y='18' width='6' height='22' fill='%238B5E3C'/%3E%3Crect x='21' y='18' width='2' height='22' fill='%23A0724B'/%3E%3Crect x='25' y='18' width='2' height='22' fill='%23704B2F'/%3E%3Crect x='19' y='40' width='10' height='4' fill='%238B5E3C'/%3E%3C/g%3E%3C/svg%3E") 24 12, pointer;
         }
 
+        /* Touch hammer overlay (mobile — CSS cursors don't show on touch) */
+        #hammer-overlay {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            pointer-events: none;
+            z-index: 5;
+            image-rendering: pixelated;
+            transform-origin: 24px 12px;
+            display: none;
+            filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.25));
+        }
+
+        #hammer-overlay.smash {
+            animation: hammerSmash 0.22s ease-out;
+        }
+
+        @keyframes hammerSmash {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            35% {
+                transform: rotate(-45deg);
+            }
+
+            70% {
+                transform: rotate(6deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
         #brick-wall-canvas {
             border-radius: 8px;
             image-rendering: pixelated;
@@ -360,11 +395,14 @@
                         <img src="assets/rickroll.gif" alt="" class="wall-bg" id="rickroll-bg" />
                         <!-- Gif Credit overlay (covered by bricks) -->
                         <div id="gif-credit"
-                            class="absolute bottom-1 right-4 text-white font-medium select-none pointer-events-none"
+                            class="absolute bottom-1 right-6 text-white font-medium select-none pointer-events-none"
                             style="font-family: 'Jersey 10', sans-serif; font-size: 16px; z-index: 0;">
                             gif credit: <span class="underline">musichistoryingifs.com</span>
                         </div>
                         <canvas id="brick-wall-canvas" class="hammer-cursor"></canvas>
+                        <!-- Touch hammer overlay (mobile) -->
+                        <img id="hammer-overlay" alt=""
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect x='12' y='6' width='24' height='4' fill='%23888'/%3E%3Crect x='10' y='10' width='28' height='8' fill='%23aaa'/%3E%3Crect x='10' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='35' y='10' width='3' height='8' fill='%23777'/%3E%3Crect x='21' y='18' width='6' height='22' fill='%238B5E3C'/%3E%3Crect x='21' y='18' width='2' height='22' fill='%23A0724B'/%3E%3Crect x='25' y='18' width='2' height='22' fill='%23704B2F'/%3E%3Crect x='19' y='40' width='10' height='4' fill='%238B5E3C'/%3E%3C/svg%3E" />
                         <!-- Easter Egg Popup overlay -->
                         <div id="easter-egg-popup"
                             class="hidden absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[1px] z-10 p-4">
@@ -472,10 +510,13 @@
         canvas.height = canvasH;
 
         // Responsive sizing: fill container width
+        // Measure against a block-level ancestor (the section), NOT the inline-block
+        // .wall-canvas-wrap — that wrapper collapses to the canvas width, creating a
+        // feedback loop that shrinks the wall a little on every resize event on mobile.
+        const sizingParent = document.getElementById("brick-wall-section");
         function resizeCanvas() {
-            const container = canvas.parentElement;
-            const maxW = container.clientWidth - 32; // account for padding
-            const scale = Math.min(maxW / canvasW, 2);
+            const maxW = sizingParent.clientWidth - 32; // account for padding
+            const scale = Math.min(maxW / canvasW, 1.0);
             canvas.style.width = (canvasW * scale) + "px";
             canvas.style.height = (canvasH * scale) + "px";
         }
@@ -746,9 +787,7 @@
             canvas.classList.add("hammer-cursor");
         });
 
-        canvas.addEventListener("click", function (e) {
-            const pos = canvasCoords(e);
-
+        function smashAt(pos) {
             // Always spawn shockwave at impact point
             shockwaves.push({
                 x: pos.x,
@@ -817,7 +856,51 @@
                     }, 350);
                 }
             }
+        }
+
+        canvas.addEventListener("click", function (e) {
+            smashAt(canvasCoords(e));
         });
+
+        // --- Touch support (mobile): show + swing the hammer overlay ---
+        const hammerOverlay = document.getElementById("hammer-overlay");
+        const wrap = canvas.parentElement; // .wall-canvas-wrap
+
+        function positionHammer(clientX, clientY) {
+            const wrapRect = wrap.getBoundingClientRect();
+            // Align the hammer head (hotspot 24,12 in the 48x48 svg) to the touch point
+            hammerOverlay.style.left = (clientX - wrapRect.left - 24) + "px";
+            hammerOverlay.style.top = (clientY - wrapRect.top - 12) + "px";
+        }
+
+        function swingHammer() {
+            hammerOverlay.classList.remove("smash");
+            void hammerOverlay.offsetWidth; // restart animation
+            hammerOverlay.classList.add("smash");
+        }
+
+        function touchCoords(touch) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: (touch.clientX - rect.left) * (canvasW / rect.width),
+                y: (touch.clientY - rect.top) * (canvasH / rect.height),
+            };
+        }
+
+        canvas.addEventListener("touchstart", function (e) {
+            e.preventDefault(); // suppress synthetic mouse/click + page scroll
+            const touch = e.changedTouches[0];
+            hammerOverlay.style.display = "block";
+            positionHammer(touch.clientX, touch.clientY);
+            swingHammer();
+            smashAt(touchCoords(touch));
+        }, { passive: false });
+
+        canvas.addEventListener("touchmove", function (e) {
+            e.preventDefault();
+            const touch = e.changedTouches[0];
+            positionHammer(touch.clientX, touch.clientY);
+        }, { passive: false });
 
         // Animation loop
         function loop() {
